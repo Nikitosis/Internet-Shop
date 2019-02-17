@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Commodity {
     @Id
     @Column(name="id")
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column(name="name")

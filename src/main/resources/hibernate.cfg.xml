@@ -12,11 +12,12 @@
     <property name="show_sql">true</property>
 
     <!-- DB schema will be updated if needed -->
-    <property name="hbm2ddl.auto">create</property>
+    <!--<property name="hbm2ddl.auto">create</property>-->
 
 
     <mapping class="com.shop.entities.User"/>
     <mapping class="com.shop.entities.Commodity"/>
+    <mapping class="com.shop.entities.OrderLog"/>
 
   </session-factory>
 </hibernate-configuration>
