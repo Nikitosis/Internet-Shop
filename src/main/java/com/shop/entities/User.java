@@ -2,39 +2,45 @@ package com.shop.entities;
 
 
 
+import com.sun.istack.Nullable;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 @Table(name="user")
 public class User {
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
 
-    @Column(name="username")
+    @Id
+    @Column(name="username",nullable = false,length = 32)
     private String username;
 
-    @Column(name="password")
+    @Column(name="password",nullable = false)
     private String password;
 
-    public User(int id, String username, String password) {
-        this.id = id;
+    @OneToMany(mappedBy = "user")
+    private Set<UserRole> userRoles;
+
+
+    public User(String username, String password, Set<UserRole> userRoles) {
         this.username = username;
         this.password = password;
+        this.userRoles = userRoles;
     }
 
     public User(){
 
     }
 
-    public int getId() {
-        return id;
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 
     public String getUsername() {

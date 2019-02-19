@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface Dao {
     public List<Commodity> getCommodities();
-    public User getUser(int id);
+    public User findByUsername(String username);
     public List<OrderLog> getUserOrders(int userId);
     public List<Commodity> getUserCommodities(int userId);
 

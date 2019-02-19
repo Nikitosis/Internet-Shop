@@ -95,4 +95,18 @@ public class DaoImpl implements Dao {
         }
         return findUser!=null;
     }
+
+    public User findByUsername(String username) {
+        Session session=sessionFactory.openSession();
+        User user=null;
+        try{
+            user=(User)session.createQuery("FROM User WHERE username=:username")
+                    .setParameter("username",username)
+                    .getSingleResult();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return user;
+    }
 }

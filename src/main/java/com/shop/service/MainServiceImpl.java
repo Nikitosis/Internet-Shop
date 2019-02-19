@@ -21,7 +21,8 @@ public class MainServiceImpl implements MainService {
     }
 
     public User getUser(int id) {
-        return dao.getUser(id);
+
+        return null;
     }
 
     public List<OrderLog> getUserOrders(int userId) {

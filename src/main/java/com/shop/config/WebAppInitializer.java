@@ -13,7 +13,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         System.out.println("Initialized!!");
         AnnotationConfigWebApplicationContext context=new AnnotationConfigWebApplicationContext();
-        context.register(WebConfig.class,SpringConfig.class,HibernateConfig.class);
+        context.register(WebConfig.class,SpringConfig.class,HibernateConfig.class,SecurityConfig.class);
         context.setServletContext(servletContext);
 
         ServletRegistration.Dynamic dispatcher=servletContext.addServlet("dispatcher",new DispatcherServlet(context));

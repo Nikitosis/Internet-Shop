@@ -34,14 +34,4 @@ public class MainController {
         return "showCommodities";
     }
 
-    @GetMapping("/login")
-    public String showLogin(){
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String loginUser(@ModelAttribute("user") User user){
-        service.loginUser(user);
-        return "home";
-    }
 }
