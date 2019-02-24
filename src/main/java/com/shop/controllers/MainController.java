@@ -1,5 +1,6 @@
 package com.shop.controllers;
 
+import com.shop.entities.Commodity;
 import com.shop.entities.User;
 import com.shop.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -42,6 +45,24 @@ public class MainController {
         UserDetails principal= (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("orders",service.getUserOrders(principal.getUsername()));
         return "userOrders";
+    }
+
+    @GetMapping("/addToBasket/{id}")
+    public String addCommodityToBasket(@PathVariable("id") int id, HttpSession session){
+        service.addCommodityToBasket(id,session);
+        return "redirect:/commodities";
+    }
+
+    @GetMapping("/basket")
+    public String showUserBasket(HttpSession session,Model model){
+        model.addAttribute("commoditiesInBasket",service.getCommoditiesFromBasket(session));
+        return "basket";
+    }
+
+    @GetMapping("/basket/confirmBuy")
+    public String confirmBasketBuy(HttpSession session){
+        service.confirmBasketBuy(session);
+        return "redirect:/";
     }
 
 }

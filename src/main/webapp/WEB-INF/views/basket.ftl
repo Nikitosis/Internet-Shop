@@ -5,21 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Commodities List</h1>
+    <h1>User Basket</h1>
     <table>
         <tr>
             <td>id</td>
             <td>name</td>
             <td>price</td>
         </tr>
-        <#list commodities as commodity>
+        <#list commoditiesInBasket as commodity>
             <tr>
                 <td>${commodity.id}</td>
                 <td>${commodity.name}</td>
                 <td>${commodity.price}</td>
-                <td><a href="/addToBasket/${commodity.id}">AddToBasket</a></td>
             </tr>
         </#list>
     </table>
+    <br>
+    <a href="/basket/confirmBuy">Confirm buy</a>
 </body>
 </html>

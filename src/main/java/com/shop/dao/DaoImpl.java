@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -96,7 +97,7 @@ public class DaoImpl implements Dao {
         return findUser!=null;
     }
 
-    public User findByUsername(String username) {
+    public User getUserByUsername(String username) {
         Session session=sessionFactory.openSession();
         User user=null;
         try{
@@ -108,5 +109,39 @@ public class DaoImpl implements Dao {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public Commodity getCommodityById(int id) {
+        Session session=sessionFactory.openSession();
+        Commodity commodity=null;
+        try{
+            commodity=(Commodity)session.createQuery("FROM Commodity WHERE id=:id")
+                    .setParameter("id",id)
+                    .getSingleResult();
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return commodity;
+    }
+
+    public void buyCommodity(Commodity commodity,User user) {
+        Session session=sessionFactory.openSession();
+        OrderLog orderLog=null;
+        try{
+            orderLog=new OrderLog(
+                    commodity,
+                    user,
+                    new Date(new java.util.Date().getTime())
+            );
+
+            session.save(orderLog);
+
+            System.out.println("Buy confirmed!");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

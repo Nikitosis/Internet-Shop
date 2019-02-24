@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+    <h1>User info</h1>
     <table>
         <tr>
             <td>username</td>

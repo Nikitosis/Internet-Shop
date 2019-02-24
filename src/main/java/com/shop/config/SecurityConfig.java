@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/commodities").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/userOrders").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/userInfo/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/basket").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin();
     }
