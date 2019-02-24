@@ -24,7 +24,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<UserRole> userRoles;
 
-
     public User(String username, String password, Set<UserRole> userRoles) {
         this.username = username;
         this.password = password;

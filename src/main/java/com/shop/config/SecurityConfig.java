@@ -24,12 +24,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        System.out.println("Admin pass: "+passwordEncoder().encode("admin"));
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login").permitAll()
                 .antMatchers("/commodities").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/userOrders").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/userInfo/**").access("hasRole('ROLE_ADMIN')")
                 .and()
                 .formLogin();
     }

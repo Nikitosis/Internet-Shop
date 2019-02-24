@@ -1,6 +1,7 @@
 package com.shop.dao;
 
 import com.shop.entities.Commodity;
+//import com.shop.entities.OrderLog;
 import com.shop.entities.OrderLog;
 import com.shop.entities.User;
 import org.hibernate.Criteria;
@@ -33,14 +34,13 @@ public class DaoImpl implements Dao {
         return commodities;
     }
 
-    public User getUser(int id) {
+    public User getUser(String username) {
         Session session=sessionFactory.openSession();
         User user=null;
         try{
-            Query query=session.createQuery("FROM User WHERE id=:id");
-            query.setParameter("id",id);
-
-            user=(User)query.getSingleResult();
+            user=(User)session.createQuery("FROM User WHERE username=:username")
+                    .setParameter("username",username)
+                    .getSingleResult();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -49,11 +49,12 @@ public class DaoImpl implements Dao {
         return user;
     }
 
-    public List<OrderLog> getUserOrders(int userId) {
+    public List<OrderLog> getUserOrders(String username) {
         Session session=sessionFactory.openSession();
         List<OrderLog> orders=null;
         try{
-            Query query=session.createQuery("FROM OrderLog INNER JOIN OrderLog.user");
+            Query query=session.createQuery("FROM OrderLog log WHERE log.user.username=:username")
+                    .setParameter("username",username);
 
             orders=query.list();
         }
@@ -64,11 +65,12 @@ public class DaoImpl implements Dao {
         return orders;
     }
 
-    public List<Commodity> getUserCommodities(int userId) {
+    public List<Commodity> getUserCommodities(String username) {
         Session session=sessionFactory.openSession();
         List<Commodity> commodities=null;
         try{
-            Query query=session.createQuery("SELECT OrderLog.commodity FROM OrderLog INNER JOIN OrderLog.user");
+            Query query=session.createQuery("SELECT log.commodity FROM OrderLog log WHERE log.user.username=:username")
+                    .setParameter("username",username);
 
             commodities=query.list();
         }
@@ -83,8 +85,6 @@ public class DaoImpl implements Dao {
         Session session=sessionFactory.openSession();
         Object findUser=null;
         try{
-            String name=user.getUsername();
-            String pass=user.getPassword();
             findUser=session.createQuery("FROM User WHERE username=:username AND password=:password")
                     .setParameter("username",user.getUsername())
                     .setParameter("password",user.getPassword())

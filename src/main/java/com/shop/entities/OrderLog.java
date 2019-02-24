@@ -12,11 +12,11 @@ public class OrderLog {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name="commodity_name")
+    @JoinColumn(name="commodity_id")
     private Commodity commodity;
 
     @ManyToOne
-    @JoinColumn(name="username")
+    @JoinColumn(name="user_name")
     private User user;
 
     @Column(name="date")
