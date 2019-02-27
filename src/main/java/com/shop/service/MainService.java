@@ -4,6 +4,8 @@ import com.shop.entities.Commodity;
 //import com.shop.entities.OrderLog;
 import com.shop.entities.OrderLog;
 import com.shop.entities.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -17,4 +19,6 @@ public interface MainService {
     public void addCommodityToBasket(int commodityId, HttpSession session);
     public List<Commodity> getCommoditiesFromBasket(HttpSession session);
     public void confirmBasketBuy(HttpSession session);
+
+    public void registerUser(User user);
 }

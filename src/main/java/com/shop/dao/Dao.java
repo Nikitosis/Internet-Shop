@@ -17,4 +17,6 @@ public interface Dao {
     public void buyCommodity(Commodity commodity,User user);
 
     public boolean isUserExist(User user);
+
+    public void addNewUser(User user);
 }

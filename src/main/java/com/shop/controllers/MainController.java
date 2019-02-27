@@ -2,6 +2,7 @@ package com.shop.controllers;
 
 import com.shop.entities.Commodity;
 import com.shop.entities.User;
+import com.shop.entities.UserRole;
 import com.shop.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -63,6 +64,20 @@ public class MainController {
     public String confirmBasketBuy(HttpSession session){
         service.confirmBasketBuy(session);
         return "redirect:/";
+    }
+
+    @GetMapping("/registration")
+    public String showRegistrationPage(){
+        return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String registerUser(@ModelAttribute("user") User user){
+        System.out.println("registr");
+
+        user.addUserRole(new UserRole("ROLE_USER"));
+        service.registerUser(user);
+        return "redirect:/login";
     }
 
 }

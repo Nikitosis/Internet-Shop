@@ -30,12 +30,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login").permitAll()
-                .antMatchers("/commodities").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/userOrders").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/commodities").permitAll()
+                .antMatchers("/userOrders").access("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
                 .antMatchers("/userInfo/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/basket").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/basket").permitAll()
+                .antMatchers("/basket/confirmBuy").access("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/")
+                    .invalidateHttpSession(true)
+                .and()
+                .headers()
+                    .disable()
+                .csrf()
+                    .disable();
+
     }
 
     @Bean

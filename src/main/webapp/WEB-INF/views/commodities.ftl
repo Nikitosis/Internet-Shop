@@ -21,5 +21,7 @@
             </tr>
         </#list>
     </table>
+
+    <a href="/">Back</a>
 </body>
 </html>

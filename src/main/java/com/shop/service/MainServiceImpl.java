@@ -8,6 +8,7 @@ import com.shop.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sun.applet.Main;
 
@@ -20,6 +21,9 @@ public class MainServiceImpl implements MainService {
 
     @Autowired
     Dao dao;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     public List<Commodity> getCommodities() {
         return dao.getCommodities();
@@ -50,7 +54,10 @@ public class MainServiceImpl implements MainService {
     }
 
     public List<Commodity> getCommoditiesFromBasket(HttpSession session) {
-        return (List<Commodity>)session.getAttribute("commoditiesInBasket");
+        if(session.getAttribute("commoditiesInBasket")!=null)
+            return (List<Commodity>)session.getAttribute("commoditiesInBasket");
+
+        return new ArrayList<Commodity>();
     }
 
     public void confirmBasketBuy(HttpSession session) {
@@ -63,5 +70,10 @@ public class MainServiceImpl implements MainService {
         }
 
         session.removeAttribute("commoditiesInBasket");
+    }
+
+    public void registerUser(User user) {
+        User encodedUser=new User(user.getUsername(),encoder.encode(user.getPassword()),user.getUserRoles());
+        dao.addNewUser(encodedUser);
     }
 }

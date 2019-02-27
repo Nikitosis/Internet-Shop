@@ -18,7 +18,11 @@ public class UserRole {
     private String role;
 
     public UserRole(){
+    }
 
+    public UserRole(String role){
+        this.role=role;
+        this.user=null;
     }
 
     public UserRole(User user, String role) {

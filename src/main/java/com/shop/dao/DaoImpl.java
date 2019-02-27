@@ -144,4 +144,15 @@ public class DaoImpl implements Dao {
             e.printStackTrace();
         }
     }
+
+    public void addNewUser(User user) {
+        Session session=sessionFactory.openSession();
+        try{
+            session.save(user);
+            System.out.println("User "+user.getUsername()+" registered!");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 }
