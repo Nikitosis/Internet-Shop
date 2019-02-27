@@ -30,8 +30,9 @@
         </@security.authorize>
 
         <@security.authorize access="isAuthenticated()">
-            <a href="/logout">Logout</a>
-            <br>
+            <form action="/logout" id="logoutForm">
+                <a href="javascript:{}" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+            </form>
         </@security.authorize>
 
     </body>
