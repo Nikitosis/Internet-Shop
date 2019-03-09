@@ -19,4 +19,8 @@ public interface Dao {
     public boolean isUserExist(User user);
 
     public void addNewUser(User user);
+
+    public void addCommodity(Commodity commodity);
+    public void modifyCommodity(Commodity commodity);
+    public void deleteCommodityById(int id);
 }

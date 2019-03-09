@@ -155,4 +155,44 @@ public class DaoImpl implements Dao {
             e.printStackTrace();
         }
     }
+
+    public void addCommodity(Commodity commodity) {
+        Session session=sessionFactory.openSession();
+        try{
+            session.save(commodity);
+            System.out.println("Commodity added: "+commodity.getName());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void modifyCommodity(Commodity commodity) {
+        Session session=sessionFactory.openSession();
+        try{
+            Transaction tx=session.beginTransaction();
+            session.merge(commodity);
+            System.out.println("Commodity modified: "+commodity.getName());
+            tx.commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteCommodityById(int id) {
+        Session session=sessionFactory.openSession();
+        try{
+            Transaction tx=session.beginTransaction();
+
+            Commodity commodity=session.get(Commodity.class,id);
+            session.delete(commodity);
+            System.out.println("Delete commodity: "+commodity.getName());
+
+            tx.commit();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

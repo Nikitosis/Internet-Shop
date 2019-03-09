@@ -60,6 +60,10 @@ public class MainServiceImpl implements MainService {
         return new ArrayList<Commodity>();
     }
 
+    public Commodity getCommodityById(int id) {
+        return dao.getCommodityById(id);
+    }
+
     public void confirmBasketBuy(HttpSession session) {
         List<Commodity> commoditiesInBasket=(List<Commodity>) session.getAttribute("commoditiesInBasket");
         UserDetails principal=(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -75,5 +79,18 @@ public class MainServiceImpl implements MainService {
     public void registerUser(User user) {
         User encodedUser=new User(user.getUsername(),encoder.encode(user.getPassword()),user.getUserRoles());
         dao.addNewUser(encodedUser);
+    }
+
+    public void addCommodityToDb(Commodity commodity) {
+        dao.addCommodity(commodity);
+    }
+
+
+    public void modifyCommodity(Commodity commodity){
+        dao.modifyCommodity(commodity);
+    }
+
+    public void deleteCommodityById(int id) {
+        dao.deleteCommodityById(id);
     }
 }

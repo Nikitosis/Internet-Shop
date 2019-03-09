@@ -25,7 +25,7 @@ public class Commodity {
     public Commodity(String name, double price, Date creationDate) {
         this.name = name;
         this.price = price;
-        this.creationDate = creationDate;
+        setCreationDate(creationDate);
     }
 
     public Commodity(){
@@ -59,8 +59,13 @@ public class Commodity {
     public Date getCreationDate() {
         return creationDate;
     }
-
+//set time to 12AM to get rid of timezone conversions
+// (in views date time could be shifted by several hours and it caused increasing/decreasing
+// the whole days)
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        final long hours12 = 12L * 60L * 60L * 1000L;
+        this.creationDate=creationDate;
+        this.creationDate.setTime(this.creationDate.getTime()+hours12); //set time at 12 AM
+                                                                        //to get rid of timezone conversions
     }
 }

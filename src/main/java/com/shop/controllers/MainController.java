@@ -41,6 +41,35 @@ public class MainController {
         return "commodities";
     }
 
+    @GetMapping("/commodities/addCommodity")
+    public String showAddCommodity(){
+        return "addCommodity";
+    }
+    @PostMapping("/commodities/addCommodity")
+    public String addCommodity(@ModelAttribute("commodity") Commodity commodity){
+        service.addCommodityToDb(commodity);
+        return "redirect:/commodities";
+    }
+
+    @GetMapping("/commodities/modifyCommodity/{id}")
+    public String showModifyCommodity(@PathVariable("id") int commodity_id, Model model){
+        Commodity commodity=service.getCommodityById(commodity_id);
+        model.addAttribute("commodity",commodity);
+        return "modifyCommodity";
+    }
+
+    @PostMapping("/commodities/modifyCommodity")
+    public String modifyCommodity(@ModelAttribute("commodity") Commodity commodity){
+        service.modifyCommodity(commodity);
+        return "redirect:/commodities";
+    }
+
+    @PostMapping("/commodities/deleteCommodity")
+    public String deleteCommodity(@ModelAttribute("id") int id){
+        service.deleteCommodityById(id);
+        return "redirect:/commodities";
+    }
+
     @GetMapping("/userOrders")
     public String showUserOrders(Model model){
         UserDetails principal= (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -15,10 +15,15 @@ public interface MainService {
     public User getUser(String username);
     public List<OrderLog> getUserOrders(String username);
     public List<Commodity> getUserCommodities(String username);
+    public Commodity getCommodityById(int id);
 
     public void addCommodityToBasket(int commodityId, HttpSession session);
     public List<Commodity> getCommoditiesFromBasket(HttpSession session);
     public void confirmBasketBuy(HttpSession session);
 
     public void registerUser(User user);
+
+    public void addCommodityToDb(Commodity commodity);
+    public void modifyCommodity(Commodity commodity);
+    public void deleteCommodityById(int id);
 }

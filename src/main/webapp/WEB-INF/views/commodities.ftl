@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -25,10 +26,27 @@
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </td>
+                <@security.authorize access="hasRole('ROLE_ADMIN')">
+                    <td><a href="/commodities/modifyCommodity/${commodity.id}">Modify commodity</a></td>
+                </@security.authorize>
+                <@security.authorize access="hasRole('ROLE_ADMIN')">
+                    <td>
+                        <form action="/commodities/deleteCommodity" method="post">
+                            <input type="hidden" name="id" value="${commodity.id}"/>
+                            <input type="submit" value="Delete commodity"/>
+
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
+                    </td>
+                </@security.authorize>
             </tr>
         </#list>
     </table>
 
+    <@security.authorize access="hasRole('ROLE_ADMIN')">
+        <a href="/commodities/addCommodity">Add commodity</a>
+        <br>
+    </@security.authorize>
     <a href="/">Back</a>
 </body>
 </html>
