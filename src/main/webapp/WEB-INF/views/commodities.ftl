@@ -17,7 +17,14 @@
                 <td>${commodity.id}</td>
                 <td>${commodity.name}</td>
                 <td>${commodity.price}</td>
-                <td><a href="/addToBasket/${commodity.id}">AddToBasket</a></td>
+                <td>
+                    <form action="/addToBasket" method="post">
+                        <input type="hidden" name="commodity_id" value="${commodity.id}"/>
+                        <input type="submit" value="AddToBasket"/>
+
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </td>
             </tr>
         </#list>
     </table>

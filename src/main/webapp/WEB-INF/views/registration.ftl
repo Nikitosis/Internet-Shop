@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Registration</h1>
+    <h1>Registration12</h1>
     <form method="post" action="/registration" name="user">
         <table>
             <tr>
@@ -20,6 +20,7 @@
                 <input type="submit" value="Register"/>
             </tr>
         </table>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 
 </body>

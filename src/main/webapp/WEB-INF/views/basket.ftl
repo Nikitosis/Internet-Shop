@@ -21,6 +21,10 @@
         </#list>
     </table>
     <br>
-    <a href="/basket/confirmBuy">Confirm buy</a>
+    <form action="/basket/confirmBuy" method="post">
+        <input type="submit" value="Confirm Buy"/>
+
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 </body>
 </html>

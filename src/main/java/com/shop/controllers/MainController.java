@@ -48,8 +48,8 @@ public class MainController {
         return "userOrders";
     }
 
-    @GetMapping("/addToBasket/{id}")
-    public String addCommodityToBasket(@PathVariable("id") int id, HttpSession session){
+    @PostMapping("/addToBasket")
+    public String addCommodityToBasket(@ModelAttribute("commodity_id") int id, HttpSession session){
         service.addCommodityToBasket(id,session);
         return "redirect:/commodities";
     }
@@ -60,7 +60,7 @@ public class MainController {
         return "basket";
     }
 
-    @GetMapping("/basket/confirmBuy")
+    @PostMapping("/basket/confirmBuy")
     public String confirmBasketBuy(HttpSession session){
         service.confirmBasketBuy(session);
         return "redirect:/";
