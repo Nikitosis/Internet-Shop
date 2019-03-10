@@ -9,10 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -35,6 +32,16 @@ public class MainController {
         return "userInfo";
     }
 
+    @GetMapping("/commodities/search")
+    public String showCommoditiesFilter(@RequestParam("startPrice") Double startPrice,
+                                        @RequestParam("endPrice") Double endPrice,
+                                        @RequestParam("searchName") String searchName,
+                                        Model model){
+        System.out.println(startPrice+" "+endPrice+" "+searchName);
+        model.addAttribute("commodities",service.getCommoditiesWithFilter(startPrice,endPrice,searchName));
+        return "commodities";
+    }
+
     @GetMapping("/commodities")
     public String showCommodities(Model model){
         model.addAttribute("commodities",service.getCommodities());
@@ -46,7 +53,7 @@ public class MainController {
         return "addCommodity";
     }
     @PostMapping("/commodities/addCommodity")
-    public String addCommodity(@ModelAttribute("commodity") Commodity commodity){
+    public String addCommodity(@RequestParam("commodity") Commodity commodity){
         service.addCommodityToDb(commodity);
         return "redirect:/commodities";
     }
@@ -59,13 +66,13 @@ public class MainController {
     }
 
     @PostMapping("/commodities/modifyCommodity")
-    public String modifyCommodity(@ModelAttribute("commodity") Commodity commodity){
+    public String modifyCommodity(@RequestParam("commodity") Commodity commodity){
         service.modifyCommodity(commodity);
         return "redirect:/commodities";
     }
 
     @PostMapping("/commodities/deleteCommodity")
-    public String deleteCommodity(@ModelAttribute("id") int id){
+    public String deleteCommodity(@RequestParam("id") int id){
         service.deleteCommodityById(id);
         return "redirect:/commodities";
     }
@@ -78,7 +85,7 @@ public class MainController {
     }
 
     @PostMapping("/addToBasket")
-    public String addCommodityToBasket(@ModelAttribute("commodity_id") int id, HttpSession session){
+    public String addCommodityToBasket(@RequestParam("commodity_id") int id, HttpSession session){
         service.addCommodityToBasket(id,session);
         return "redirect:/commodities";
     }
@@ -87,6 +94,12 @@ public class MainController {
     public String showUserBasket(HttpSession session,Model model){
         model.addAttribute("commoditiesInBasket",service.getCommoditiesFromBasket(session));
         return "basket";
+    }
+
+    @PostMapping("/basket/removeCommodity")
+    public String removeCommodityFromBasket(@RequestParam("id") int commodityId,HttpSession session){
+        service.removeCommodityFromBasket(commodityId,session);
+        return "redirect:/basket";
     }
 
     @PostMapping("/basket/confirmBuy")
@@ -101,7 +114,7 @@ public class MainController {
     }
 
     @PostMapping("/registration")
-    public String registerUser(@ModelAttribute("user") User user){
+    public String registerUser(@RequestParam("user") User user){
         System.out.println("registr");
 
         user.addUserRole(new UserRole("ROLE_USER"));

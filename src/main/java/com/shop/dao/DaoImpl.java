@@ -35,6 +35,22 @@ public class DaoImpl implements Dao {
         return commodities;
     }
 
+    public List<Commodity> getCommoditiesWithFilter(Double startPrice, Double endPrice, String searchName) {
+        Session session=sessionFactory.openSession();
+        List<Commodity> commodities=null;
+        try{
+            commodities=session.createQuery("FROM Commodity WHERE price>=:startPrice AND price<=:endPrice AND name LIKE :searchName")
+                        .setParameter("startPrice",startPrice)
+                        .setParameter("endPrice",endPrice)
+                        .setParameter("searchName","%"+searchName+"%")
+                        .list();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return commodities;
+    }
+
     public User getUser(String username) {
         Session session=sessionFactory.openSession();
         User user=null;

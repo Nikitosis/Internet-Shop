@@ -17,6 +17,14 @@
                 <td>${commodity.id}</td>
                 <td>${commodity.name}</td>
                 <td>${commodity.price}</td>
+                <td>
+                    <form action="/basket/removeCommodity" method="post">
+                        <input type="hidden" name="id" value="${commodity.id}"/>
+                        <input type="submit" value="Remove"/>
+
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </td>
             </tr>
         </#list>
     </table>

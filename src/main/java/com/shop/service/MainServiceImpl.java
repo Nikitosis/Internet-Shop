@@ -29,6 +29,15 @@ public class MainServiceImpl implements MainService {
         return dao.getCommodities();
     }
 
+    public List<Commodity> getCommoditiesWithFilter(Double startPrice, Double endPrice, String searchName) {
+        if(startPrice==null)
+            startPrice=0.0;
+        if(endPrice==null)
+            endPrice=100000000.0;
+
+        return dao.getCommoditiesWithFilter(startPrice,endPrice,searchName);
+    }
+
     public User getUser(String username) {
         return dao.getUserByUsername(username);
     }
@@ -49,6 +58,19 @@ public class MainServiceImpl implements MainService {
 
         Commodity commodity=dao.getCommodityById(commodityId);
         commoditiesInBasket.add(commodity);
+
+        session.setAttribute("commoditiesInBasket",commoditiesInBasket);
+    }
+
+    public void removeCommodityFromBasket(int commodityId,HttpSession session) {
+        List<Commodity> commoditiesInBasket=(List<Commodity>) session.getAttribute("commoditiesInBasket");
+
+        for(Commodity commodity:commoditiesInBasket){
+            if(commodity.getId()==commodityId) {
+                commoditiesInBasket.remove(commodity);
+                break;
+            }
+        }
 
         session.setAttribute("commoditiesInBasket",commoditiesInBasket);
     }

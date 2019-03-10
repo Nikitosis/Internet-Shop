@@ -48,5 +48,11 @@
         <br>
     </@security.authorize>
     <a href="/">Back</a>
+    <form action="/commodities/search" method="get">
+        <input type="number" name="startPrice"/>
+        <input type="number" name="endPrice"/>
+        <input type="text" name="searchName"/>
+        <input type="submit" value="Search"/>
+    </form>
 </body>
 </html>
