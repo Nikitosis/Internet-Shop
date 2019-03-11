@@ -9,7 +9,7 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Add commodity</h1>
+    <h1>Modify commodity</h1>
     <form action="/commodities/modifyCommodity" method="post" name="commodity">
         <table>
             <tr>
@@ -22,7 +22,7 @@
                 <td><input type="date" name="creationDate" value="${commodity.creationDate}"/></td>
             </tr>
             <tr>
-                <td><input type="submit" value="Create new commodity"/></td>
+                <td><input type="submit" value="Modify commodity"/></td>
             </tr>
         </table>
         <input type="hidden" name="id" value="${commodity.id}"/>

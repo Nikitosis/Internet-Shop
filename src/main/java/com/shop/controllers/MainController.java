@@ -55,7 +55,7 @@ public class MainController {
         return "addCommodity";
     }
     @PostMapping("/commodities/addCommodity")
-    public String addCommodity(@RequestParam("commodity") Commodity commodity){
+    public String addCommodity(@ModelAttribute("commodity") Commodity commodity){
         service.addCommodityToDb(commodity);
         return "redirect:/commodities";
     }
@@ -68,7 +68,7 @@ public class MainController {
     }
 
     @PostMapping("/commodities/modifyCommodity")
-    public String modifyCommodity(@RequestParam("commodity") Commodity commodity){
+    public String modifyCommodity(@ModelAttribute("commodity") Commodity commodity){
         service.modifyCommodity(commodity);
         return "redirect:/commodities";
     }
