@@ -1,6 +1,7 @@
 package com.shop.entities;
 
 import javax.persistence.*;
+import java.security.AlgorithmParameterGenerator;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,14 +23,31 @@ public class Commodity {
     @Column(name="creation_date")
     private Date creationDate;
 
-    public Commodity(String name, double price, Date creationDate) {
+    @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL)
+    private Set<Comment> comments=new HashSet<Comment>();
+
+    public Commodity(String name, double price, Date creationDate,Set<Comment> comments) {
         this.name = name;
         this.price = price;
         setCreationDate(creationDate);
+        this.comments=comments;
     }
 
     public Commodity(){
 
+    }
+
+    public void addComment(Comment comment){
+        comments.add(comment);
+        comment.setCommodity(this);
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 
     public int getId() {

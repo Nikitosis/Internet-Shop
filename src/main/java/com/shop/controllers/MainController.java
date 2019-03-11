@@ -1,5 +1,6 @@
 package com.shop.controllers;
 
+import com.shop.entities.Comment;
 import com.shop.entities.Commodity;
 import com.shop.entities.User;
 import com.shop.entities.UserRole;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -79,8 +81,22 @@ public class MainController {
 
     @GetMapping("commodities/{id}")
     public String showCommodityInfo(@PathVariable("id") int id,Model model){
+        /*Commodity commodity=service.getCommodityById(id);
+        User user=service.getUser("user");
+        Comment comment=new Comment("sadsa",new Date(1000),user,commodity);
+        service.addComment(comment);
+        commodity.addComment(comment);
+        user.addComment(comment);*/
         model.addAttribute("commodity",service.getCommodityById(id));
         return "commodityInfo";
+    }
+
+    @PostMapping("commodities/addComment")
+    public String addComment(@RequestParam("content") String content,
+                             @RequestParam("commodity_id") int commodity_id){
+
+        service.addComment(content,service.getCommodityById(commodity_id),(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        return "redirect:/commodities/"+commodity_id;
     }
 
     @GetMapping("/userOrders")
@@ -120,7 +136,7 @@ public class MainController {
     }
 
     @PostMapping("/registration")
-    public String registerUser(@RequestParam("user") User user){
+    public String registerUser(@ModelAttribute("user") User user){
         System.out.println("registr");
 
         user.addUserRole(new UserRole("ROLE_USER"));

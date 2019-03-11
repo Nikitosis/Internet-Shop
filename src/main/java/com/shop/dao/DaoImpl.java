@@ -1,5 +1,6 @@
 package com.shop.dao;
 
+import com.shop.entities.Comment;
 import com.shop.entities.Commodity;
 //import com.shop.entities.OrderLog;
 import com.shop.entities.OrderLog;
@@ -208,6 +209,17 @@ public class DaoImpl implements Dao {
             tx.commit();
         }
         catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addComment(Comment comment) {
+        Session session=sessionFactory.openSession();
+        try{
+            session.save(comment);
+            System.out.println("Comment added "+comment.getContent());
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
     }

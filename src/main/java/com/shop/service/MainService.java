@@ -1,10 +1,12 @@
 package com.shop.service;
 
+import com.shop.entities.Comment;
 import com.shop.entities.Commodity;
 //import com.shop.entities.OrderLog;
 import com.shop.entities.OrderLog;
 import com.shop.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.servlet.http.HttpSession;
@@ -28,4 +30,7 @@ public interface MainService {
     public void addCommodityToDb(Commodity commodity);
     public void modifyCommodity(Commodity commodity);
     public void deleteCommodityById(int id);
+
+    public void addComment(Comment comment);
+    public void addComment(String content,Commodity commodity,UserDetails userDetails);
 }

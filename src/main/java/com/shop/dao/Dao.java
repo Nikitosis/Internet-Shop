@@ -1,5 +1,6 @@
 package com.shop.dao;
 
+import com.shop.entities.Comment;
 import com.shop.entities.Commodity;
 //import com.shop.entities.OrderLog;
 import com.shop.entities.OrderLog;
@@ -24,4 +25,6 @@ public interface Dao {
     public void addCommodity(Commodity commodity);
     public void modifyCommodity(Commodity commodity);
     public void deleteCommodityById(int id);
+
+    public void addComment(Comment comment);
 }

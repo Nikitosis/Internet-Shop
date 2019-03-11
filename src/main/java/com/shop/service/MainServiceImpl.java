@@ -1,6 +1,7 @@
 package com.shop.service;
 
 import com.shop.dao.Dao;
+import com.shop.entities.Comment;
 import com.shop.entities.Commodity;
 //import com.shop.entities.OrderLog;
 import com.shop.entities.OrderLog;
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Service;
 import sun.applet.Main;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -99,7 +102,7 @@ public class MainServiceImpl implements MainService {
     }
 
     public void registerUser(User user) {
-        User encodedUser=new User(user.getUsername(),encoder.encode(user.getPassword()),user.getUserRoles());
+        User encodedUser=new User(user.getUsername(),encoder.encode(user.getPassword()),user.getUserRoles(),user.getComments());
         dao.addNewUser(encodedUser);
     }
 
@@ -114,5 +117,22 @@ public class MainServiceImpl implements MainService {
 
     public void deleteCommodityById(int id) {
         dao.deleteCommodityById(id);
+    }
+
+    public void addComment(Comment comment) {
+        dao.addComment(comment);
+    }
+
+    public void addComment(String content, Commodity commodity,UserDetails userDetails) {
+        User user=getUser(userDetails.getUsername());
+        Comment comment=new Comment(content,
+                new Date(Calendar.getInstance().getTime().getTime()),
+                user,
+                commodity);
+
+        dao.addComment(comment);
+
+        commodity.addComment(comment);
+        user.addComment(comment);
     }
 }

@@ -41,6 +41,29 @@
             </tr>
     </table>
 
+    <h2>Comment section</h2>
+    <#if (commodity.comments)??>
+        <table>
+            <#list commodity.comments as comment>
+                <tr>
+                    <td>${comment.user.username}</td>
+                    <td>${comment.content}</td>
+                    <td>${comment.date}</td>
+                </tr>
+            </#list>
+        </table>
+    </#if>
+    <br>
+    <h2>Add your comment</h2>
+    <form action="/commodities/addComment" method="post" name="comment">
+        <input type="text" name="content"/>
+
+        <input type="submit" value="Add comment"/>
+
+        <input type="hidden" name="commodity_id" value="${commodity.id}"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+
     <a href="/commodities">Back</a>
 </body>
 </html>

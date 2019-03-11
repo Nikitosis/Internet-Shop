@@ -24,19 +24,36 @@ public class User {
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL)
     private Set<UserRole> userRoles=new HashSet<UserRole>();
 
-    public User(String username, String password, Set<UserRole> userRoles) {
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Set<Comment> comments=new HashSet<Comment>();
+
+    public User(String username, String password, Set<UserRole> userRoles,Set<Comment> comments) {
         this.username = username;
         this.password = password;
         this.userRoles = userRoles;
+        this.comments=comments;
     }
 
     public User(){
 
     }
 
+    public void addComment(Comment comment){
+        this.comments.add(comment);
+        comment.setUser(this);
+    }
+
     public void addUserRole(UserRole role){
         this.userRoles.add(role);
         role.setUser(this);
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 
     public Set<UserRole> getUserRoles() {
