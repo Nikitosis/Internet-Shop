@@ -3,8 +3,7 @@ package com.shop.entities;
 import javax.persistence.*;
 import java.security.AlgorithmParameterGenerator;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="commodity")
@@ -23,10 +22,10 @@ public class Commodity {
     @Column(name="creation_date")
     private Date creationDate;
 
-    @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL)
-    private Set<Comment> comments=new HashSet<Comment>();
+    @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Comment> comments=new ArrayList<Comment>();
 
-    public Commodity(String name, double price, Date creationDate,Set<Comment> comments) {
+    public Commodity(String name, double price, Date creationDate,List<Comment> comments) {
         this.name = name;
         this.price = price;
         setCreationDate(creationDate);
@@ -42,11 +41,11 @@ public class Commodity {
         comment.setCommodity(this);
     }
 
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

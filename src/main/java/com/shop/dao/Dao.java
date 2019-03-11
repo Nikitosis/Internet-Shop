@@ -11,7 +11,7 @@ import java.util.List;
 public interface Dao {
     public List<Commodity> getCommodities();
     public List<Commodity> getCommoditiesWithFilter(Double startPrice, Double endPrice, String searchName);
-    public User getUserByUsername(String username);
+    public User getUser(String username);
     public List<OrderLog> getUserOrders(String username);
     public List<Commodity> getUserCommodities(String username);
     public Commodity getCommodityById(int id);

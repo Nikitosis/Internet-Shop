@@ -42,7 +42,7 @@ public class MainServiceImpl implements MainService {
     }
 
     public User getUser(String username) {
-        return dao.getUserByUsername(username);
+        return dao.getUser(username);
     }
 
     public List<OrderLog> getUserOrders(String username) {
@@ -92,7 +92,7 @@ public class MainServiceImpl implements MainService {
     public void confirmBasketBuy(HttpSession session) {
         List<Commodity> commoditiesInBasket=(List<Commodity>) session.getAttribute("commoditiesInBasket");
         UserDetails principal=(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User curUser=dao.getUserByUsername(principal.getUsername());
+        User curUser=dao.getUser(principal.getUsername());
 
         for(Commodity commodity:commoditiesInBasket){
             dao.buyCommodity(commodity,curUser);

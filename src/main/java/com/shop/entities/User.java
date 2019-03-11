@@ -2,11 +2,14 @@ package com.shop.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.Nullable;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -21,13 +24,13 @@ public class User {
     @Column(name="password",nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<UserRole> userRoles=new HashSet<UserRole>();
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
-    private Set<Comment> comments=new HashSet<Comment>();
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Comment> comments=new ArrayList<Comment>();
 
-    public User(String username, String password, Set<UserRole> userRoles,Set<Comment> comments) {
+    public User(String username, String password, Set<UserRole> userRoles,List<Comment> comments) {
         this.username = username;
         this.password = password;
         this.userRoles = userRoles;
@@ -48,11 +51,11 @@ public class User {
         role.setUser(this);
     }
 
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

@@ -54,15 +54,17 @@
         </table>
     </#if>
     <br>
-    <h2>Add your comment</h2>
-    <form action="/commodities/addComment" method="post" name="comment">
-        <input type="text" name="content"/>
+    <@security.authorize access="isAuthenticated()">
+        <h2>Add your comment</h2>
+        <form action="/commodities/addComment" method="post" name="comment">
+            <input type="text" name="content"/>
 
-        <input type="submit" value="Add comment"/>
+            <input type="submit" value="Add comment"/>
 
-        <input type="hidden" name="commodity_id" value="${commodity.id}"/>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form>
+            <input type="hidden" name="commodity_id" value="${commodity.id}"/>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+    </@security.authorize>
 
     <a href="/commodities">Back</a>
 </body>

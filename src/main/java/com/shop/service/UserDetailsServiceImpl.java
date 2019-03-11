@@ -23,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.shop.entities.User user= dao.getUserByUsername(username);
+        com.shop.entities.User user= dao.getUser(username);
         if(user==null)
             throw new UsernameNotFoundException("Cannot find user with such username");
 
