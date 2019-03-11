@@ -77,6 +77,12 @@ public class MainController {
         return "redirect:/commodities";
     }
 
+    @GetMapping("commodities/{id}")
+    public String showCommodityInfo(@PathVariable("id") int id,Model model){
+        model.addAttribute("commodity",service.getCommodityById(id));
+        return "commodityInfo";
+    }
+
     @GetMapping("/userOrders")
     public String showUserOrders(Model model){
         UserDetails principal= (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

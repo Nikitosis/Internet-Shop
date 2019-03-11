@@ -6,19 +6,16 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Commodities List</h1>
+    <h1>Current commodity</h1>
     <table>
         <tr>
             <td>id</td>
             <td>name</td>
             <td>price</td>
         </tr>
-        <#list commodities as commodity>
             <tr>
                 <td>${commodity.id}</td>
-                <td>
-                    <a href="/commodities/${commodity.id}">${commodity.name}</a>
-                </td>
+                <td>${commodity.name}</td>
                 <td>${commodity.price}</td>
                 <td>
                     <form action="/addToBasket" method="post">
@@ -42,19 +39,8 @@
                     </td>
                 </@security.authorize>
             </tr>
-        </#list>
     </table>
 
-    <@security.authorize access="hasRole('ROLE_ADMIN')">
-        <a href="/commodities/addCommodity">Add commodity</a>
-        <br>
-    </@security.authorize>
-    <a href="/">Back</a>
-    <form action="/commodities/search" method="get">
-        <input type="number" name="startPrice"/>
-        <input type="number" name="endPrice"/>
-        <input type="text" name="searchName"/>
-        <input type="submit" value="Search"/>
-    </form>
+    <a href="/commodities">Back</a>
 </body>
 </html>
