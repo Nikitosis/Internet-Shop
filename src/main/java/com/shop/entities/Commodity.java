@@ -23,9 +23,10 @@ public class Commodity {
     private Date creationDate;
 
     @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private List<Comment> comments=new ArrayList<Comment>();
+    @OrderBy("date")
+    private Set<Comment> comments=new HashSet<Comment>();
 
-    public Commodity(String name, double price, Date creationDate,List<Comment> comments) {
+    public Commodity(String name, double price, Date creationDate,Set<Comment> comments) {
         this.name = name;
         this.price = price;
         setCreationDate(creationDate);
@@ -41,11 +42,11 @@ public class Commodity {
         comment.setCommodity(this);
     }
 
-    public List<Comment> getComments() {
+    public Set<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(Set<Comment> comments) {
         this.comments = comments;
     }
 
