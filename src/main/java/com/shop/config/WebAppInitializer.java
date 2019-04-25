@@ -21,4 +21,6 @@ public class WebAppInitializer implements WebApplicationInitializer {
         dispatcher.addMapping("/");
         dispatcher.setInitParameter("contextClass",context.getClass().getName());
     }
+
+
 }
