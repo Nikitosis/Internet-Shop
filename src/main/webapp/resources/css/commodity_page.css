@@ -52,7 +52,7 @@ html,body{
 .main{
 	display:flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .wrapper-main__main{
@@ -83,19 +83,7 @@ html,body{
 	text-align: center;
 }
 
-.column{
-
-}
-
-.column_left{
-	margin-right: 5px;
-}
-
-.column_right{
-	margin-left:5px;
-}
-
-.main__column{
+.main__about{
 	min-width: 400px;
 	flex-grow: 1;
 	flex-basis: 0;
@@ -106,8 +94,9 @@ html,body{
 	flex-wrap: wrap;
 }
 
-.column__image-section{
-	width:100%;
+.main__image-section{
+	width:49%;
+	min-width: 400px;
 	margin-bottom: 25px;
 }
 
@@ -123,12 +112,88 @@ html,body{
 	height:660px;
 }
 
+.about{
+
+}
+
+.main__about{
+	width:49%;
+	min-width: 400px;
+}
+
+.about__section{
+	margin:20px 0;
+}
+
+.about__section_description{
+
+}
+
+.about__section_product-detail{
+
+}
+
+.about__section_recommended-products{
+
+}
+
+.section__title{
+	font-size:15px;
+	padding:13px 0;
+	border-bottom: 1px solid #bfbfbf;
+	margin-bottom: 10px;
+}
+
+.section__title_big{
+	font-size:25px;
+}
+
+.section__text{
+	font-size:13px;
+}
+
+.action-buttons{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.about__action-buttons{
+
+}
+
+.action-buttons__button{
+	display:inline-block;
+	width:200px;
+	height:45px;
+	line-height: 45px;
+	text-align: center;
+	border-radius: 2px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.action-buttons__button_buy{
+	background: #ffab00;
+	color:white;
+	border:2px solid #ffab00;
+}
+
+.action-buttons__button_add-cart{
+	color:black;
+	border:2px solid black;
+	background:url("/resources/img/bag_img.png") no-repeat 90%;
+	background-size:27px;
+}
+
+
 .comment-section{
 	
 }
 
-.column__comment-section{
-	width:100%;
+.main__comment-section{
+	width:60%;
+	min-width: 400px;
 }
 
 .comment-section__comments-amount{
@@ -177,71 +242,6 @@ html,body{
 .comment-section__single-comment{
 	padding:30px 0;
 	border-bottom: 1px solid #bfbfbf;
-}
-
-.column__section{
-	margin:20px 0;
-}
-
-.column__section_description{
-
-}
-
-.column__section_product-detail{
-
-}
-
-.column__section_recommended-products{
-
-}
-
-.section__title{
-	font-size:15px;
-	padding:13px 0;
-	border-bottom: 1px solid #bfbfbf;
-	margin-bottom: 10px;
-}
-
-.section__title_big{
-	font-size:25px;
-}
-
-.section__text{
-	font-size:13px;
-}
-
-.action-buttons{
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-}
-
-.column__action-buttons{
-
-}
-
-.action-buttons__button{
-	display:inline-block;
-	width:200px;
-	height:45px;
-	line-height: 45px;
-	text-align: center;
-	border-radius: 2px;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.action-buttons__button_buy{
-	background: #ffab00;
-	color:white;
-	border:2px solid #ffab00;
-}
-
-.action-buttons__button_add-cart{
-	color:black;
-	border:2px solid black;
-	background:url("/resources/img/bag_img.png") no-repeat 90%;
-	background-size:27px;
 }
 
 .recommended-products__wrapper{

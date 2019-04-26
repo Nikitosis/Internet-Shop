@@ -1,5 +1,14 @@
-<#macro main_header basketAmount=0 basketPrice=0>
+<#macro main_header>
     <#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
+
+    <#local basketAmount=0/>
+    <#local basketPrice=0/>
+    <#if Session.commoditiesInBasket??>
+        <#local basketAmount = Session.commoditiesInBasket?size/>
+        <#list Session.commoditiesInBasket as commodity>
+            <#local basketPrice+=commodity.price/>
+        </#list>
+    </#if>
 
     <div class="wrapper-header">
         <header class="header wrapper-header__header">
