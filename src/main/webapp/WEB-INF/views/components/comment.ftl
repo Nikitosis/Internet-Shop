@@ -1,7 +1,7 @@
-<#macro comment>
-    <div class="single-comment comment-section__single-comment">
-        <p class="single-comment__name font-MerriweatherBold">Amanda Charter</p>
-        <p class="single-comment__text font-LatoRegular">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, perferendis.aecati consectetur nihil recusandae beatae blanditiis tempore veniam libero minima!</p>
-        <p class="single-comment__date">1 month ago</p>
+<#macro comment additionalClass="comment-section__single-comment" userName="Username" message="Message" date="Date">
+    <div class="single-comment ${additionalClass}">
+        <p class="single-comment__name font-MerriweatherBold">${userName}</p>
+        <p class="single-comment__text font-LatoRegular">${message}</p>
+        <p class="single-comment__date">${date}</p>
     </div>
 </#macro>

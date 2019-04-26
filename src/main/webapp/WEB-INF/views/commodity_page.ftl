@@ -37,14 +37,18 @@
             	</section><!-- image-section  -->
             	<section class="comment-section column__comment-section">
             		<p class="comment-section__comments-amount font-MerriweatherRegular">24 Comments</p>
-            		<form class="comment-form comment-section__comment-form">
+
+					<form class="comment-form comment-section__comment-form">
             			<label for="comment-form__textarea" class="comment-form__title font-LatoRegular">Comment</label>
             			<textarea name="" id="comment-form__textarea" cols="30" rows="10" class="comment-form__textarea"></textarea>
             			<input type="submit" class="comment-form__post-comment font-LatoRegular">
             		</form>
-					<#list 1..3 as i>
-						<@comment/>
-					</#list>
+					<#if (commodity.comments)??>
+						<#list commodity.comments as commentData>
+							<@comment userName="${commentData.user.username}" message="${commentData.content}" date="${commentData.date}"/>
+						</#list>
+					</#if>
+
             	</section><!-- comment-section -->
             </div>
             <div class="column main__column column_right">

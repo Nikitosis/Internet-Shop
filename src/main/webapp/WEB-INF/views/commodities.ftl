@@ -119,7 +119,7 @@
                 <div class="products-list main__products-list">
 
                     <#list commodities as commodity>
-                        <@product additionalClass="products-list__product" commodityId="${commodity.id}" commodityPrice="${commodity.price}"/>
+                        <@product additionalClass="products-list__product" commodityId="${commodity.id}" commodityPrice="${commodity.price}" commodityName="${commodity.name}"/>
                     </#list>
 
                 </div><!-- products-list -->
