@@ -30,7 +30,154 @@
     font-family: MerriweatherRegular;
 }
 
-*{
-    margin:0;
-    padding:0;
+.wrapper-header{
+    border-bottom: 1px solid #bfbfbf;
+}
+.header{
+    height:93px;
+    font-size:0;
+    display:flex;
+    align-items: center;
+}
+
+.wrapper-header__header{
+    max-width:1140px;
+    width:100%;
+    margin:auto;
+}
+
+.user{
+    width:150px;
+    height:50px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__user{
+    width:150px;
+    height:100%;
+}
+
+.user__avatar{
+    width:35px;
+    height:35px;
+    border-radius:100px;
+    background:url("/resources/img/unknown_avatar.png") no-repeat;
+    background-size: contain;
+}
+
+.user__login{
+    font-size:15px;
+    color:black;
+    text-decoration: none;
+    margin:0 5px;
+}
+
+.user__sign-up{
+    font-size:15px;
+    color:#ffab00;
+    text-decoration: none;
+}
+
+.logo{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    color:black;
+}
+.header__logo{
+    flex-grow: 1;
+}
+
+.logo__title{
+    font-size: 45px;
+    color:black;
+    text-align: center;
+}
+.logo__subtitle{
+    font-size:15px;
+    text-align: center;
+}
+
+.cart{
+    width:100px;
+    display:flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content:center;
+}
+.header__cart{
+    width:150px;
+    height:100%;
+}
+
+.cart__bag{
+    width:35px;
+    height:35px;
+    margin-left:8px;
+    background: url("/resources/img/bag_img.png") no-repeat;
+    background-size: contain;
+    position:relative;
+}
+.cart__total-price{
+    font-size:15px;
+    color:black;
+}
+
+.cart__amount-items{
+    font-size:15px;
+    color:black;
+    background:#ffab00;
+    position:absolute;
+    left:-10%;
+    top:30%;
+    padding:0 2px;
+    border-radius: 2px;
+}
+
+.logo__title{
+    font-size: 45px;
+    color:black;
+    text-align: center;
+}
+.logo__subtitle{
+    font-size:15px;
+    text-align: center;
+}
+
+.cart{
+    width:100px;
+    display:flex;
+    text-decoration: none;
+    align-items: center;
+    justify-content:center;
+}
+.header__cart{
+    width:150px;
+    height:100%;
+}
+
+.cart__bag{
+    width:35px;
+    height:35px;
+    margin-left:8px;
+    background: url("/resources/img/bag_img.png") no-repeat;
+    background-size: contain;
+    position:relative;
+}
+.cart__total-price{
+    font-size:15px;
+    color:black;
+}
+
+.cart__amount-items{
+    font-size:15px;
+    color:black;
+    background:#ffab00;
+    position:absolute;
+    left:-10%;
+    top:30%;
+    padding:0 2px;
+    border-radius: 2px;
 }

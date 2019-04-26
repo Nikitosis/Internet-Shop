@@ -30,7 +30,40 @@
     font-family: MerriweatherRegular;
 }
 
-*{
-    margin:0;
-    padding:0;
+.wrapper-footer{
+    width:100%;
+    background:#f9f9f9;
+}
+
+.footer{
+    height:90px;
+    display:flex;
+    align-items: center;
+}
+
+.wrapper-footer__footer{
+    margin:auto;
+    max-width:1140px;
+    width:100%;
+}
+
+.footer__about{
+    font-size: 15px;
+    text-decoration: none;
+    color:black;
+    flex-grow: 1;
+}
+
+.footer__contact{
+    font-size: 15px;
+    text-decoration: none;
+    color:black;
+    flex-grow: 1;
+}
+
+.footer__rights{
+    font-size: 15px;
+    color:#bdbdbd;
+    flex-grow:20;
+    text-align: right;
 }
