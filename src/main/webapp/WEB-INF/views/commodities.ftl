@@ -1,6 +1,7 @@
 <#include "components/main_header.ftl"/>
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
+<#include "components/product.ftl"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -116,13 +117,7 @@
                 <div class="products-list main__products-list">
 
                     <#list commodities as commodity>
-                        <div class="product products-list__product">
-                            <div class="product__look">
-                                <p class="product__price">${commodity.price}</p>
-                                <a href="#" class="product__buy-link">Shop now</a>
-                            </div>
-                            <p class="product__name font-MerriweatherRegular">${commodity.name}</p>
-                        </div>
+                        <@product additionalClass="products-list__product" commodityId="${commodity.id}" commodityPrice="${commodity.price}"/>
                     </#list>
 
                 </div><!-- products-list -->
