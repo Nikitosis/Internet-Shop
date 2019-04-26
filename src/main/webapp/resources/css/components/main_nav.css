@@ -1,0 +1,36 @@
+@font-face{
+    font-family: "AwesomeFont_400";
+    src:url("/resources/fonts/fa-brands-400.ttf");
+}
+@font-face{
+    font-family: "LatoBold";
+    src:url("/resources/fonts/Lato Bold.ttf");
+}
+@font-face{
+    font-family: "LatoRegular";
+    src:url("/resources/fonts/Lato Regular.ttf");
+}
+
+@font-face{
+    font-family: "MerriweatherRegular";
+    src:url("/resources/fonts/Merriweather Regular.ttf");
+}
+
+
+.font-LatoBold{
+    font-family: LatoBold
+}
+.font-LatoRegular{
+    font-family: LatoRegular
+}
+.font-Awesome{
+    font-family: AwesomeFont_400;
+}
+.font-MerriweatherRegular{
+    font-family: MerriweatherRegular;
+}
+
+*{
+    margin:0;
+    padding:0;
+}
