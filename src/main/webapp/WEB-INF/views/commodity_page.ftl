@@ -1,6 +1,7 @@
 <#include "components/main_header.ftl"/>
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
+<#include "components/comment.ftl"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
     <link rel="stylesheet" href="/resources/css/components/commodity.css"/>
+    <link rel="stylesheet" href="/resources/css/components/comment.css"/>
 </head>
 
 <body>
@@ -40,17 +42,9 @@
             			<textarea name="" id="comment-form__textarea" cols="30" rows="10" class="comment-form__textarea"></textarea>
             			<input type="submit" class="comment-form__post-comment font-LatoRegular">
             		</form>
-
-            		<div class="single-comment comment-section__single-comment">
-            			<p class="single-comment__name font-MerriweatherBold">Amanda Charter</p>
-            			<p class="single-comment__text font-LatoRegular">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, perferendis.aecati consectetur nihil recusandae beatae blanditiis tempore veniam libero minima!</p>
-            			<p class="single-comment__date">1 month ago</p>
-            		</div>
-            		<div class="single-comment comment-section__single-comment">
-            			<p class="single-comment__name font-MerriweatherBold">Amanda Charter</p>
-            			<p class="single-comment__text font-LatoRegular">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, perferendis.aecati consectetur nihil recusandae beatae blanditiis tempore veniam libero minima!</p>
-            			<p class="single-comment__date">1 month ago</p>
-            		</div>
+					<#list 1..3 as i>
+						<@comment/>
+					</#list>
             	</section><!-- comment-section -->
             </div>
             <div class="column main__column column_right">

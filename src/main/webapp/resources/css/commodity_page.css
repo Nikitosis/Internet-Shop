@@ -174,30 +174,9 @@ html,body{
 	align-self: flex-end;
 }
 
-.single-comment{
-
-}
-
 .comment-section__single-comment{
 	padding:30px 0;
 	border-bottom: 1px solid #bfbfbf;
-}
-
-.single-comment__name{
-	font-size:15px;
-	color:black;
-	margin-bottom: 22px;
-}
-
-.single-comment__text{
-	font-size:12px;
-	color:black;
-	margin-bottom: 27px;
-}
-
-.single-comment__date{
-	font-size:12px;
-	color:#bdbdbd;
 }
 
 .column__section{
