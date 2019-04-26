@@ -88,7 +88,7 @@ public class MainController {
         commodity.addComment(comment);
         user.addComment(comment);*/
         model.addAttribute("commodity",service.getCommodityById(id));
-        return "commodityInfo";
+        return "commodity_page";
     }
 
     @PostMapping("commodities/addComment")

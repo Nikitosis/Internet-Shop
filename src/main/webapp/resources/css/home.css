@@ -197,66 +197,7 @@ html,body{
 	margin:30px 0;
 }
 
-.product{
-	width:290px;
-	min-width: 200px;
-	height:400px;
-	padding:15px;
-	background-clip:content-box;
-}
-
-.product:hover{
-	border:1px solid #ffab00;
-}
-
-.product:hover .product__buy-link{
-	bottom:10px;
-}
-
 .product-list__product{
 	flex-grow: 1;
 	flex-basis: 0;
-}
-
-.product__look{
-	height:315px;
-	width:100%;
-	position:relative;
-	background:#efefef;
-	overflow-y: hidden;
-}
-
-.product__price{
-	position:absolute;
-	bottom:10px;
-	left:10px;
-
-	padding:10px 18px;
-	background:#333333;
-	font-size:15px;
-	color:white;
-	border-radius: 3px;
-
-}
-
-.product__buy-link{
-	position:absolute;
-	bottom:-50px;               /*WORKS ONLY IN COMPUTER*/
-	right:10px;
-
-	padding:10px 18px;
-	background:#ffab00;
-	font-size:15px;
-	color:white;
-	border-radius: 3px;
-
-	text-decoration: none;
-
-	transition: bottom 400ms ease;
-}
-
-.product__name{
-	font-size:15px;
-	text-align: left;
-	margin-top:20px;
 }

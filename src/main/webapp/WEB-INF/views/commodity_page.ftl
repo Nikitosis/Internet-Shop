@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="css/commodity_page.css">
+    <link rel="stylesheet" href="/resources/css/commodity_page.css">
     <link rel="stylesheet" href="/resources/css/components/main_header.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>

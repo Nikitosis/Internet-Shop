@@ -1,6 +1,7 @@
 <#include "components/main_header.ftl"/>
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
+<#include "components/product.ftl"/>
 
 <#--<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />-->
 
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="/resources/css/components/main_header.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
+    <link rel="stylesheet" href="/resources/css/components/product.css"/>
 </head>
 
 <body>
@@ -63,34 +65,11 @@
             <h3 class="bestsellers__title font-MerriweatherRegular">Women best selling products</h3>
             <p class="bestsellers__subtitle font-LatoRegular">Lorem ipsum dolor sit amet.</p>
             <div class="bestsellers__product-list product-list">
-                <div class="product-list__product product">
-                    <div class="product__look">
-                        <p class="product__price">$100</p>
-                        <a href="#" class="product__buy-link">Shop now</a>
-                    </div>
-                    <p class="product__name font-MerriweatherRegular">Some product</p>
-                </div>
-                <div class="product-list__product product">
-                    <div class="product__look">
-                        <p class="product__price">$100</p>
-                        <a href="#" class="product__buy-link">Shop now</a>
-                    </div>
-                    <p class="product__name font-MerriweatherRegular">Some product</p>
-                </div>
-                <div class="product-list__product product">
-                    <div class="product__look">
-                        <p class="product__price">$100</p>
-                        <a href="#" class="product__buy-link">Shop now</a>
-                    </div>
-                    <p class="product__name font-MerriweatherRegular">Some product</p>
-                </div>
-                <div class="product-list__product product">
-                    <div class="product__look">
-                        <p class="product__price">$100</p>
-                        <a href="#" class="product__buy-link">Shop now</a>
-                    </div>
-                    <p class="product__name font-MerriweatherRegular">Some product</p>
-                </div>
+
+                <#list 1..4 as i>
+                    <@product additionalClass="product-list__product" commodityId=1/>
+                </#list>
+
             </div>
             <a href="" class="bestsellers__more-link font-LatoBold">View more</a>
         </div><!-- bestsellers -->
@@ -100,35 +79,12 @@
             <h3 class="bestsellers__title font-MerriweatherRegular">Men best selling products</h3>
             <p class="bestsellers__subtitle font-LatoRegular">Lorem ipsum dolor sit amet.</p>
             <div class="bestsellers__product-list product-list">
-                <div class="product product-list__product">
-                    <div class="product__look">
-                        <p class="product__price">$100</p>
-                        <a href="#" class="product__buy-link">Shop now</a>
-                    </div>
-                    <p class="product__name font-MerriweatherRegular">Some product</p>
-                </div>
-                <div class="product-list__product product">
-                    <div class="product__look">
-                        <p class="product__price">$100</p>
-                        <a href="#" class="product__buy-link">Shop now</a>
-                    </div>
-                    <p class="product__name font-MerriweatherRegular">Some product</p>
-                </div>
-                <div class="product-list__product product">
-                    <div class="product__look">
-                        <p class="product__price">$100</p>
-                        <a href="#" class="product__buy-link">Shop now</a>
-                    </div>
-                    <p class="product__name font-MerriweatherRegular">Some product</p>
-                </div>
-                <div class="product-list__product product">
-                    <div class="product__look">
-                        <p class="product__price">$100</p>
-                        <a href="#" class="product__buy-link">Shop now</a>
-                    </div>
-                    <p class="product__name font-MerriweatherRegular">Some product</p>
-                </div>
-            </div>
+
+                <#list 1..4 as i>
+                    <@product additionalClass="product-list__product" commodityId=1/>
+                </#list>
+
+            </div><!--product-list-->
             <a href="" class="bestsellers__more-link font-LatoBold">View more</a>
         </div><!-- bestsellers -->
     </div>
