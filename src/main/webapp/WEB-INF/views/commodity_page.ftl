@@ -38,11 +38,16 @@
             	<section class="comment-section column__comment-section">
             		<p class="comment-section__comments-amount font-MerriweatherRegular">24 Comments</p>
 
-					<form class="comment-form comment-section__comment-form">
-            			<label for="comment-form__textarea" class="comment-form__title font-LatoRegular">Comment</label>
-            			<textarea name="" id="comment-form__textarea" cols="30" rows="10" class="comment-form__textarea"></textarea>
-            			<input type="submit" class="comment-form__post-comment font-LatoRegular">
-            		</form>
+					<@security.authorize access="isAuthenticated()">
+						<form class="comment-form comment-section__comment-form" action="/commodities/addComment" method="post">
+                            <label for="comment-form__textarea" class="comment-form__title font-LatoRegular">Comment</label>
+							<textarea name="content" id="comment-form__textarea" cols="30" rows="10" class="comment-form__textarea"></textarea>
+                            <input type="submit" class="comment-form__post-comment font-LatoRegular"/>
+
+                            <input type="hidden" name="commodity_id" value="${commodity.id}"/>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
+					</@security.authorize>
 					<#if (commodity.comments)??>
 						<#list commodity.comments as commentData>
 							<@comment userName="${commentData.user.username}" message="${commentData.content}" date="${commentData.date}"/>
