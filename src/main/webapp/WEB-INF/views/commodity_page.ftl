@@ -23,7 +23,7 @@
     <div class="wrapper-main">
         <main class="main wrapper-main__main">
             <div class="product-header main__product-header">
-            	<p class="product-header__product-name font-MerriweatherRegular">Fashion product name</p>
+            	<p class="product-header__product-name font-MerriweatherRegular">${commodity.name}</p>
             	<p class="product-header__product-category font-LatoRegular">Some category</p>
             </div>
 
@@ -55,16 +55,23 @@
             </div>
             <div class="column main__column column_right">
             	<section class="column__section column__section_description">
-            		<p class="section__title_big font-LatoBold">$500</p>
+            		<p class="section__title_big font-LatoBold">$ ${commodity.price}</p>
             	</section>
             	<section class="column__section column__section_product-detail">
             		<p class="section__title font-MerriweatherRegular">Product detail</p>
             		<p class="section__text font-LatoRegular">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam eum, porro non recusandae atque velit, a dolor earum autem, alias possimus distinctio excepturi. Neque magnam obcaecati optio sunt sapiente, libero, beatae ipsa quisquam dolores a accusamus, doloribus laborum quod ab!</p>
             	</section>
-            	<section class="action-buttons column__action-buttons">
-            		<a href="" class="action-buttons__button action-buttons__button_buy font-LatoBold">Buy now</a>
-            		<a href="" class="action-buttons__button action-buttons__button_add-cart font-LatoBold">Add to cart</a>
-            	</section>
+                <form action="/addToBasket" method="post">
+					<section class="action-buttons column__action-buttons">
+							<input type="hidden" name="commodity_id" value="${commodity.id}"/>
+
+							<button class="action-buttons__button action-buttons__button_buy font-LatoBold" type="submit">Add to cart</button>
+							<button class="action-buttons__button action-buttons__button_add-cart font-LatoBold" type="submit">Add to cart</button>
+
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					</section>
+				</form>
+
             	<!-- <section class="column__section column__section_recommended-products">
             		<p class="section__title font-MerriweatherRegular">You may like</p>
             		<div class="recommended-products__wrapper">
