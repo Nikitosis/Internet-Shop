@@ -1,7 +1,7 @@
 <#include "components/main_header.ftl"/>
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
-<#include "components/product.ftl"/>
+<#include "components/commodity.ftl"/>
 
 <#--<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />-->
 
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/resources/css/components/main_header.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
-    <link rel="stylesheet" href="/resources/css/components/product.css"/>
+    <link rel="stylesheet" href="/resources/css/components/commodity.css"/>
 </head>
 
 <body>

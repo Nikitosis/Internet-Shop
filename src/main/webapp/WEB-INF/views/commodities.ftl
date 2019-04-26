@@ -1,7 +1,7 @@
 <#include "components/main_header.ftl"/>
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
-<#include "components/product.ftl"/>
+<#include "components/commodity.ftl"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/resources/css/components/main_header.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
+    <link rel="stylesheet" href="/resources/css/components/commodity.css"/>
+
     <script>
     // window.onload = function() {
     //     var filtersItems = document.getElementsByClassName("filters-item");
