@@ -2,6 +2,8 @@
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
 
+<#--<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />-->
+
 <!DOCTYPE html>
 <html lang="en">
 

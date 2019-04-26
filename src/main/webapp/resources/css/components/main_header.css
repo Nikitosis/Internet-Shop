@@ -79,6 +79,19 @@
     text-decoration: none;
 }
 
+.user__logout{
+    font-size:15px;
+    color:black;
+    text-decoration: none;
+    margin:0 5px;
+}
+
+.user__username{
+    font-size:15px;
+    color:#ffab00;
+    text-decoration: none;
+}
+
 .logo{
     display:flex;
     flex-direction: column;
