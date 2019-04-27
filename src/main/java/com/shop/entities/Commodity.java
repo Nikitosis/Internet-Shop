@@ -22,11 +22,11 @@ public class Commodity {
     @Column(name="creation_date")
     private Date creationDate;
 
-    @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @OrderBy("date")
     private Set<Comment> comments=new HashSet<Comment>();
 
-    @ManyToMany(mappedBy="commodities", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy="commodities", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Tag> tags=new HashSet<Tag>();
 
     public Commodity(String name, double price, Date creationDate,Set<Comment> comments) {

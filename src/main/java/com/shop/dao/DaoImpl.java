@@ -67,8 +67,8 @@ public class DaoImpl implements Dao {
                     .setParameter("username",username)
                     .getSingleResult();
 
-            Hibernate.initialize(user.getUserRoles());
-            Hibernate.initialize(user.getComments());
+            //Hibernate.initialize(user.getUserRoles());
+            //Hibernate.initialize(user.getComments());
             tx.commit();
         }
         catch(Exception e){
@@ -151,7 +151,7 @@ public class DaoImpl implements Dao {
             commodity=(Commodity)session.createQuery("FROM Commodity WHERE id=:id")
                     .setParameter("id",id)
                     .getSingleResult();
-            Hibernate.initialize(commodity.getComments());
+            //Hibernate.initialize(commodity.getComments());
             tx.commit();
 
         }
@@ -164,7 +164,7 @@ public class DaoImpl implements Dao {
         return commodity;
     }
 
-    public List<Commodity> getCommoditiesByTags(Set<Tag> tags) {
+    public List<Commodity> getCommoditiesByTags(List<Tag> tags) {
         Session session=sessionFactory.openSession();
         List<Commodity> commodities=new ArrayList<Commodity>();
         try{

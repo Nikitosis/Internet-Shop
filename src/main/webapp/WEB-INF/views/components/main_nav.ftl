@@ -6,10 +6,10 @@
             <input type="text" class="search-form__text">
         </form>
         <div class="menu nav__menu">
-            <a href="/commodities" class="menu__item">Phones</a>
-            <a href="/commodities" class="menu__item">Notebooks</a>
-            <a href="/commodities" class="menu__item">Accessory</a>
-            <a href="/commodities" class="menu__item">Spares</a>
+            <a href="/commodities?tags=phone" class="menu__item">Phones</a>
+            <a href="/commodities?tags=notebook" class="menu__item">Notebooks</a>
+            <a href="/commodities?tags=accessory" class="menu__item">Accessory</a>
+            <a href="/commodities?tags=spares" class="menu__item">Spares</a>
         </div>
         <div class="social-icons nav__social-icons">
             <a href="" class="social-icons__icon social-icons__icon_facebook"></a>

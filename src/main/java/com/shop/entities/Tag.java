@@ -16,7 +16,7 @@ public class Tag {
     @Column(name="tag",nullable = false,length = 32)
     private String tag;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
             name="commodity_tag",
             joinColumns = {@JoinColumn(name="tag")},

@@ -17,7 +17,8 @@ public interface MainService {
     public List<OrderLog> getUserOrders(String username);
     public List<Commodity> getUserCommodities(String username);
     public Commodity getCommodityById(int id);
-    public List<Commodity> getCommoditiesByTags(Set<Tag> tags);
+    public List<Commodity> getCommoditiesByTags(List<Tag> tags);
+    public List<Commodity> getCommoditiesByTagsNames(List<String> tags);
 
     public void addCommodityToBasket(int commodityId, HttpSession session);
     public void removeCommodityFromBasket(int commodityId,HttpSession session);

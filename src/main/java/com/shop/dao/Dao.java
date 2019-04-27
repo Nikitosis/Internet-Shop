@@ -14,7 +14,7 @@ public interface Dao {
     public List<Commodity> getUserCommodities(String username);
     public Commodity getCommodityById(int id);
 
-    public List<Commodity> getCommoditiesByTags(Set<Tag> tags);
+    public List<Commodity> getCommoditiesByTags(List<Tag> tags);
 
     public void buyCommodity(Commodity commodity,User user);
 

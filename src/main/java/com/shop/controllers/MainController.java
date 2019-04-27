@@ -44,9 +44,15 @@ public class MainController {
         return "commodities";
     }
 
+//    @GetMapping("/commodities")
+//    public String showCommodities(Model model){
+//        model.addAttribute("commodities",service.getCommodities());
+//        return "commodities";
+//    }
+
     @GetMapping("/commodities")
-    public String showCommodities(Model model){
-        model.addAttribute("commodities",service.getCommodities());
+    public String showCommodities(@RequestParam(value="tags") List<String> tags,Model model) {
+        model.addAttribute("commodities",service.getCommoditiesByTagsNames(tags));
         return "commodities";
     }
 
@@ -54,6 +60,7 @@ public class MainController {
     public String showAddCommodity(){
         return "addCommodity";
     }
+
     @PostMapping("/commodities/addCommodity")
     public String addCommodity(@ModelAttribute("commodity") Commodity commodity){
         service.addCommodityToDb(commodity);
@@ -88,16 +95,6 @@ public class MainController {
         commodity.addComment(comment);
         user.addComment(comment);*/
         model.addAttribute("commodity",service.getCommodityById(id));
-        return "commodity_page";
-    }
-
-    @GetMapping("findCommodities")
-    public String findCommodities(){
-        Commodity commodity=service.getCommodityById(1);
-        Tag tag=new Tag("phone");
-        commodity.addTag(tag);
-        Set<Tag> tags=new HashSet<Tag>(Arrays.asList(tag));
-        List<Commodity> commodities=service.getCommoditiesByTags(tags);
         return "commodity_page";
     }
 

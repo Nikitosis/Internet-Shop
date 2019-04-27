@@ -24,10 +24,10 @@ public class User {
     @Column(name="password",nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<UserRole> userRoles=new HashSet<UserRole>();
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Comment> comments=new ArrayList<Comment>();
 
     public User(String username, String password, Set<UserRole> userRoles,List<Comment> comments) {

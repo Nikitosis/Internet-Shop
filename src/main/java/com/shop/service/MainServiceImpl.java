@@ -87,8 +87,16 @@ public class MainServiceImpl implements MainService {
         return dao.getCommodityById(id);
     }
 
-    public List<Commodity> getCommoditiesByTags(Set<Tag> tags) {
+    public List<Commodity> getCommoditiesByTags(List<Tag> tags) {
         return dao.getCommoditiesByTags(tags);
+    }
+
+    public List<Commodity> getCommoditiesByTagsNames(List<String> tagsNames) {
+        List<Tag> tags=new ArrayList();
+        for(String tagName:tagsNames){
+            tags.add(new Tag(tagName));
+        }
+        return getCommoditiesByTags(tags);
     }
 
     public void confirmBasketBuy(HttpSession session) {
