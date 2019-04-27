@@ -15,24 +15,24 @@ public class CommodityPaginator {
         this.commodityList=inititalList;
     }
 
-    public CommodityPaginator filterMinPrice(int startPrice){
-        for(int i=0;i<commodityList.size();i++)
-            if(commodityList.get(i).getPrice()<startPrice)
-                commodityList.remove(i);
+    public CommodityPaginator filterMinPrice(int minPrice){
+        for(Commodity commodity:commodityList)
+            if(commodity.getPrice()<minPrice)
+                commodityList.remove(commodity);
         return this;
     }
 
-    public CommodityPaginator filterMaxPrice(int endPrice){
-        for(int i=0;i<commodityList.size();i++)
-            if(commodityList.get(i).getPrice()>endPrice)
-                commodityList.remove(i);
+    public CommodityPaginator filterMaxPrice(int maxPrice){
+        for(Commodity commodity:commodityList)
+            if(commodity.getPrice()>maxPrice)
+                commodityList.remove(commodity);
         return this;
     }
 
     public CommodityPaginator filterNamePattern(String namePattern){
-        for(int i=0;i<commodityList.size();i++)
-            if(!commodityList.get(i).getName().contains(namePattern))
-                commodityList.remove(i);
+        for(Commodity commodity:commodityList)
+            if(!commodity.getName().contains(namePattern))
+                commodityList.remove(commodity);
         return this;
     }
 
