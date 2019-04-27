@@ -19,6 +19,7 @@
     <mapping class="com.shop.entities.OrderLog"/>
     <mapping class="com.shop.entities.UserRole"/>
     <mapping class="com.shop.entities.Comment"/>
+    <mapping class="com.shop.entities.Tag"/>
 
   </session-factory>
 </hibernate-configuration>

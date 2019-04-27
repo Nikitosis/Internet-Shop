@@ -1,7 +1,7 @@
 package com.shop.entities;
 
 import javax.persistence.*;
-import java.security.AlgorithmParameterGenerator;
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.*;
 
@@ -25,6 +25,9 @@ public class Commodity {
     @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @OrderBy("date")
     private Set<Comment> comments=new HashSet<Comment>();
+
+    @ManyToMany(mappedBy="commodities", cascade = CascadeType.ALL)
+    private Set<Tag> tags=new HashSet<Tag>();
 
     public Commodity(String name, double price, Date creationDate,Set<Comment> comments) {
         this.name = name;
@@ -85,5 +88,18 @@ public class Commodity {
         this.creationDate=creationDate;
         this.creationDate.setTime(this.creationDate.getTime()+hours12); //set time at 12 AM
                                                                         //to get rid of timezone conversions
+    }
+
+    public void addTag(Tag tag){
+        this.tags.add(tag);
+        tag.getCommodities().add(this);
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 }

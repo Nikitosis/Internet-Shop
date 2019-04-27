@@ -1,9 +1,6 @@
 package com.shop.controllers;
 
-import com.shop.entities.Comment;
-import com.shop.entities.Commodity;
-import com.shop.entities.User;
-import com.shop.entities.UserRole;
+import com.shop.entities.*;
 import com.shop.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.sql.Date;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class MainController {
@@ -88,6 +88,16 @@ public class MainController {
         commodity.addComment(comment);
         user.addComment(comment);*/
         model.addAttribute("commodity",service.getCommodityById(id));
+        return "commodity_page";
+    }
+
+    @GetMapping("findCommodities")
+    public String findCommodities(){
+        Commodity commodity=service.getCommodityById(1);
+        Tag tag=new Tag("phone");
+        commodity.addTag(tag);
+        Set<Tag> tags=new HashSet<Tag>(Arrays.asList(tag));
+        List<Commodity> commodities=service.getCommoditiesByTags(tags);
         return "commodity_page";
     }
 

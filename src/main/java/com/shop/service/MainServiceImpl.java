@@ -1,11 +1,8 @@
 package com.shop.service;
 
 import com.shop.dao.Dao;
-import com.shop.entities.Comment;
-import com.shop.entities.Commodity;
+import com.shop.entities.*;
 //import com.shop.entities.OrderLog;
-import com.shop.entities.OrderLog;
-import com.shop.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +15,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class MainServiceImpl implements MainService {
@@ -87,6 +85,10 @@ public class MainServiceImpl implements MainService {
 
     public Commodity getCommodityById(int id) {
         return dao.getCommodityById(id);
+    }
+
+    public List<Commodity> getCommoditiesByTags(Set<Tag> tags) {
+        return dao.getCommoditiesByTags(tags);
     }
 
     public void confirmBasketBuy(HttpSession session) {

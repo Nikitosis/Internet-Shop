@@ -1,10 +1,7 @@
 package com.shop.dao;
 
-import com.shop.entities.Comment;
-import com.shop.entities.Commodity;
+import com.shop.entities.*;
 //import com.shop.entities.OrderLog;
-import com.shop.entities.OrderLog;
-import com.shop.entities.User;
 import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +9,9 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class DaoImpl implements Dao {
@@ -165,7 +164,27 @@ public class DaoImpl implements Dao {
         return commodity;
     }
 
-    public void buyCommodity(Commodity commodity,User user) {
+    public List<Commodity> getCommoditiesByTags(Set<Tag> tags) {
+        Session session=sessionFactory.openSession();
+        List<Commodity> commodities=new ArrayList<Commodity>();
+        try{
+            Transaction tx=session.beginTransaction();
+
+            commodities= session.createQuery("FROM Commodity WHERE :tags in elements(tags)")
+                    .setParameter("tags",tags)
+                    .list();
+            tx.commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        return commodities;
+    }
+
+    public void buyCommodity(Commodity commodity, User user) {
         Session session=sessionFactory.openSession();
         OrderLog orderLog=null;
         try{

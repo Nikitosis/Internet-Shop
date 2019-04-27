@@ -1,12 +1,10 @@
 package com.shop.dao;
 
-import com.shop.entities.Comment;
-import com.shop.entities.Commodity;
+import com.shop.entities.*;
 //import com.shop.entities.OrderLog;
-import com.shop.entities.OrderLog;
-import com.shop.entities.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface Dao {
     public List<Commodity> getCommodities();
@@ -15,6 +13,8 @@ public interface Dao {
     public List<OrderLog> getUserOrders(String username);
     public List<Commodity> getUserCommodities(String username);
     public Commodity getCommodityById(int id);
+
+    public List<Commodity> getCommoditiesByTags(Set<Tag> tags);
 
     public void buyCommodity(Commodity commodity,User user);
 
