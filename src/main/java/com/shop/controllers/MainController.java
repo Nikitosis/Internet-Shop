@@ -1,5 +1,6 @@
 package com.shop.controllers;
 
+import com.shop.dao.CommodityPaginator;
 import com.shop.entities.*;
 import com.shop.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +35,15 @@ public class MainController {
         return "userInfo";
     }
 
-    @GetMapping("/commodities/search")
-    public String showCommoditiesFilter(@RequestParam("startPrice") Double startPrice,
-                                        @RequestParam("endPrice") Double endPrice,
-                                        @RequestParam("searchName") String searchName,
-                                        Model model){
-        System.out.println(startPrice+" "+endPrice+" "+searchName);
-        model.addAttribute("commodities",service.getCommoditiesWithFilter(startPrice,endPrice,searchName));
-        return "commodities";
-    }
+//    @GetMapping("/commodities/search")
+//    public String showCommoditiesFilter(@RequestParam("startPrice") Double startPrice,
+//                                        @RequestParam("endPrice") Double endPrice,
+//                                        @RequestParam("searchName") String searchName,
+//                                        Model model){
+//        System.out.println(startPrice+" "+endPrice+" "+searchName);
+//        model.addAttribute("commodities",service.getCommoditiesWithFilter(startPrice,endPrice,searchName));
+//        return "commodities";
+//    }
 
 //    @GetMapping("/commodities")
 //    public String showCommodities(Model model){
@@ -51,8 +52,32 @@ public class MainController {
 //    }
 
     @GetMapping("/commodities")
-    public String showCommodities(@RequestParam(value="tags") List<String> tags,Model model) {
-        model.addAttribute("commodities",service.getCommoditiesByTagsNames(tags));
+    public String showCommodities(@RequestParam(value="tags",required = false) List<String> tags,
+                                  @RequestParam(value="minPrice",required = false) Integer minPrice,
+                                  @RequestParam(value="maxPrice",required = false) Integer maxPrice,
+                                  @RequestParam(value="namePattern",required = false) String namePattern,
+                                  @RequestParam(value = "curPage",required = false,defaultValue = "1") Integer curPage,
+                                  Model model) {
+        CommodityPaginator paginator;
+        if(tags!=null)
+            paginator=new CommodityPaginator(service.getCommoditiesByTagsNames(tags));
+        else
+            paginator=new CommodityPaginator(service.getCommodities());
+
+
+        if(minPrice!=null){
+            paginator.filterMinPrice(minPrice);
+        }
+        if(maxPrice!=null){
+            paginator.filterMaxPrice(maxPrice);
+        }
+        if(namePattern!=null){
+            paginator.filterNamePattern(namePattern);
+        }
+
+        model.addAttribute("curPage",curPage);
+        model.addAttribute("paginator",paginator);
+
         return "commodities";
     }
 

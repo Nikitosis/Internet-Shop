@@ -118,9 +118,11 @@
                 </div><!-- products-nav -->
                 <div class="products-list main__products-list">
 
-                    <#list commodities as commodity>
-                        <@product additionalClass="products-list__product" commodityId="${commodity.id}" commodityPrice="${commodity.price}" commodityName="${commodity.name}"/>
-                    </#list>
+					<#if paginator.getPage()??>
+						<#list paginator.getPage() as commodity>
+							<@product additionalClass="products-list__product" commodityId="${commodity.id}" commodityPrice="${commodity.price}" commodityName="${commodity.name}"/>
+						</#list>
+					</#if>
 
                 </div><!-- products-list -->
                 <div class="pages-controller products-section__pages-controller">

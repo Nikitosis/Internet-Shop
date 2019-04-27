@@ -30,15 +30,6 @@ public class MainServiceImpl implements MainService {
         return dao.getCommodities();
     }
 
-    public List<Commodity> getCommoditiesWithFilter(Double startPrice, Double endPrice, String searchName) {
-        if(startPrice==null)
-            startPrice=0.0;
-        if(endPrice==null)
-            endPrice=100000000.0;
-
-        return dao.getCommoditiesWithFilter(startPrice,endPrice,searchName);
-    }
-
     public User getUser(String username) {
         return dao.getUser(username);
     }
