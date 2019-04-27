@@ -1,0 +1,53 @@
+@font-face{
+    font-family: "AwesomeFont_400";
+    src:url("/resources/fonts/fa-brands-400.ttf");
+}
+@font-face{
+    font-family: "LatoBold";
+    src:url("/resources/fonts/Lato Bold.ttf");
+}
+@font-face{
+    font-family: "LatoRegular";
+    src:url("/resources/fonts/Lato Regular.ttf");
+}
+
+@font-face{
+    font-family: "MerriweatherRegular";
+    src:url("/resources/fonts/Merriweather Regular.ttf");
+}
+
+
+.font-LatoBold{
+    font-family: LatoBold
+}
+.font-LatoRegular{
+    font-family: LatoRegular
+}
+.font-Awesome{
+    font-family: AwesomeFont_400;
+}
+.font-MerriweatherRegular{
+    font-family: MerriweatherRegular;
+}
+
+.products-pages{
+    list-style-type: none;
+}
+.products-pages__item{
+    display:inline-block;
+}
+.products-pages__link{
+    display:inline-block;
+    font-size:15px;
+    text-decoration: none;
+    color:black;
+    height:26px;
+    width:26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 100px;
+}
+
+.products-pages__link_selected{
+    background: #e0e0e0;
+}

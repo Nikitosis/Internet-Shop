@@ -2,6 +2,7 @@
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
 <#include "components/commodity.ftl"/>
+<#include "components/pager.ftl"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
     <link rel="stylesheet" href="/resources/css/components/commodity.css"/>
+    <link rel="stylesheet" href="/resources/css/components/pager.css"/>
 
     <script>
     // window.onload = function() {
@@ -109,12 +111,7 @@
                         <option value="First">First</option>
                         <option value="First">First</option>
                     </select>
-                    <ul class="products-pages products-nav__products-pages">
-                        <li class="products-pages__item"><a href="#" class="products-pages__link">1</a></li>
-                        <li class="products-pages__item"><a href="#" class="products-pages__link products-pages__link_selected">2</a></li>
-                        <li class="products-pages__item"><a href="#" class="products-pages__link">3</a></li>
-                        <li class="products-pages__item"><a href="#" class="products-pages__link">4</a></li>
-                    </ul>
+                    <@pager paginator=paginator additionalClass="products-nav__products-pages"/>
                 </div><!-- products-nav -->
                 <div class="products-list main__products-list">
 
@@ -126,14 +123,13 @@
 
                 </div><!-- products-list -->
                 <div class="pages-controller products-section__pages-controller">
-                	<a href="" class="pages-controller__previous-page font-LatoRegular">Previous</a>
-                	<ul class="products-pages pages-controller__products-pages">
-                        <li class="products-pages__item"><a href="#" class="products-pages__link">1</a></li>
-                        <li class="products-pages__item"><a href="#" class="products-pages__link products-pages__link_selected">2</a></li>
-                        <li class="products-pages__item"><a href="#" class="products-pages__link">3</a></li>
-                        <li class="products-pages__item"><a href="#" class="products-pages__link">4</a></li>
-                    </ul>
-                	<a href="" class="pages-controller__next-page font-LatoRegular">Next</a>
+                    <#if paginator.getPageIndex() gt 1>
+                	    <a href="/commodities?page=${paginator.getPageIndex()-1}" class="pages-controller__previous-page font-LatoRegular">Previous</a>
+                    </#if>
+                    <@pager paginator=paginator additionalClass="pages-controller__products-pages"/>
+                	<#if paginator.getPageIndex() lt paginator.getTotalPages()>
+                        <a href="/commodities?page=${paginator.getPageIndex()+1}" class="pages-controller__next-page font-LatoRegular">Next</a>
+                    </#if>
                 </div>
             </div><!-- products-section -->
         </main>

@@ -56,7 +56,7 @@ public class MainController {
                                   @RequestParam(value="minPrice",required = false) Integer minPrice,
                                   @RequestParam(value="maxPrice",required = false) Integer maxPrice,
                                   @RequestParam(value="namePattern",required = false) String namePattern,
-                                  @RequestParam(value = "curPage",required = false,defaultValue = "1") Integer curPage,
+                                  @RequestParam(value = "page",required = false,defaultValue = "1") Integer curPage,
                                   Model model) {
         CommodityPaginator paginator;
         if(tags!=null)
@@ -74,8 +74,9 @@ public class MainController {
         if(namePattern!=null){
             paginator.filterNamePattern(namePattern);
         }
-
-        model.addAttribute("curPage",curPage);
+        if(curPage!=null){
+            paginator.setPageIndex(curPage);
+        }
         model.addAttribute("paginator",paginator);
 
         return "commodities";

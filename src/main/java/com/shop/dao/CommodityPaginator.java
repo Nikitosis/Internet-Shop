@@ -8,24 +8,33 @@ import java.util.List;
 public class CommodityPaginator {
 
     private List<Commodity> commodityList=new ArrayList<Commodity>();
-    private int curPage=1;
-    private int itemsPerPage=10;
+    private int pageIndex=1;
+    private int itemsPerPage=2;
 
     public CommodityPaginator(List<Commodity> inititalList){
         this.commodityList=inititalList;
     }
 
-    public CommodityPaginator filterMinPrice(int minPrice){
+    public CommodityPaginator filterMinPrice(Integer minPrice){
+        if(minPrice==null)
+            throw new NullPointerException("minPrice cannot be equal to null");
+
         commodityList.removeIf(commodity -> commodity.getPrice()<minPrice);
         return this;
     }
 
-    public CommodityPaginator filterMaxPrice(int maxPrice){
+    public CommodityPaginator filterMaxPrice(Integer maxPrice){
+        if(maxPrice==null)
+            throw new NullPointerException("maxPrice cannot be equal to null");
+
         commodityList.removeIf(commodity -> commodity.getPrice()>maxPrice);
         return this;
     }
 
     public CommodityPaginator filterNamePattern(String namePattern){
+        if(namePattern==null)
+            throw new NullPointerException("namePattern cannot be equal to null");
+
         commodityList.removeIf(commodity -> !commodity.getName().contains(namePattern));
         return this;
     }
@@ -35,7 +44,7 @@ public class CommodityPaginator {
     }
 
     public List<Commodity> getPage(){
-        int startingIndex=(curPage-1)*itemsPerPage;
+        int startingIndex=(pageIndex-1)*itemsPerPage;
         if(startingIndex>=getSize())
             return null;
 
@@ -46,19 +55,32 @@ public class CommodityPaginator {
         return result;
     }
 
-    public int getCurPage() {
-        return curPage;
+    public int getTotalPages(){
+        int result=commodityList.size()/itemsPerPage;
+        if(commodityList.size()%itemsPerPage!=0)
+            result++;
+        return result;
     }
 
-    public void setCurPage(int curPage) {
-        this.curPage = curPage;
+    public int getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(Integer pageIndex) {
+        if(pageIndex==null)
+            throw new NullPointerException("curPage cannot be equal to null");
+
+        this.pageIndex = pageIndex;
     }
 
     public int getItemsPerPage() {
         return itemsPerPage;
     }
 
-    public void setItemsPerPage(int itemsPerPage) {
+    public void setItemsPerPage(Integer itemsPerPage) {
+        if(itemsPerPage==null)
+            throw new NullPointerException("itemsPerPage cannot be equal to null");
+
         this.itemsPerPage = itemsPerPage;
     }
 }
