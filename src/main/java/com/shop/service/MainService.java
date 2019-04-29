@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.shop.dao.CommodityFilter;
 import com.shop.entities.*;
 //import com.shop.entities.OrderLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,13 @@ import java.util.List;
 import java.util.Set;
 
 public interface MainService {
-    public List<Commodity> getCommodities();
+    public List<Commodity> getCommodities(CommodityFilter commodityFilter);
     public User getUser(String username);
     public List<OrderLog> getUserOrders(String username);
     public List<Commodity> getUserCommodities(String username);
     public Commodity getCommodityById(int id);
-    public List<Commodity> getCommoditiesByTags(List<Tag> tags);
-    public List<Commodity> getCommoditiesByTagsNames(List<String> tags);
+    //public List<Commodity> getCommoditiesByTags(List<Tag> tags);
+    //public List<Commodity> getCommoditiesByTagsNames(List<String> tags);
 
     public void addCommodityToBasket(int commodityId, HttpSession session);
     public void removeCommodityFromBasket(int commodityId,HttpSession session);

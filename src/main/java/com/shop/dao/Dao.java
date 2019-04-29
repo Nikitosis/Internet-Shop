@@ -7,13 +7,11 @@ import java.util.List;
 import java.util.Set;
 
 public interface Dao {
-    public List<Commodity> getCommodities();
+    public List<Commodity> getCommodities(CommodityFilter commodityFilter);
     public User getUser(String username);
     public List<OrderLog> getUserOrders(String username);
     public List<Commodity> getUserCommodities(String username);
     public Commodity getCommodityById(int id);
-
-    public List<Commodity> getCommoditiesByTags(List<Tag> tags);
 
     public void buyCommodity(Commodity commodity,User user);
 

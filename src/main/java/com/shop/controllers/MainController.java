@@ -1,5 +1,6 @@
 package com.shop.controllers;
 
+import com.shop.dao.CommodityFilter;
 import com.shop.dao.CommodityPaginator;
 import com.shop.entities.*;
 import com.shop.service.MainService;
@@ -52,32 +53,36 @@ public class MainController {
 //    }
 
     @GetMapping("/commodities")
-    public String showCommodities(@RequestParam(value="tags",required = false) List<String> tags,
+    public String showCommodities(@RequestParam(value="tags",required = false) List<Tag> tags,
                                   @RequestParam(value="minPrice",required = false) Integer minPrice,
                                   @RequestParam(value="maxPrice",required = false) Integer maxPrice,
                                   @RequestParam(value="namePattern",required = false) String namePattern,
                                   @RequestParam(value = "page",required = false,defaultValue = "1") Integer curPage,
                                   Model model) {
-        
-        CommodityPaginator paginator;
-        if(tags!=null)
-            paginator=new CommodityPaginator(service.getCommoditiesByTagsNames(tags));
-        else
-            paginator=new CommodityPaginator(service.getCommodities());
-
-
+        CommodityFilter commodityFilter=new CommodityFilter();
         if(minPrice!=null){
-            paginator.filterMinPrice(minPrice);
+            commodityFilter.setMinPrice(minPrice);
         }
         if(maxPrice!=null){
-            paginator.filterMaxPrice(maxPrice);
+            commodityFilter.setMaxPrice(maxPrice);
         }
         if(namePattern!=null){
-            paginator.filterNamePattern(namePattern);
+            commodityFilter.setNamePattern(namePattern);
         }
+        if(tags!=null){
+            commodityFilter.setTags(tags);
+        }
+        CommodityPaginator paginator;
+        paginator=new CommodityPaginator(service.getCommodities(commodityFilter));
+        /*if(tags!=null)
+            paginator=new CommodityPaginator(service.getCommoditiesByTagsNames(tags));
+        else
+            paginator=new CommodityPaginator(service.getCommodities());*/
+
         if(curPage!=null){
             paginator.setPageIndex(curPage);
         }
+
         model.addAttribute("paginator",paginator);
 
         return "commodities";

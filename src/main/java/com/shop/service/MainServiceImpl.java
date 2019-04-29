@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import com.shop.dao.CommodityFilter;
 import com.shop.dao.Dao;
 import com.shop.entities.*;
 //import com.shop.entities.OrderLog;
@@ -26,8 +27,8 @@ public class MainServiceImpl implements MainService {
     @Autowired
     PasswordEncoder encoder;
 
-    public List<Commodity> getCommodities() {
-        return dao.getCommodities();
+    public List<Commodity> getCommodities(CommodityFilter commodityFilter) {
+        return dao.getCommodities(commodityFilter);
     }
 
     public User getUser(String username) {
@@ -48,7 +49,7 @@ public class MainServiceImpl implements MainService {
             commoditiesInBasket=new ArrayList<Commodity>();
         }
 
-        Commodity commodity=dao.getCommodityById(commodityId);
+        Commodity commodity=getCommodityById(commodityId);
         commoditiesInBasket.add(commodity);
 
         session.setAttribute("commoditiesInBasket",commoditiesInBasket);
@@ -78,17 +79,17 @@ public class MainServiceImpl implements MainService {
         return dao.getCommodityById(id);
     }
 
-    public List<Commodity> getCommoditiesByTags(List<Tag> tags) {
-        return dao.getCommoditiesByTags(tags);
-    }
-
-    public List<Commodity> getCommoditiesByTagsNames(List<String> tagsNames) {
-        List<Tag> tags=new ArrayList();
-        for(String tagName:tagsNames){
-            tags.add(new Tag(tagName));
-        }
-        return getCommoditiesByTags(tags);
-    }
+//    public List<Commodity> getCommoditiesByTags(List<Tag> tags) {
+//        return dao.getCommoditiesByTags(tags);
+//    }
+//
+//    public List<Commodity> getCommoditiesByTagsNames(List<String> tagsNames) {
+//        List<Tag> tags=new ArrayList();
+//        for(String tagName:tagsNames){
+//            tags.add(new Tag(tagName));
+//        }
+//        return getCommoditiesByTags(tags);
+//    }
 
     public void confirmBasketBuy(HttpSession session) {
         List<Commodity> commoditiesInBasket=(List<Commodity>) session.getAttribute("commoditiesInBasket");

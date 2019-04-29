@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.criteria.CriteriaQuery;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +19,13 @@ public class DaoImpl implements Dao {
     @Autowired
     SessionFactory sessionFactory;
 
-    public List<Commodity> getCommodities() {
+    public List<Commodity> getCommodities(CommodityFilter commodityFilter) {
         Session session=sessionFactory.openSession();
         List<Commodity> commodities=null;
         try{
             Transaction tx=session.beginTransaction();
-            Query query=session.createQuery("FROM Commodity");
+            CriteriaQuery criteriaQuery=commodityFilter.getCriteriaQuery(session.getCriteriaBuilder());
+            Query query=session.createQuery(criteriaQuery);
             commodities=query.list();
             tx.commit();
         }
@@ -163,26 +165,6 @@ public class DaoImpl implements Dao {
             session.close();
         }
         return commodity;
-    }
-
-    public List<Commodity> getCommoditiesByTags(List<Tag> tags) {
-        Session session=sessionFactory.openSession();
-        List<Commodity> commodities=new ArrayList<Commodity>();
-        try{
-            Transaction tx=session.beginTransaction();
-
-            commodities= session.createQuery("FROM Commodity WHERE :tags in elements(tags)")
-                    .setParameter("tags",tags)
-                    .list();
-            tx.commit();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-        return commodities;
     }
 
     public void buyCommodity(Commodity commodity, User user) {
