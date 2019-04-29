@@ -155,6 +155,7 @@ public class DaoImpl implements Dao {
             tx.commit();
 
         }
+
         catch(Exception e){
             e.printStackTrace();
         }

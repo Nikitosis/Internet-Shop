@@ -58,6 +58,7 @@ public class MainController {
                                   @RequestParam(value="namePattern",required = false) String namePattern,
                                   @RequestParam(value = "page",required = false,defaultValue = "1") Integer curPage,
                                   Model model) {
+        
         CommodityPaginator paginator;
         if(tags!=null)
             paginator=new CommodityPaginator(service.getCommoditiesByTagsNames(tags));

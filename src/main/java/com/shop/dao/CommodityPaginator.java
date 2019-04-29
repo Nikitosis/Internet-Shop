@@ -15,30 +15,6 @@ public class CommodityPaginator {
         this.commodityList=inititalList;
     }
 
-    public CommodityPaginator filterMinPrice(Integer minPrice){
-        if(minPrice==null)
-            throw new NullPointerException("minPrice cannot be equal to null");
-
-        commodityList.removeIf(commodity -> commodity.getPrice()<minPrice);
-        return this;
-    }
-
-    public CommodityPaginator filterMaxPrice(Integer maxPrice){
-        if(maxPrice==null)
-            throw new NullPointerException("maxPrice cannot be equal to null");
-
-        commodityList.removeIf(commodity -> commodity.getPrice()>maxPrice);
-        return this;
-    }
-
-    public CommodityPaginator filterNamePattern(String namePattern){
-        if(namePattern==null)
-            throw new NullPointerException("namePattern cannot be equal to null");
-
-        commodityList.removeIf(commodity -> !commodity.getName().contains(namePattern));
-        return this;
-    }
-
     public int getSize(){
         return commodityList.size();
     }
