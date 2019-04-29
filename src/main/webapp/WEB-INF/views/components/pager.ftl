@@ -13,9 +13,13 @@
 
         body=head+bodyBefore+(pageNumber>3 && pageNumber<totalPages-2)?then([pageNumber],[])+bodyAfter+tail
     >
-<#else>
+<#elseIf paginator.getTotalPages() gt 0>
     <#assign
         body= 1..paginator.getTotalPages()
+    >
+<#else>
+    <#assign
+        body=[1]
     >
 </#if>
 
