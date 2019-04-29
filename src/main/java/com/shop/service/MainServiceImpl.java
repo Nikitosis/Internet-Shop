@@ -76,20 +76,14 @@ public class MainServiceImpl implements MainService {
     }
 
     public Commodity getCommodityById(int id) {
-        return dao.getCommodityById(id);
+        try{
+            return getCommodities(new CommodityFilter().setId(id)).get(0);
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+        return null;
     }
-
-//    public List<Commodity> getCommoditiesByTags(List<Tag> tags) {
-//        return dao.getCommoditiesByTags(tags);
-//    }
-//
-//    public List<Commodity> getCommoditiesByTagsNames(List<String> tagsNames) {
-//        List<Tag> tags=new ArrayList();
-//        for(String tagName:tagsNames){
-//            tags.add(new Tag(tagName));
-//        }
-//        return getCommoditiesByTags(tags);
-//    }
 
     public void confirmBasketBuy(HttpSession session) {
         List<Commodity> commoditiesInBasket=(List<Commodity>) session.getAttribute("commoditiesInBasket");

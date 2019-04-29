@@ -39,27 +39,6 @@ public class DaoImpl implements Dao {
         return commodities;
     }
 
-//    public List<Commodity> getCommoditiesWithFilter(Double startPrice, Double endPrice, String searchName) {
-//        Session session=sessionFactory.openSession();
-//        List<Commodity> commodities=null;
-//        try{
-//            Transaction tx=session.beginTransaction();
-//            commodities=session.createQuery("FROM Commodity WHERE price>=:startPrice AND price<=:endPrice AND name LIKE :searchName")
-//                        .setParameter("startPrice",startPrice)
-//                        .setParameter("endPrice",endPrice)
-//                        .setParameter("searchName","%"+searchName+"%")
-//                        .list();
-//            tx.commit();
-//        }
-//        catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        finally {
-//            session.close();
-//        }
-//        return commodities;
-//    }
-
     public User getUser(String username) {
         Session session=sessionFactory.openSession();
         User user=null;
@@ -143,28 +122,6 @@ public class DaoImpl implements Dao {
             session.close();
         }
         return findUser!=null;
-    }
-
-    public Commodity getCommodityById(int id) {
-        Session session=sessionFactory.openSession();
-        Commodity commodity=null;
-        try{
-            Transaction tx=session.beginTransaction();
-            commodity=(Commodity)session.createQuery("FROM Commodity WHERE id=:id")
-                    .setParameter("id",id)
-                    .getSingleResult();
-            //Hibernate.initialize(commodity.getComments());
-            tx.commit();
-
-        }
-
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-        return commodity;
     }
 
     public void buyCommodity(Commodity commodity, User user) {

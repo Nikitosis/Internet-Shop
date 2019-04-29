@@ -11,7 +11,6 @@ public interface Dao {
     public User getUser(String username);
     public List<OrderLog> getUserOrders(String username);
     public List<Commodity> getUserCommodities(String username);
-    public Commodity getCommodityById(int id);
 
     public void buyCommodity(Commodity commodity,User user);
 
