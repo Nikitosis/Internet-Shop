@@ -1,5 +1,8 @@
 package com.shop.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.sql.Date;
@@ -22,11 +25,17 @@ public class Commodity {
     @Column(name="creation_date")
     private Date creationDate;
 
-    @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Image> images=new ArrayList<Image>();
+
+    @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OrderBy("date")
     private Set<Comment> comments=new HashSet<Comment>();
 
-    @ManyToMany(mappedBy="commodities", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy="commodities", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Tag> tags=new HashSet<Tag>();
 
     public Commodity(String name, double price, Date creationDate,Set<Comment> comments) {
@@ -43,6 +52,10 @@ public class Commodity {
     public void addComment(Comment comment){
         comments.add(comment);
         comment.setCommodity(this);
+    }
+
+    public void addImage(Image image){
+        images.add(image);
     }
 
     public Set<Comment> getComments() {
@@ -101,5 +114,13 @@ public class Commodity {
 
     public void setTags(Set<Tag> tags) {
         this.tags = tags;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

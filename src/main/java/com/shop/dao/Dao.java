@@ -26,4 +26,5 @@ public interface Dao {
     public void deleteCommodityById(int id);
 
     public void addComment(Comment comment);
+
 }

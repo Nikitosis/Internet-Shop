@@ -4,6 +4,8 @@ package com.shop.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.Nullable;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -24,10 +26,12 @@ public class User {
     @Column(name="password",nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<UserRole> userRoles=new HashSet<UserRole>();
 
-    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Comment> comments=new ArrayList<Comment>();
 
     public User(String username, String password, Set<UserRole> userRoles,List<Comment> comments) {

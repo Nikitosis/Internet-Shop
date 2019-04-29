@@ -30,7 +30,7 @@
             </div>
 
 			<section class="image-section main__image-section">
-				<div class="image-section__picture image-section__picture_big"></div>
+				<img class="image-section__picture image-section__picture_big" src="/commodities/getImage?id=${commodity.id}"></img>
 				<div class="image-section__picture"></div>
 				<div class="image-section__picture"></div>
 			</section><!-- image-section  -->

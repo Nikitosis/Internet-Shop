@@ -1,5 +1,7 @@
 package com.shop.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -16,7 +18,8 @@ public class Tag {
     @Column(name="tag",nullable = false,length = 32)
     private String tag;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name="commodity_tag",
             joinColumns = {@JoinColumn(name="tag")},

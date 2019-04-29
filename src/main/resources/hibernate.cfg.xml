@@ -20,6 +20,7 @@
     <mapping class="com.shop.entities.UserRole"/>
     <mapping class="com.shop.entities.Comment"/>
     <mapping class="com.shop.entities.Tag"/>
+    <mapping class="com.shop.entities.Image"/>
 
   </session-factory>
 </hibernate-configuration>

@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Add commodity</h1>
-    <form action="/commodities/addCommodity" method="post" name="commodity">
+    <form action="/commodities/addCommodity?${_csrf.parameterName}=${_csrf.token}" method="post" name="commodity" enctype="multipart/form-data">
         <table>
             <tr>
                 <td><input type="text" name="name"/></td>
@@ -18,11 +18,14 @@
                 <td><input type="date" name="creationDate"/></td>
             </tr>
             <tr>
+                <td><input type="file" name="image" accept="image/x-png,image/jpeg,image/jpg"/></td>
+            </tr>
+            <tr>
                 <td><input type="submit" value="Create new commodity"/></td>
             </tr>
         </table>
 
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <#--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
     </form>
 </body>
 </html>

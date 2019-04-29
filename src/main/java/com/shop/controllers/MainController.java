@@ -9,14 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.Date;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class MainController {
@@ -82,14 +82,29 @@ public class MainController {
         return "commodities";
     }
 
+    @GetMapping("/commodities/getImage")
+    public void getImage(@RequestParam("id") Integer commodityId,
+                         HttpServletResponse response) throws IOException {
+        Commodity commodity=service.getCommodityById(commodityId);
+        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+        response.getOutputStream().write(commodity.getImages().get(0).getImage());
+
+        response.getOutputStream().close();
+    }
+
     @GetMapping("/commodities/addCommodity")
     public String showAddCommodity(){
         return "addCommodity";
     }
 
     @PostMapping("/commodities/addCommodity")
-    public String addCommodity(@ModelAttribute("commodity") Commodity commodity){
+    public String addCommodity(@ModelAttribute("commodity") Commodity commodity,
+                               @RequestParam("image") MultipartFile image) throws IOException{
+        byte[] b=image.getBytes();
+        Image imageObj=new Image(image.getBytes());
+        commodity.addImage(imageObj);
         service.addCommodityToDb(commodity);
+
         return "redirect:/commodities";
     }
 
