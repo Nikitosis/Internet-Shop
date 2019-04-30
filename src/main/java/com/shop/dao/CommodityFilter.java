@@ -6,24 +6,54 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class CommodityFilter {
+    public enum SortingColumn{
+        NONE,
+        ID,
+        NAME,
+        PRICE,
+        CREATION_DATE
+    }
+    public enum SortingOrder{
+        ASC,
+        DESC
+    }
+
     private Integer id=null;
     private Integer minPrice=null;
     private Integer maxPrice=null;
     private String namePattern=null;
     private List<Tag> tags=null;
+    private SortingColumn sortBy=SortingColumn.NONE;
+    private SortingOrder order=SortingOrder.ASC;
+
 
 
     public void CommodityFilter(){
 
+    }
+
+    public SortingOrder getOrder() {
+        return order;
+    }
+
+    public CommodityFilter setOrder(SortingOrder order) {
+        this.order = order;
+        return this;
+    }
+
+    public SortingColumn getSortBy() {
+        return sortBy;
+    }
+
+    public CommodityFilter setSortBy(SortingColumn sortBy) {
+        this.sortBy = sortBy;
+        return this;
     }
 
     public Integer getMinPrice() {
@@ -100,6 +130,39 @@ public class CommodityFilter {
             //commodityRoot.join(tags);
             //criteria.add(Restrictions.in("tags",tags));
         }
+
+        if(sortBy!=SortingColumn.NONE){
+            Path column=commodityRoot.get("id");
+            switch(sortBy){
+                case ID:
+                {
+                    column=commodityRoot.get("id");
+                    break;
+                }
+                case NAME:
+                {
+                    column=commodityRoot.get("name");
+                    break;
+                }
+                case PRICE:
+                {
+                    column=commodityRoot.get("price");
+                    break;
+                }
+                case CREATION_DATE:
+                {
+                    column=commodityRoot.get("creation_date");
+                    break;
+                }
+            }
+            if(order==SortingOrder.ASC){
+                criteria.orderBy(criteriaBuilder.asc(column));
+            }
+            else{
+                criteria.orderBy(criteriaBuilder.desc(column));
+            }
+        }
+
         return criteria;
     }
 }

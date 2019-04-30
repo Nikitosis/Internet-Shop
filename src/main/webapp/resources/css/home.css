@@ -91,6 +91,7 @@ html,body{
 
 	background-position: center;
 	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .image-box__container{
@@ -114,17 +115,16 @@ html,body{
 }
 
 .container_background_1{
-
-	background: radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background1.png") no-repeat;
+	background-image:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)),url("/resources/img/banner_background1.png");
 }
 .container_background_2{
-	background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background2.png") no-repeat;
+	background-image:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background2.png");
 }
 .container_background_3{
-	background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background3.png") no-repeat;
+	background-image:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background3.png");
 }
 .container_background_4{
-	background:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background4.png") no-repeat;
+	background-image:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background4.png");
 }
 
 .container__title{

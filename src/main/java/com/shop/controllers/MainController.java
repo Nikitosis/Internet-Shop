@@ -72,6 +72,7 @@ public class MainController {
         if(tags!=null){
             commodityFilter.setTags(tags);
         }
+        commodityFilter.setSortBy(CommodityFilter.SortingColumn.PRICE);
         CommodityPaginator paginator;
         paginator=new CommodityPaginator(service.getCommodities(commodityFilter));
         /*if(tags!=null)
