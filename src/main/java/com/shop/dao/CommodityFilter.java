@@ -2,8 +2,10 @@ package com.shop.dao;
 
 import com.shop.entities.Commodity;
 import com.shop.entities.Category;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
-import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,67 +99,63 @@ public class CommodityFilter {
         return this;
     }
 
-    public CriteriaQuery<Commodity> getCriteriaQuery(CriteriaBuilder criteriaBuilder){
-        CriteriaQuery<Commodity> criteria=criteriaBuilder.createQuery(Commodity.class);
-        Root<Commodity> commodityRoot=criteria.from(Commodity.class);
-        criteria.select(commodityRoot);
+    public Criteria addFilterToCriteria(Criteria criteria){
         if(id!=null){
-            criteria.where(criteriaBuilder.equal(commodityRoot.get("id"),id));
+            criteria.add(Restrictions.eq("commodity.id",id));
         }
         if(minPrice!=null){
-            criteria.where(criteriaBuilder.gt(commodityRoot.get("price"),minPrice));
-            //criteria.add(Restrictions.gt("price",minPrice));
+            criteria.add(Restrictions.gt("commodity.price",minPrice));
         }
         if(maxPrice!=null){
-            criteria.where(criteriaBuilder.lt(commodityRoot.get("price"),maxPrice));
-            //criteria.add(Restrictions.lt("price",maxPrice));
+            criteria.add(Restrictions.lt("commodity.price",maxPrice));
         }
         if(namePattern!=null){
-            criteria.where(criteriaBuilder.like(commodityRoot.get("name"),"%"+namePattern+"%"));
-            //criteria.add(Restrictions.like("name","%"+namePattern + "%"));
+            criteria.add(Restrictions.like("commodity.name","%"+namePattern + "%"));
         }
-        if(categories!=null){  //where at leas one tag from tags is in Commodity.tags
-            List<Predicate> predicates=new ArrayList<Predicate>();
-            for(Category category:categories){
-                predicates.add(criteriaBuilder.isMember(category,commodityRoot.get("categories")));
-            }
-            Predicate conjunction=criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
-            criteria.where(conjunction);
-            //commodityRoot.join(tags);
-            //criteria.add(Restrictions.in("tags",tags));
-        }
+//        if(categories!=null){  //where at leas one tag from tags is in Commodity.tags
+//            List<Predicate> predicates=new ArrayList<Predicate>();
+//            for(Category category:categories){
+//                predicates.add(criteriaBuilder.isMember(category,commodityRoot.get("categories")));
+//            }
+//            Predicate conjunction=criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
+//            criteria.where(conjunction);
+//            //commodityRoot.join(tags);
+//            //criteria.add(Restrictions.in("tags",tags));
+//        }
 
         if(sortBy!=SortingColumn.NONE){
-            Path column=commodityRoot.get("id");
+            String column="commodity.id";
             switch(sortBy){
                 case ID:
                 {
-                    column=commodityRoot.get("id");
+                    column="commodity.id";
                     break;
                 }
                 case NAME:
                 {
-                    column=commodityRoot.get("name");
+                    column="commodity.name";
                     break;
                 }
                 case PRICE:
                 {
-                    column=commodityRoot.get("price");
+                    column="commodity.price";
                     break;
                 }
                 case CREATION_DATE:
                 {
-                    column=commodityRoot.get("creationDate");
+                    column="commodity.creation_date";
                     break;
                 }
             }
             if(order==SortingOrder.ASC){
-                criteria.orderBy(criteriaBuilder.asc(column));
+                criteria.addOrder(Order.asc(column));
             }
             else{
-                criteria.orderBy(criteriaBuilder.desc(column));
+                criteria.addOrder(Order.desc(column));
             }
         }
+
+
 
         return criteria;
     }

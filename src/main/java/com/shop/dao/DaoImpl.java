@@ -3,12 +3,13 @@ package com.shop.dao;
 import com.shop.entities.*;
 //import com.shop.entities.OrderLog;
 import org.hibernate.*;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +25,9 @@ public class DaoImpl implements Dao {
         List<Commodity> commodities=null;
         try{
             Transaction tx=session.beginTransaction();
-            CriteriaQuery criteriaQuery=commodityFilter.getCriteriaQuery(session.getCriteriaBuilder());
-            Query query=session.createQuery(criteriaQuery);
-            commodities=query.list();
+            Criteria criteria=session.createCriteria(Commodity.class,"commodity");
+            criteria=commodityFilter.addFilterToCriteria(criteria);
+            commodities=criteria.list();
             tx.commit();
         }
         catch(Exception e){
@@ -37,6 +38,35 @@ public class DaoImpl implements Dao {
         }
 
         return commodities;
+    }
+
+    @Override
+    public List<Category> getUniqueCategories(CommodityFilter commodityFilter) {
+        Session session=sessionFactory.openSession();
+        List<Category> categories=null;
+        try{
+            Transaction tx=session.beginTransaction();
+            Criteria criteria=session.createCriteria(Category.class,"category");
+            criteria.createAlias("category.commodities","commodity");
+
+            criteria=commodityFilter.addFilterToCriteria(criteria);
+
+            criteria.setProjection(Projections.projectionList()
+                    //.add(Projections.distinct(Projections.property("category.name")))
+                    .add(Projections.groupProperty("category.name"))
+                    .add(Projections.groupProperty("category.value")));
+
+            categories=criteria.list();
+            tx.commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+
+        return categories;
     }
 
     public User getUser(String username) {

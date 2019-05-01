@@ -15,7 +15,7 @@ import java.util.Set;
 @Table(name="category")
 public class Category {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     //name is like Company,Size,Type
@@ -30,7 +30,7 @@ public class Category {
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name="commodity_category",
-            joinColumns = {@JoinColumn(name="id")},
+            joinColumns = {@JoinColumn(name="category_id")},
             inverseJoinColumns ={@JoinColumn(name="commodity_id")}
     )
     private Set<Commodity> commodities=new HashSet<Commodity>();

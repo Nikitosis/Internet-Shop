@@ -75,6 +75,7 @@ public class MainController {
             commodityFilter.setSortBy(sortBy);
         }
         //commodityFilter.setSortBy(CommodityFilter.SortingColumn.PRICE);
+        service.getGroupedCategories(commodityFilter);
         CommodityPaginator paginator;
         paginator=new CommodityPaginator(service.getCommodities(commodityFilter));
 

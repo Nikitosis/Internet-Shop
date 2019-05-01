@@ -13,10 +13,7 @@ import sun.applet.Main;
 
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class MainServiceImpl implements MainService {
@@ -29,6 +26,20 @@ public class MainServiceImpl implements MainService {
 
     public List<Commodity> getCommodities(CommodityFilter commodityFilter) {
         return dao.getCommodities(commodityFilter);
+    }
+
+    @Override
+    public Map<String,List<Category>> getGroupedCategories(CommodityFilter commodityFilter) {
+        List<Category> uniqueCategories=dao.getUniqueCategories(commodityFilter);
+        Map<String,List<Category>> mapNameToCategory=new HashMap<String,List<Category>>();
+        for(Category category:uniqueCategories){
+            if(!mapNameToCategory.containsKey(category.getName())) {
+                mapNameToCategory.put(category.getName(), new ArrayList<Category>());
+            }
+            mapNameToCategory.get(category.getName()).add(category);
+        }
+
+        return mapNameToCategory;
     }
 
     public User getUser(String username) {
