@@ -58,6 +58,7 @@ public class MainController {
                                   @RequestParam(value="maxPrice",required = false) Integer maxPrice,
                                   @RequestParam(value="namePattern",required = false) String namePattern,
                                   @RequestParam(value = "page",required = false,defaultValue = "1") Integer curPage,
+                                  @RequestParam(value="sortBy",required = false) CommodityFilter.SortingColumn sortBy,
                                   Model model) {
         CommodityFilter commodityFilter=new CommodityFilter();
         if(minPrice!=null){
@@ -72,7 +73,10 @@ public class MainController {
         if(tags!=null){
             commodityFilter.setTags(tags);
         }
-        commodityFilter.setSortBy(CommodityFilter.SortingColumn.PRICE);
+        if(sortBy!=null){
+            commodityFilter.setSortBy(sortBy);
+        }
+        //commodityFilter.setSortBy(CommodityFilter.SortingColumn.PRICE);
         CommodityPaginator paginator;
         paginator=new CommodityPaginator(service.getCommodities(commodityFilter));
         /*if(tags!=null)

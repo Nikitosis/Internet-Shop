@@ -151,7 +151,7 @@ public class CommodityFilter {
                 }
                 case CREATION_DATE:
                 {
-                    column=commodityRoot.get("creation_date");
+                    column=commodityRoot.get("creationDate");
                     break;
                 }
             }

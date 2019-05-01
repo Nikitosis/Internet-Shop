@@ -40,10 +40,10 @@
     //         }
     //     }
     //
-		function onSortingChanged(selectSort){
-		    var selectedIndex=selectSort.selectedIndex;
-            //window.location.href=window.location.href+'&sortBy='+selectSort.options[selectedIndex].value;
-		}
+		// function onSortingChanged(selectSort){
+		//     var selectedIndex=selectSort.selectedIndex;
+    //         //window.location.href=window.location.href+'&sortBy='+selectSort.options[selectedIndex].value;
+		// }
 
 		function expandBlock(filterTitle){
 			var filtersItem=filterTitle.closest(".filters-item");
@@ -55,12 +55,42 @@
 			// console.log(filterCheckboxBox);
 		}
     </script>
+	<#assign
+		requestParameters=""
+	>
+	<#if RequestParameters.tags??>
+		<#assign
+			requestParameters=requestParameters+'&'+'tags='+RequestParameters.tags
+		>
+	</#if>
+    <#if RequestParameters.minPrice??>
+		<#assign
+		requestParameters=requestParameters+'&'+'minPrice='+RequestParameters.minPrice
+		>
+	</#if>
+    <#if RequestParameters.maxPrice??>
+		<#assign
+		requestParameters=requestParameters+'&'+'maxPrice='+RequestParameters.maxPrice
+		>
+	</#if>
+    <#if RequestParameters.namePattern??>
+		<#assign
+		requestParameters=requestParameters+'&'+'namePattern='+RequestParameters.namePattern
+		>
+	</#if>
+    <#if RequestParameters.sortBy??>
+		<#assign
+		requestParameters=requestParameters+'&'+'sortBy='+RequestParameters.sortBy
+		>
+	</#if>
 </head>
 
 <body>
     <@main_header/>
 
     <@main_nav/>
+
+<#--requestParams:${requestParameters}-->
 
     <div class="wrapper-main">
         <main class="main wrapper-main__main"></form>
@@ -69,10 +99,10 @@
                 <form clas="filters-section__filters-form" action="/commodities" method="get">
                     <div class="sort-selector filters-section__sort-selector">
                         <p class="sort-selector__sort-title">Sort by</p>
-                        <select class="sort-selector__sort-select" onchange="onSortingChanged(this)">
-                            <option value="First">Name</option>
-                            <option value="First">Price</option>
-                            <option value="First">Date</option>
+                        <select class="sort-selector__sort-select" name="sortBy">
+                            <option value="NAME">Name</option>
+                            <option value="PRICE">Price</option>
+                            <option value="CREATION_DATE">Date</option>
                         </select>
                     </div>
 					<div class="filters-item filters-section__filters-item">
@@ -127,7 +157,7 @@
             <div class="products-section main__products-section">
                 <div class="products-nav products-section__products-nav">
 					<p class="products-nav__found-products font-MerriweatherRegular">102 Products Found</p>
-                    <@pager paginator=paginator additionalClass="products-nav__products-pages"/>
+                    <@pager paginator=paginator additionalClass="products-nav__products-pages" requestParameters=requestParameters/>
                 </div><!-- products-nav -->
                 <div class="products-list main__products-list">
 
@@ -142,7 +172,7 @@
                     <#if paginator.getPageIndex() gt 1>
                 	    <a href="/commodities?page=${paginator.getPageIndex()-1}" class="pages-controller__previous-page font-LatoRegular">Previous</a>
                     </#if>
-                    <@pager paginator=paginator additionalClass="pages-controller__products-pages"/>
+                    <@pager paginator=paginator additionalClass="pages-controller__products-pages" requestParameters=requestParameters/>
                 	<#if paginator.getPageIndex() lt paginator.getTotalPages()>
                         <a href="/commodities?page=${paginator.getPageIndex()+1}" class="pages-controller__next-page font-LatoRegular">Next</a>
                     </#if>

@@ -1,4 +1,4 @@
-<#macro pager paginator additionalClass="" filterParams="">
+<#macro pager paginator additionalClass="" requestParameters="" filterParams="">
 
 <#if paginator.getTotalPages() gt 7>
     <#assign
@@ -30,7 +30,7 @@
         <#elseIf page==paginator.getPageIndex()>
             <li class="products-pages__item"><a href="#" class="products-pages__link products-pages__link_selected">${page}</a></li>
         <#else>
-            <li class="products-pages__item"><a href="/commodities?page=${page}" class="products-pages__link">${page}</a></li>
+            <li class="products-pages__item"><a href="/commodities?page=${page}${requestParameters}" class="products-pages__link">${page}</a></li>
         </#if>
     </#list>
     <#--<li class="products-pages__item"><a href="#" class="products-pages__link">1</a></li>-->
