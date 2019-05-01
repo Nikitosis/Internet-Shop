@@ -90,6 +90,12 @@
 
     <@main_nav/>
 
+<#list groupedCategories?values as categorieGroup>
+    <#list categorieGroup as category>
+		${category.name}=${category.value}<br>
+	</#list>
+</#list>
+
 <#--requestParams:${requestParameters}-->
 
     <div class="wrapper-main">

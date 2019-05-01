@@ -52,10 +52,12 @@ public class DaoImpl implements Dao {
 
             criteria=commodityFilter.addFilterToCriteria(criteria,"commodity","category");
 
-            criteria.setProjection(Projections.projectionList()
-                    //.add(Projections.distinct(Projections.property("category.name")))
-                    .add(Projections.groupProperty("category.name"))
-                    .add(Projections.groupProperty("category.value")));
+//            criteria.setProjection(Projections.projectionList()
+//                    //.add(Projections.distinct(Projections.property("category.name")))
+//                    .add(Projections.property("category.id"))
+//                    .add(Projections.groupProperty("category.name"))
+//                    .add(Projections.groupProperty("category.value")));
+            criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
             categories=criteria.list();
             tx.commit();

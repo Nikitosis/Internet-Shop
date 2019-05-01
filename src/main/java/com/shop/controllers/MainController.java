@@ -74,11 +74,6 @@ public class MainController {
         if(sortBy!=null){
             commodityFilter.setSortBy(sortBy);
         }
-        //commodityFilter.setSortBy(CommodityFilter.SortingColumn.PRICE);
-        Category category=new Category("type","phone");
-        category.setId(1);
-        commodityFilter.addCategory(category);
-        //commodityFilter.setCategories(service.getCategories(commodityFilter));
         CommodityPaginator paginator;
         paginator=new CommodityPaginator(service.getCommodities(commodityFilter));
 
@@ -87,6 +82,8 @@ public class MainController {
         }
 
         model.addAttribute("paginator",paginator);
+
+        model.addAttribute("groupedCategories",service.getGroupedCategories(commodityFilter));
 
         return "commodities";
     }

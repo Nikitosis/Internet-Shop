@@ -137,8 +137,8 @@ public class CommodityFilter {
                 Disjunction categoryNameDisjunction = Restrictions.disjunction();
                 for(Category category:categoryList){
                     categoryNameDisjunction.add(Restrictions.and(
-                            Restrictions.eq("category.name",category.getName()),
-                            Restrictions.eq("category.value",category.getValue()))
+                            Restrictions.eq(categoryAlias+".name",category.getName()),
+                            Restrictions.eq(categoryAlias+".value",category.getValue()))
                     );
                 }
                 mainConjunction.add(categoryNameDisjunction);
