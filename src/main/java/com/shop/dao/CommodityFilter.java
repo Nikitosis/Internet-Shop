@@ -1,15 +1,11 @@
 package com.shop.dao;
 
 import com.shop.entities.Commodity;
-import com.shop.entities.Tag;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import com.shop.entities.Category;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class CommodityFilter {
     public enum SortingColumn{
@@ -28,7 +24,7 @@ public class CommodityFilter {
     private Integer minPrice=null;
     private Integer maxPrice=null;
     private String namePattern=null;
-    private List<Tag> tags=null;
+    private List<Category> categories=null;
     private SortingColumn sortBy=SortingColumn.NONE;
     private SortingOrder order=SortingOrder.ASC;
 
@@ -83,12 +79,12 @@ public class CommodityFilter {
         return this;
     }
 
-    public List<Tag> getTags() {
-        return tags;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public CommodityFilter setTags(List<Tag> tags) {
-        this.tags = tags;
+    public CommodityFilter setCategories(List<Category> categories) {
+        this.categories = categories;
         return this;
     }
 
@@ -120,10 +116,10 @@ public class CommodityFilter {
             criteria.where(criteriaBuilder.like(commodityRoot.get("name"),"%"+namePattern+"%"));
             //criteria.add(Restrictions.like("name","%"+namePattern + "%"));
         }
-        if(tags!=null){  //where at leas one tag from tags is in Commodity.tags
+        if(categories!=null){  //where at leas one tag from tags is in Commodity.tags
             List<Predicate> predicates=new ArrayList<Predicate>();
-            for(Tag tag:tags){
-                predicates.add(criteriaBuilder.isMember(tag,commodityRoot.get("tags")));
+            for(Category category:categories){
+                predicates.add(criteriaBuilder.isMember(category,commodityRoot.get("categories")));
             }
             Predicate conjunction=criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
             criteria.where(conjunction);

@@ -15,8 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.Principal;
-import java.sql.Date;
 import java.util.*;
 
 @Controller
@@ -53,7 +51,7 @@ public class MainController {
 //    }
 
     @GetMapping("/commodities")
-    public String showCommodities(@RequestParam(value="tags",required = false) List<Tag> tags,
+    public String showCommodities(@RequestParam(value="tags",required = false) List<Category> tags,
                                   @RequestParam(value="minPrice",required = false) Integer minPrice,
                                   @RequestParam(value="maxPrice",required = false) Integer maxPrice,
                                   @RequestParam(value="namePattern",required = false) String namePattern,
@@ -71,7 +69,7 @@ public class MainController {
             commodityFilter.setNamePattern(namePattern);
         }
         if(tags!=null){
-            commodityFilter.setTags(tags);
+            commodityFilter.setCategories(tags);
         }
         if(sortBy!=null){
             commodityFilter.setSortBy(sortBy);
@@ -79,10 +77,6 @@ public class MainController {
         //commodityFilter.setSortBy(CommodityFilter.SortingColumn.PRICE);
         CommodityPaginator paginator;
         paginator=new CommodityPaginator(service.getCommodities(commodityFilter));
-        /*if(tags!=null)
-            paginator=new CommodityPaginator(service.getCommoditiesByTagsNames(tags));
-        else
-            paginator=new CommodityPaginator(service.getCommodities());*/
 
         if(curPage!=null){
             paginator.setPageIndex(curPage);
@@ -92,6 +86,10 @@ public class MainController {
 
         return "commodities";
     }
+
+
+
+
 
     @GetMapping("/commodities/getImage")
     public void getImage(@RequestParam("id") Integer commodityId,
