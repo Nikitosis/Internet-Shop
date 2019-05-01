@@ -68,6 +68,38 @@ html,body{
 	border-bottom: 1px solid #bfbfbf;
 }
 
+.filters-section__search-button{
+	width:100%;
+	height:40px;
+	color:white;
+	background:#4b8cb9;
+	border:none;
+}
+
+.sort-selector{
+	display:flex;
+	align-items:center;
+	padding: 10px 0;
+}
+
+.filters-section__sort-selector{
+	width:100%;
+}
+
+.sort-selector__sort-title{
+	font-size:15px;
+	text-align: left;
+	flex-grow:1;
+}
+
+.sort-selector__sort-select{
+	font-size:15px;
+	height:40px;
+	padding:0 15px;
+	border:1px solid black;
+	flex-grow: 2.5;
+}
+
 .filters-item{
 
 }
@@ -136,20 +168,6 @@ html,body{
 	font-size:20px;
 	text-align: left;
 	flex-grow: 10;
-}
-
-.products-nav__sort-title{
-	font-size:15px;
-	text-align: left;
-	flex-grow:1;
-}
-
-.products-nav__sort-select{
-	font-size:15px;
-	height:40px;
-	padding:0 15px;
-	border:1px solid black;
-	flex-grow: 2.5;
 }
 
 .products-nav__products-pages{
