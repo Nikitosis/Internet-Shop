@@ -75,4 +75,5 @@ public class Category {
     public void setCommodities(Set<Commodity> commodities) {
         this.commodities = commodities;
     }
+
 }

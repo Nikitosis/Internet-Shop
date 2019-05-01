@@ -26,7 +26,8 @@ public class DaoImpl implements Dao {
         try{
             Transaction tx=session.beginTransaction();
             Criteria criteria=session.createCriteria(Commodity.class,"commodity");
-            criteria=commodityFilter.addFilterToCriteria(criteria);
+            criteria.createAlias("commodity.categories","category");
+            criteria=commodityFilter.addFilterToCriteria(criteria,"commodity","category");
             commodities=criteria.list();
             tx.commit();
         }
@@ -49,7 +50,7 @@ public class DaoImpl implements Dao {
             Criteria criteria=session.createCriteria(Category.class,"category");
             criteria.createAlias("category.commodities","commodity");
 
-            criteria=commodityFilter.addFilterToCriteria(criteria);
+            criteria=commodityFilter.addFilterToCriteria(criteria,"commodity","category");
 
             criteria.setProjection(Projections.projectionList()
                     //.add(Projections.distinct(Projections.property("category.name")))

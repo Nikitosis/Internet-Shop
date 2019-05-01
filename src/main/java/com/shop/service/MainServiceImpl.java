@@ -42,6 +42,11 @@ public class MainServiceImpl implements MainService {
         return mapNameToCategory;
     }
 
+    @Override
+    public List<Category> getCategories(CommodityFilter commodityFilter) {
+        return dao.getUniqueCategories(commodityFilter);
+    }
+
     public User getUser(String username) {
         return dao.getUser(username);
     }

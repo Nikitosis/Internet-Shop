@@ -75,7 +75,10 @@ public class MainController {
             commodityFilter.setSortBy(sortBy);
         }
         //commodityFilter.setSortBy(CommodityFilter.SortingColumn.PRICE);
-        service.getGroupedCategories(commodityFilter);
+        Category category=new Category("type","phone");
+        category.setId(1);
+        commodityFilter.addCategory(category);
+        //commodityFilter.setCategories(service.getCategories(commodityFilter));
         CommodityPaginator paginator;
         paginator=new CommodityPaginator(service.getCommodities(commodityFilter));
 
