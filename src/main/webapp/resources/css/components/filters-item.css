@@ -1,0 +1,69 @@
+@font-face{
+    font-family: "AwesomeFont_400";
+    src:url("/resources/fonts/fa-brands-400.ttf");
+}
+@font-face{
+    font-family: "LatoBold";
+    src:url("/resources/fonts/Lato Bold.ttf");
+}
+@font-face{
+    font-family: "LatoRegular";
+    src:url("/resources/fonts/Lato Regular.ttf");
+}
+
+@font-face{
+    font-family: "MerriweatherRegular";
+    src:url("/resources/fonts/Merriweather Regular.ttf");
+}
+
+
+.font-LatoBold{
+    font-family: LatoBold
+}
+.font-LatoRegular{
+    font-family: LatoRegular
+}
+.font-Awesome{
+    font-family: AwesomeFont_400;
+}
+.font-MerriweatherRegular{
+    font-family: MerriweatherRegular;
+}
+
+.filters-item{
+
+}
+
+.filters-item__title{
+    font-size:15px;
+    text-decoration: none;
+    color:black;
+    display:block;
+    height:40px;
+    line-height: 40px;
+
+    cursor: pointer;
+
+    background: url("/resources/img/arrow-down.png") no-repeat 95%;
+    background-size:20px;
+}
+
+.filters-item__title_expanded{
+    background-image: url("/resources/img/arrow-up.png");
+}
+
+.filters-item__checkbox-box{
+    padding-left:20px;
+    overflow:hidden;
+    max-height:0px;
+
+    transition: max-height .7s ease;
+}
+
+.filters-item__checkbox-box_expanded{
+    max-height:200px;
+}
+
+.filters-item__checkbox-wrapper{
+    margin:10px 0;
+}

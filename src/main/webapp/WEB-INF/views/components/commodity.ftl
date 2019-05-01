@@ -1,4 +1,4 @@
-<#macro product additionalClass commodityId commodityPrice=100 commodityName="Product name">
+<#macro product commodityId additionalClass="" commodityPrice=100 commodityName="Product name">
     <div class="${additionalClass} product">
         <div class="product__look">
             <p class="product__price">$ ${commodityPrice}</p>

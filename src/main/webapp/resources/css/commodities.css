@@ -100,46 +100,8 @@ html,body{
 	flex-grow: 2.5;
 }
 
-.filters-item{
-
-}
-
 .filters-section__filters-item{
 	border-bottom: 1px solid #bfbfbf;
-}
-
-.filters-item__title{
-	font-size:15px;
-	text-decoration: none;
-	color:black;
-	display:block;
-	height:40px;
-	line-height: 40px;
-
-	cursor: pointer;
-
-	background: url("/resources/img/arrow-down.png") no-repeat 95%;
-	background-size:20px;
-}
-
-.filters-item__title_expanded{
-	background-image: url("/resources/img/arrow-up.png");
-}
-
-.filters-item__checkbox-box{
-	padding-left:20px;
-	overflow:hidden;
-	max-height:0px;
-
-	transition: max-height .7s ease;
-}
-
-.filters-item__checkbox-box_expanded{
-	max-height:200px;
-}
-
-.filters-item__checkbox-wrapper{
-	margin:10px 0;
 }
 
 .products-section{

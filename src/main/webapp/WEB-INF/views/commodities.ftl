@@ -3,6 +3,8 @@
 <#include "components/main_footer.ftl"/>
 <#include "components/commodity.ftl"/>
 <#include "components/pager.ftl"/>
+<#include "components/filters-item.ftl"/>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +18,7 @@
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
     <link rel="stylesheet" href="/resources/css/components/commodity.css"/>
     <link rel="stylesheet" href="/resources/css/components/pager.css"/>
+    <link rel="stylesheet" href="/resources/css/components/filters-item.css"/>
 
     <script>
 		// window.onload=function(){
@@ -90,12 +93,6 @@
 
     <@main_nav/>
 
-<#list groupedCategories?values as categorieGroup>
-    <#list categorieGroup as category>
-		${category.name}=${category.value}<br>
-	</#list>
-</#list>
-
 <#--requestParams:${requestParameters}-->
 
     <div class="wrapper-main">
@@ -111,52 +108,16 @@
                             <option value="CREATION_DATE">Date</option>
                         </select>
                     </div>
-					<div class="filters-item filters-section__filters-item">
-						<p class="filters-item__title font-LatoRegular" onclick="expandBlock(this)">Categories</p>
-						<div class="filters-item__checkbox-box">
-							<div class="filters-item__checkbox-wrapper">
-								<label class="filters-item__checkbox-label">
-									<input type="checkbox" class="filters-item__checkbox">
-									Bottom
-								</label>
-							</div>
-							<div class="filters-item__checkbox-wrapper">
-								<label class="filters-item__checkbox-label">
-									<input type="checkbox" class="filters-item__checkbox">
-									Bottom
-								</label>
-							</div>
-							<div class="filters-item__checkbox-wrapper">
-								<label class="filters-item__checkbox-label">
-									<input type="checkbox" class="filters-item__checkbox">
-									Bottom
-								</label>
-							</div>
-						</div>
-					</div><!-- filters-item -->
-					<div class="filters-item filters-section__filters-item">
-						<p class="filters-item__title font-LatoRegular" onclick="expandBlock(this)" >Categories</p>
-						<div class="filters-item__checkbox-box">
-							<div class="filters-item__checkbox-wrapper">
-								<label class="filters-item__checkbox-label">
-									<input type="checkbox" class="filters-item__checkbox">
-									Bottom
-								</label>
-							</div>
-							<div class="filters-item__checkbox-wrapper">
-								<label class="filters-item__checkbox-label">
-									<input type="checkbox" class="filters-item__checkbox">
-									Bottom
-								</label>
-							</div>
-							<div class="filters-item__checkbox-wrapper">
-								<label class="filters-item__checkbox-label">
-									<input type="checkbox" class="filters-item__checkbox">
-									Bottom
-								</label>
-							</div>
-						</div>
-					</div><!-- filters-item -->
+
+					<#list groupedCategories?keys as categoryKey>
+						<@filtersItem filterTitle=categoryKey
+							filterCategories=groupedCategories[categoryKey]
+							onClickMethod="expandBlock(this)"
+							additionalClass="filters-section__filters-item"/>
+					</#list>
+					<#--<@filtersItem onClickMethod="expandBlock(this)" additionalClass="filters-section__filters-item"/>-->
+					<#--<@filtersItem onClickMethod="expandBlock(this)" additionalClass="filters-section__filters-item"/>-->
+
 					<button class="filters-section__search-button" type="submit">Filter</button>
                 </form>
             </div><!-- filters-section -->
