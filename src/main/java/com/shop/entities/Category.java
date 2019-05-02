@@ -39,6 +39,18 @@ public class Category {
         this.name=categoryName;
         this.value=categoryValue;
     }
+    //separated by __
+    public Category(String nameWithValue){
+        try {
+            this.name = nameWithValue.split("__")[0];
+            this.value = nameWithValue.split("__")[1];
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            e.printStackTrace();
+            this.name="";
+            this.value="";
+        }
+    }
 
     public Category(){
 

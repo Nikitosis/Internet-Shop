@@ -30,8 +30,11 @@ public class MainServiceImpl implements MainService {
 
     @Override
     public Map<String,List<Category>> getGroupedCategories(CommodityFilter commodityFilter) {
-        List<Category> uniqueCategories=dao.getUniqueCategories(commodityFilter);
+
+        List<Category> uniqueCategories=getUniqueCategories(commodityFilter);
+
         Map<String,List<Category>> mapNameToCategory=new HashMap<String,List<Category>>();
+
         for(Category category:uniqueCategories){
             if(!mapNameToCategory.containsKey(category.getName())) {
                 mapNameToCategory.put(category.getName(), new ArrayList<Category>());
@@ -43,8 +46,15 @@ public class MainServiceImpl implements MainService {
     }
 
     @Override
-    public List<Category> getCategories(CommodityFilter commodityFilter) {
-        return dao.getUniqueCategories(commodityFilter);
+    public List<Category> getUniqueCategories(CommodityFilter commodityFilter) {
+        List<Commodity> commodities=dao.getCommodities(commodityFilter);
+        Set<Category> categorySet=new HashSet<Category>();
+        for(Commodity commodity:commodities){
+            for(Category category:commodity.getCategories()){
+                categorySet.add(category);
+            }
+        }
+        return new ArrayList<Category>(categorySet);
     }
 
     public User getUser(String username) {

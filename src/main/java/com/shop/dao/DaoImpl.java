@@ -4,6 +4,7 @@ import com.shop.entities.*;
 //import com.shop.entities.OrderLog;
 import org.hibernate.*;
 import org.hibernate.criterion.Projections;
+import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.hibernate.query.Query;
@@ -26,7 +27,7 @@ public class DaoImpl implements Dao {
         try{
             Transaction tx=session.beginTransaction();
             Criteria criteria=session.createCriteria(Commodity.class,"commodity");
-            criteria.createAlias("commodity.categories","category");
+            criteria.createAlias("commodity.categories","category",JoinType.LEFT_OUTER_JOIN);
             criteria=commodityFilter.addFilterToCriteria(criteria,"commodity","category");
             commodities=criteria.list();
             tx.commit();
@@ -41,36 +42,32 @@ public class DaoImpl implements Dao {
         return commodities;
     }
 
-    @Override
-    public List<Category> getUniqueCategories(CommodityFilter commodityFilter) {
-        Session session=sessionFactory.openSession();
-        List<Category> categories=null;
-        try{
-            Transaction tx=session.beginTransaction();
-            Criteria criteria=session.createCriteria(Category.class,"category");
-            criteria.createAlias("category.commodities","commodity");
-
-            criteria=commodityFilter.addFilterToCriteria(criteria,"commodity","category");
-
-//            criteria.setProjection(Projections.projectionList()
-//                    //.add(Projections.distinct(Projections.property("category.name")))
-//                    .add(Projections.property("category.id"))
-//                    .add(Projections.groupProperty("category.name"))
-//                    .add(Projections.groupProperty("category.value")));
-            criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-
-            categories=criteria.list();
-            tx.commit();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-
-        return categories;
-    }
+//    @Override
+//    public List<Category> getUniqueCategories(CommodityFilter commodityFilter) {
+//        Session session=sessionFactory.openSession();
+//        List<Category> categories=null;
+//        try{
+//            Transaction tx=session.beginTransaction();
+//            Criteria criteria=session.createCriteria(Category.class,"category");
+//            criteria.createAlias("category.commodities","commodity");
+//
+//            criteria=commodityFilter.addFilterToCriteria(criteria,"commodity","category");
+//            List<Category> tempList=criteria.list();
+//
+//            criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+//
+//            categories=criteria.list();
+//            tx.commit();
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        finally {
+//            session.close();
+//        }
+//
+//        return categories;
+//    }
 
     public User getUser(String username) {
         Session session=sessionFactory.openSession();

@@ -176,7 +176,7 @@ public class CommodityFilter {
                 }
                 case CREATION_DATE:
                 {
-                    column=commodityAlias+".creation_date";
+                    column=commodityAlias+".creationDate";
                     break;
                 }
             }
