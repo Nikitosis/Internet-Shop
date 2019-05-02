@@ -21,6 +21,12 @@
                 <td><input type="file" name="image" accept="image/x-png,image/jpeg,image/jpg"/></td>
             </tr>
             <tr>
+                <td><input type="file" name="image" accept="image/x-png,image/jpeg,image/jpg"/></td>
+            </tr>
+            <tr>
+                <td><input type="file" name="image" accept="image/x-png,image/jpeg,image/jpg"/></td>
+            </tr>
+            <tr>
                 <td><input type="submit" value="Create new commodity"/></td>
             </tr>
         </table>

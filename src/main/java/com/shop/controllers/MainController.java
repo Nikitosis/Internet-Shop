@@ -95,11 +95,12 @@ public class MainController {
 
 
     @GetMapping("/commodities/getImage")
-    public void getImage(@RequestParam("id") Integer commodityId,
+    public void getImage(@RequestParam("commodityId") Integer commodityId,
+                         @RequestParam("imageIndex") Integer imageIndex,
                          HttpServletResponse response) throws IOException {
         Commodity commodity=service.getCommodityById(commodityId);
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
-        response.getOutputStream().write(commodity.getImages().get(0).getImage());
+        response.getOutputStream().write(commodity.getImages().get(imageIndex).getImage());
 
         response.getOutputStream().close();
     }
@@ -111,10 +112,12 @@ public class MainController {
 
     @PostMapping("/commodities/addCommodity")
     public String addCommodity(@ModelAttribute("commodity") Commodity commodity,
-                               @RequestParam("image") MultipartFile image) throws IOException{
-        byte[] b=image.getBytes();
-        Image imageObj=new Image(image.getBytes());
-        commodity.addImage(imageObj);
+                               @RequestParam("image") List<MultipartFile> images) throws IOException{
+        for(MultipartFile image:images) {
+            byte[] b = image.getBytes();
+            Image imageObj = new Image(image.getBytes());
+            commodity.addImage(imageObj);
+        }
         service.addCommodityToDb(commodity);
 
         return "redirect:/commodities";
@@ -147,7 +150,9 @@ public class MainController {
         service.addComment(comment);
         commodity.addComment(comment);
         user.addComment(comment);*/
-        model.addAttribute("commodity",service.getCommodityById(id));
+        Commodity commodity=service.getCommodityById(id);
+        model.addAttribute("commodity",commodity);
+        model.addAttribute("imagesAmount",commodity.getImages().size());
         return "commodity_page";
     }
 
