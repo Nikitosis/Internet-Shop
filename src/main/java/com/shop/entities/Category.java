@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="category")
-public class Category {
+public class Category implements Comparable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
@@ -42,12 +42,12 @@ public class Category {
     //separated by __
     public Category(String nameWithValue){
         try {
-            this.id=1;
             this.name = nameWithValue.split("__")[0];
             this.value = nameWithValue.split("__")[1];
         }
         catch(ArrayIndexOutOfBoundsException e){
             e.printStackTrace();
+            this.id=-1;
             this.name="";
             this.value="";
         }
@@ -89,4 +89,14 @@ public class Category {
         this.commodities = commodities;
     }
 
+
+    @Override
+    public int compareTo(Object o) {
+        Category category=(Category)o;
+        if(category.getId()<id)
+            return -1;
+        if(category.getId()>id)
+            return 1;
+        return 0;
+    }
 }

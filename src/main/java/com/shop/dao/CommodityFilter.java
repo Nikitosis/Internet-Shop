@@ -124,6 +124,7 @@ public class CommodityFilter {
         //when certain categories with the same names are set,
         //we filter commodities, that have at least one of the set categories for every unique category name
         if(categories!=null){
+
             Map<String,List<Category>> mapNameToCategory=new HashMap<String,List<Category>>();
             for(Category category:categories){
                 if(!mapNameToCategory.containsKey(category.getName())) {
@@ -131,8 +132,14 @@ public class CommodityFilter {
                 }
                 mapNameToCategory.get(category.getName()).add(category);
             }
+
             Conjunction mainConjunction=Restrictions.conjunction();
             for(Map.Entry<String, List<Category>> entry: mapNameToCategory.entrySet()){
+
+                DetachedCriteria categoryGroupCriteria = DetachedCriteria.forClass(Commodity.class,commodityAlias);
+                categoryGroupCriteria.createAlias("categories","category");
+                categoryGroupCriteria.setProjection(Projections.property(commodityAlias+".id"));
+
                 List<Category> categoryList=entry.getValue();
                 Disjunction categoryNameDisjunction = Restrictions.disjunction();
                 for(Category category:categoryList){
@@ -141,20 +148,12 @@ public class CommodityFilter {
                             Restrictions.eq(categoryAlias+".value",category.getValue()))
                     );
                 }
-                mainConjunction.add(categoryNameDisjunction);
+                categoryGroupCriteria.add(categoryNameDisjunction);
+                criteria.add(Subqueries.propertyIn(commodityAlias+".id",categoryGroupCriteria));
+                //mainConjunction.add(categoryNameDisjunction);
             }
-            criteria.add(mainConjunction);
+
         }
-//        if(categories!=null){  //where at leas one tag from tags is in Commodity.tags
-//            List<Predicate> predicates=new ArrayList<Predicate>();
-//            for(Category category:categories){
-//                predicates.add(criteriaBuilder.isMember(category,commodityRoot.get("categories")));
-//            }
-//            Predicate conjunction=criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
-//            criteria.where(conjunction);
-//            //commodityRoot.join(tags);
-//            //criteria.add(Restrictions.in("tags",tags));
-//        }
 
         if(sortBy!=SortingColumn.NONE){
             String column=commodityAlias+".id";

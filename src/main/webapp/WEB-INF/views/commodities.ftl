@@ -110,7 +110,9 @@
                     </div>
 
 					<#list groupedCategories?keys as categoryKey>
-						<@filtersItem filterTitle=categoryKey
+						<@filtersItem
+                            selectedTags=selectedTags
+                            filterTitle=categoryKey
 							filterCategories=groupedCategories[categoryKey]
 							onClickMethod="expandBlock(this)"
 							additionalClass="filters-section__filters-item"/>

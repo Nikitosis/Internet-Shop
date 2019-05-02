@@ -48,7 +48,7 @@ public class MainServiceImpl implements MainService {
     @Override
     public List<Category> getUniqueCategories(CommodityFilter commodityFilter) {
         List<Commodity> commodities=dao.getCommodities(commodityFilter);
-        Set<Category> categorySet=new HashSet<Category>();
+        Set<Category> categorySet=new TreeSet<Category>();
         for(Commodity commodity:commodities){
             for(Category category:commodity.getCategories()){
                 categorySet.add(category);

@@ -52,7 +52,6 @@ public class MainController {
 
     @GetMapping("/commodities")
     public String showCommodities(
-            @RequestParam(value="mainTag",required = false) Category mainTag,
             @RequestParam(value="tags",required = false) List<Category> tags,
             @RequestParam(value="minPrice",required = false) Integer minPrice,
             @RequestParam(value="maxPrice",required = false) Integer maxPrice,
@@ -84,15 +83,10 @@ public class MainController {
             paginator.setPageIndex(curPage);
         }
 
-        CommodityFilter mainTagFilter=new CommodityFilter();
-        if(mainTag!=null){
-            mainTagFilter.addCategory(mainTag);
-        }
-
         model.addAttribute("paginator",paginator);
 
-        model.addAttribute("groupedCategories",service.getGroupedCategories(mainTagFilter));
-
+        model.addAttribute("groupedCategories",service.getGroupedCategories(new CommodityFilter()));
+        model.addAttribute("selectedTags",tags);
         return "commodities";
     }
 

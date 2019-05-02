@@ -27,7 +27,7 @@ public class DaoImpl implements Dao {
         try{
             Transaction tx=session.beginTransaction();
             Criteria criteria=session.createCriteria(Commodity.class,"commodity");
-            criteria.createAlias("commodity.categories","category");
+            //criteria.createAlias("commodity.categories","category");
             criteria=commodityFilter.addFilterToCriteria(criteria,"commodity","category");
             criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
             commodities=criteria.list();
