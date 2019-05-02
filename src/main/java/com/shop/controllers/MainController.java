@@ -51,13 +51,16 @@ public class MainController {
 //    }
 
     @GetMapping("/commodities")
-    public String showCommodities(@RequestParam(value="tags",required = false) List<Category> tags,
-                                  @RequestParam(value="minPrice",required = false) Integer minPrice,
-                                  @RequestParam(value="maxPrice",required = false) Integer maxPrice,
-                                  @RequestParam(value="namePattern",required = false) String namePattern,
-                                  @RequestParam(value = "page",required = false,defaultValue = "1") Integer curPage,
-                                  @RequestParam(value="sortBy",required = false) CommodityFilter.SortingColumn sortBy,
-                                  Model model) {
+    public String showCommodities(
+            @RequestParam(value="mainTag",required = false) Category mainTag,
+            @RequestParam(value="tags",required = false) List<Category> tags,
+            @RequestParam(value="minPrice",required = false) Integer minPrice,
+            @RequestParam(value="maxPrice",required = false) Integer maxPrice,
+            @RequestParam(value="namePattern",required = false) String namePattern,
+            @RequestParam(value = "page",required = false,defaultValue = "1") Integer curPage,
+            @RequestParam(value="sortBy",required = false) CommodityFilter.SortingColumn sortBy,
+            Model model) {
+
         CommodityFilter commodityFilter=new CommodityFilter();
         if(minPrice!=null){
             commodityFilter.setMinPrice(minPrice);
@@ -81,9 +84,14 @@ public class MainController {
             paginator.setPageIndex(curPage);
         }
 
+        CommodityFilter mainTagFilter=new CommodityFilter();
+        if(mainTag!=null){
+            mainTagFilter.addCategory(mainTag);
+        }
+
         model.addAttribute("paginator",paginator);
 
-        model.addAttribute("groupedCategories",service.getGroupedCategories(commodityFilter));
+        model.addAttribute("groupedCategories",service.getGroupedCategories(mainTagFilter));
 
         return "commodities";
     }

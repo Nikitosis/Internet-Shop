@@ -42,6 +42,7 @@ public class Category {
     //separated by __
     public Category(String nameWithValue){
         try {
+            this.id=1;
             this.name = nameWithValue.split("__")[0];
             this.value = nameWithValue.split("__")[1];
         }

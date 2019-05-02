@@ -6,7 +6,7 @@
                 <#list filterCategories as category>
                     <div class="filters-item__checkbox-wrapper">
                         <label class="filters-item__checkbox-label">
-                            <input type="checkbox" class="filters-item__checkbox">
+                            <input type="checkbox" name="tags" value="${category.name}__${category.value}" class="filters-item__checkbox">
                             ${category.value}
                         </label>
                     </div>
