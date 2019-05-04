@@ -132,7 +132,7 @@
 
 					<#if paginator.getPage()??>
 						<#list paginator.getPage() as commodity>
-							<@product additionalClass="products-list__product" commodityId="${commodity.id}" commodityPrice="${commodity.price}" commodityName="${commodity.name}"/>
+							<@commodity additionalClass="products-list__product" commodity=commodity/>
 						</#list>
 					</#if>
 

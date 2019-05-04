@@ -60,34 +60,40 @@
             </div>
         </section><!-- main-banner -->
     </div><!-- wrapper-main-banner -->
-    <div class="wrapper-bestsellers">
-        <div class="bestsellers wrapper-bestsellers__bestsellers">
-            <h3 class="bestsellers__title font-MerriweatherRegular">Women best selling products</h3>
-            <p class="bestsellers__subtitle font-LatoRegular">Lorem ipsum dolor sit amet.</p>
-            <div class="bestsellers__product-list product-list">
+    <#assign
+    commoditiesAmount=(commodities?size>4)?then(4,commodities?size)
+    >
+    <#if commoditiesAmount gt 0>
+        <div class="wrapper-bestsellers">
+            <div class="bestsellers wrapper-bestsellers__bestsellers">
+                <h3 class="bestsellers__title font-MerriweatherRegular">Women best selling products</h3>
+                <p class="bestsellers__subtitle font-LatoRegular">Lorem ipsum dolor sit amet.</p>
+                <div class="bestsellers__product-list product-list">
+                    <#list 0..commoditiesAmount-1 as i>
+                        <@commodity additionalClass="product-list__product" commodity=commodities[i]/>
+                    </#list>
 
-                <#list 1..4 as i>
-                    <@product additionalClass="product-list__product" commodityId=1/>
-                </#list>
+                </div>
+                <a href="" class="bestsellers__more-link font-LatoBold">View more</a>
+            </div><!-- bestsellers -->
+        </div> <!-- wrapper-bestsellers -->
+    </#if>
+    <#if commoditiesAmount gt 0>
+        <div class="wrapper-bestsellers">
+            <div class="bestsellers wrapper-bestsellers__bestsellers">
+                <h3 class="bestsellers__title font-MerriweatherRegular">Men best selling products</h3>
+                <p class="bestsellers__subtitle font-LatoRegular">Lorem ipsum dolor sit amet.</p>
+                <div class="bestsellers__product-list product-list">
 
-            </div>
-            <a href="" class="bestsellers__more-link font-LatoBold">View more</a>
-        </div><!-- bestsellers -->
-    </div>
-    <div class="wrapper-bestsellers">
-        <div class="bestsellers wrapper-bestsellers__bestsellers">
-            <h3 class="bestsellers__title font-MerriweatherRegular">Men best selling products</h3>
-            <p class="bestsellers__subtitle font-LatoRegular">Lorem ipsum dolor sit amet.</p>
-            <div class="bestsellers__product-list product-list">
+                    <#list 0..commoditiesAmount-1 as i>
+                            <@commodity additionalClass="product-list__product" commodity=commodities[i]/>
+                    </#list>
 
-                <#list 1..4 as i>
-                    <@product additionalClass="product-list__product" commodityId=1/>
-                </#list>
-
-            </div><!--product-list-->
-            <a href="" class="bestsellers__more-link font-LatoBold">View more</a>
-        </div><!-- bestsellers -->
-    </div>
+                </div><!--product-list-->
+                <a href="" class="bestsellers__more-link font-LatoBold">View more</a>
+            </div><!-- bestsellers -->
+        </div>
+    </#if>
 
     <@main_footer/>
 </body>

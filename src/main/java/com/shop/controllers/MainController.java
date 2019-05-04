@@ -23,8 +23,8 @@ public class MainController {
     MainService service;
 
     @GetMapping("/")
-    public String getHome(){
-        System.out.println("Controllers");
+    public String getHome(Model model){
+        model.addAttribute("commodities",service.getCommodities(new CommodityFilter().setSortBy(CommodityFilter.SortingColumn.PRICE)));
         return "home";
     }
 
