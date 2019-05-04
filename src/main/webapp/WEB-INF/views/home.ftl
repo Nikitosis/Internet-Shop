@@ -29,29 +29,29 @@
             <div class="main-banner__image-box image-box image-box_row-container image-box_fill-horizontal image-box_fill-vertical">
                 <div class="image-box image-box_fill-vertical">
                     <div class="container image-box__container container_content-position_center container_background_1">
-                        <h3 class="container__title">Winter party collection</h3>
-                        <p class="container__info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quibusdam vitae, animi eveniet li.</p>
+                        <h3 class="container__title">Fast gaming notebooks</h3>
+                        <p class="container__info"> Now you can enjoy modern games like GTA 3 or Mafia 1. Fast and furious notebooks here!</p>
                         <a href="" class="container__link">Shop now</a>
                     </div>
                 </div>
                 <div class="image-box image-box_column-container image-box_fill-vertical">
                     <div class="image-box image-box_column-container image-box_fill-horizontal">
                         <div class="container image-box__container container_content-position_left container_background_2">
-                            <h3 class="container__title">Wparty collection</h3>
-                            <p class="container__info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quibusdam vitaeelectus voluptatum hic accusantium.</p>
+                            <h3 class="container__title">Brand new Iphone Collection</h3>
+                            <p class="container__info"> New Iphone 2 Remake collection. Relicts for real fans.</p>
                             <a href="" class="container__link">Shop now</a>
                         </div>
                     </div>
                     <div class="image-box image-box_row-container image-box_fill-horizontal">
                         <div class="image-box image-box_fill-vertical">
                             <div class="container image-box__container container_content-position_left container_background_3">
-                                <h3 class="container__title">Something other</h3>
+                                <h3 class="container__title">New Accessory Collection</h3>
                                 <a href="" class="container__link">Shop now</a>
                             </div>
                         </div>
                         <div class="image-box image-box_fill-vertical">
                             <div class="container image-box__container container_content-position_left container_background_4">
-                                <h3 class="container__title">Winter party collection</h3>
+                                <h3 class="container__title">Spares</h3>
                                 <a href="" class="container__link">Shop now</a>
                             </div>
                         </div>
@@ -66,8 +66,8 @@
     <#if commoditiesAmount gt 0>
         <div class="wrapper-bestsellers">
             <div class="bestsellers wrapper-bestsellers__bestsellers">
-                <h3 class="bestsellers__title font-MerriweatherRegular">Women best selling products</h3>
-                <p class="bestsellers__subtitle font-LatoRegular">Lorem ipsum dolor sit amet.</p>
+                <h3 class="bestsellers__title font-MerriweatherRegular">Best selling notebooks</h3>
+                <p class="bestsellers__subtitle font-LatoRegular">Best notebooks for your grandparents.</p>
                 <div class="bestsellers__product-list product-list">
                     <#list 0..commoditiesAmount-1 as i>
                         <@commodity additionalClass="product-list__product" commodity=commodities[i]/>
@@ -81,8 +81,8 @@
     <#if commoditiesAmount gt 0>
         <div class="wrapper-bestsellers">
             <div class="bestsellers wrapper-bestsellers__bestsellers">
-                <h3 class="bestsellers__title font-MerriweatherRegular">Men best selling products</h3>
-                <p class="bestsellers__subtitle font-LatoRegular">Lorem ipsum dolor sit amet.</p>
+                <h3 class="bestsellers__title font-MerriweatherRegular">Best selling phones</h3>
+                <p class="bestsellers__subtitle font-LatoRegular">A phone for your child.</p>
                 <div class="bestsellers__product-list product-list">
 
                     <#list 0..commoditiesAmount-1 as i>

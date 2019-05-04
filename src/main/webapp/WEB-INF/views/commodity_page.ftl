@@ -59,7 +59,7 @@
             </div> <!--about-->
 
 			<section class="comment-section main__comment-section">
-				<p class="comment-section__comments-amount font-MerriweatherRegular">24 Comments</p>
+				<p class="comment-section__comments-amount font-MerriweatherRegular">${commodity.getComments()?size} Comments</p>
 
 				<@security.authorize access="isAuthenticated()">
 					<form class="comment-form comment-section__comment-form" action="/commodities/addComment" method="post">

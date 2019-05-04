@@ -115,16 +115,16 @@ html,body{
 }
 
 .container_background_1{
-	background-image:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)),url("/resources/img/banner_background1.png");
+	background-image:radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),url("/resources/img/banner_background1.jpg");
 }
 .container_background_2{
-	background-image:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background2.png");
+	background-image:radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("/resources/img/banner_background2.jpg");
 }
 .container_background_3{
-	background-image:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background3.png");
+	background-image:radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("/resources/img/banner_background3.png");
 }
 .container_background_4{
-	background-image:radial-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)), url("/resources/img/banner_background4.png");
+	background-image:radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url("/resources/img/banner_background4.jpg");
 }
 
 .container__title{
