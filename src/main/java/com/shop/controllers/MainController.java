@@ -124,7 +124,12 @@ public class MainController {
     public String addCommodity(
                                @RequestParam("mainImg") MultipartFile mainImage,
                                @RequestParam("imgs") List<MultipartFile> images,
-                               @ModelAttribute("commodity") Commodity commodity) throws IOException{
+                               @RequestParam("tags") String tags,
+                               @RequestParam("name") String name,
+                               @RequestParam("price") Integer price) throws IOException{
+        Commodity commodity=new Commodity();
+        commodity.setName(name);
+        commodity.setPrice(price);
         for(MultipartFile image:images) {
             byte[] b = image.getBytes();
             Image imageObj = new Image(image.getBytes());
@@ -132,6 +137,24 @@ public class MainController {
         }
         commodity.addImage(new Image(mainImage.getBytes()));
         commodity.setMainImage(new Image(mainImage.getBytes()));
+
+        List<String> tagsList=new ArrayList<String>(Arrays.asList(tags.split(";")));
+        for(int i=0;i<tagsList.size();i++){
+           tagsList.set(i,tagsList.get(i).trim());
+        }
+        List<Category> categoryList=new ArrayList<Category>();
+        for(String tag:tagsList){
+            String nameValue[]=tag.split(" ");
+            if(nameValue.length==2){
+                Category curCategory=service.getCategory(nameValue[0],nameValue[1]);
+                if(curCategory==null){
+                    curCategory=new Category(nameValue[0],nameValue[1]);
+                }
+                commodity.addCategory(curCategory);
+            }
+        }
+
+        commodity.setCreationDate(new java.sql.Date(new java.util.Date().getTime()));
         service.addCommodityToDb(commodity);
 
         return "redirect:/commodities";

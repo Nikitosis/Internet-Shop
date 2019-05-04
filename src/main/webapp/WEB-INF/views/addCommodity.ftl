@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+
     <h1>Add commodity</h1>
     <form action="/commodities/addCommodity?${_csrf.parameterName}=${_csrf.token}" method="post" name="commodity" enctype="multipart/form-data">
         <table>
@@ -15,13 +16,13 @@
                 <td><input type="number" name="price"/></td>
             </tr>
             <tr>
-                <td><input type="date" name="creationDate"/></td>
-            </tr>
-            <tr>
                 <td><input type="file" name="mainImg" accept="image/x-png,image/jpeg,image/jpg"/></td>
             </tr>
             <tr>
                 <td><input type="file" name="imgs" accept="image/x-png,image/jpeg,image/jpg" multiple/></td>
+            </tr>
+            <tr>
+                <td><textarea name="tags" style="width:200px;height:200px;"></textarea></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Create new commodity"/></td>

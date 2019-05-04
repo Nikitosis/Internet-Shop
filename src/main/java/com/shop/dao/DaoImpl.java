@@ -4,6 +4,7 @@ import com.shop.entities.*;
 //import com.shop.entities.OrderLog;
 import org.hibernate.*;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,7 +44,31 @@ public class DaoImpl implements Dao {
         return commodities;
     }
 
-//    @Override
+    @Override
+    public Category getCategory(String name, String value) {
+        Session session=sessionFactory.openSession();
+        Category category=null;
+        try{
+            Transaction tx=session.beginTransaction();
+            Criteria criteria=session.createCriteria(Category.class);
+            criteria.add(Restrictions.and(
+                    Restrictions.eq("name",name),
+                    Restrictions.eq("value",value)
+            ));
+            category=(Category)criteria.uniqueResult();
+            tx.commit();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+
+        return category;
+    }
+
+    //    @Override
 //    public List<Category> getUniqueCategories(CommodityFilter commodityFilter) {
 //        Session session=sessionFactory.openSession();
 //        List<Category> categories=null;
@@ -199,7 +224,7 @@ public class DaoImpl implements Dao {
         Session session=sessionFactory.openSession();
         try{
             Transaction tx=session.beginTransaction();
-            session.save(commodity);
+            session.saveOrUpdate(commodity);
             System.out.println("Commodity added: "+commodity.getName());
             tx.commit();
         }

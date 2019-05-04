@@ -24,8 +24,14 @@ public class MainServiceImpl implements MainService {
     @Autowired
     PasswordEncoder encoder;
 
+    @Override
     public List<Commodity> getCommodities(CommodityFilter commodityFilter) {
         return dao.getCommodities(commodityFilter);
+    }
+
+    @Override
+    public Category getCategory(String name, String value) {
+        return dao.getCategory(name,value);
     }
 
     @Override

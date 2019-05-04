@@ -131,8 +131,8 @@
                 <div class="products-list main__products-list">
 
 					<#if paginator.getPage()??>
-						<#list paginator.getPage() as commodity>
-							<@commodity additionalClass="products-list__product" commodity=commodity/>
+						<#list paginator.getPage() as curCommodity>
+							<@commodity additionalClass="products-list__product" commodity=curCommodity/>
 						</#list>
 					</#if>
 

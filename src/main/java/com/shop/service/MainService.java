@@ -14,6 +14,7 @@ import java.util.Set;
 
 public interface MainService {
     public List<Commodity> getCommodities(CommodityFilter commodityFilter);
+    public Category getCategory(String name,String value);
     public Map<String,List<Category>> getGroupedCategories(CommodityFilter commodityFilter);
     public List<Category> getUniqueCategories(CommodityFilter commodityFilter);
     public User getUser(String username);

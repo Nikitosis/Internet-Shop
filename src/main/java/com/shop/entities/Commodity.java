@@ -4,6 +4,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.print.attribute.standard.Media;
 import java.sql.Date;
 import java.util.*;
 
@@ -13,13 +14,13 @@ public class Commodity {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name="name")
     private String name;
 
     @Column(name="price")
-    private double price;
+    private Double price;
 
     @Column(name="creation_date")
     private Date creationDate;
@@ -38,7 +39,7 @@ public class Commodity {
     @OrderBy("date")
     private Set<Comment> comments=new HashSet<Comment>();
 
-    @ManyToMany(mappedBy="commodities", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy="commodities",cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Category> categories=new HashSet<Category>();
 

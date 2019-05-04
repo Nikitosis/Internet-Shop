@@ -8,6 +8,7 @@ import java.util.Set;
 
 public interface Dao {
     public List<Commodity> getCommodities(CommodityFilter commodityFilter);
+    public Category getCategory(String name,String value);
     //public List<Category> getUniqueCategories(CommodityFilter commodityFilter);
     public User getUser(String username);
     public List<OrderLog> getUserOrders(String username);
