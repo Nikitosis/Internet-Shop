@@ -24,6 +24,11 @@ public class Commodity {
     @Column(name="creation_date")
     private Date creationDate;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name="main_image")
+    private Image mainImage;
+
     @OneToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Image> images=new ArrayList<Image>();
@@ -121,5 +126,13 @@ public class Commodity {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public Image getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(Image mainImage) {
+        this.mainImage = mainImage;
     }
 }

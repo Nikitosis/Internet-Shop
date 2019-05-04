@@ -29,14 +29,11 @@
             	<p class="product-header__product-category font-LatoRegular">Some category</p>
             </div>
 
-            <#if imagesAmount gt 0>
+            <#if commodity.getImages()?size gt 0>
                 <section class="image-section main__image-section">
-                    <#list 0..imagesAmount-1 as imageIndex>
-                        <#if imageIndex==0>
-                            <img class="image-section__picture image-section__picture_big" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}"/>
-                        <#else>
-                            <img class="image-section__picture" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}"/>
-                        </#if>
+                    <img class="image-section__picture image-section__picture_big" src="/commodities/getMainImage?commodityId=${commodity.id}"/>
+                    <#list 0..commodity.getImages()?size-1 as imageIndex>
+                        <img class="image-section__picture" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}"/>
                     </#list>
                 </section><!-- image-section  -->
             </#if>

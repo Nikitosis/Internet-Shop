@@ -105,19 +105,33 @@ public class MainController {
         response.getOutputStream().close();
     }
 
+    @GetMapping("/commodities/getMainImage")
+    public void getImage(@RequestParam("commodityId") Integer commodityId,
+                         HttpServletResponse response) throws IOException {
+        Commodity commodity=service.getCommodityById(commodityId);
+        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+        response.getOutputStream().write(commodity.getMainImage().getImage());
+
+        response.getOutputStream().close();
+    }
+
     @GetMapping("/commodities/addCommodity")
     public String showAddCommodity(){
         return "addCommodity";
     }
 
     @PostMapping("/commodities/addCommodity")
-    public String addCommodity(@ModelAttribute("commodity") Commodity commodity,
-                               @RequestParam("image") List<MultipartFile> images) throws IOException{
+    public String addCommodity(
+                               @RequestParam("mainImg") MultipartFile mainImage,
+                               @RequestParam("imgs") List<MultipartFile> images,
+                               @ModelAttribute("commodity") Commodity commodity) throws IOException{
         for(MultipartFile image:images) {
             byte[] b = image.getBytes();
             Image imageObj = new Image(image.getBytes());
             commodity.addImage(imageObj);
         }
+        commodity.addImage(new Image(mainImage.getBytes()));
+        commodity.setMainImage(new Image(mainImage.getBytes()));
         service.addCommodityToDb(commodity);
 
         return "redirect:/commodities";
@@ -152,7 +166,7 @@ public class MainController {
         user.addComment(comment);*/
         Commodity commodity=service.getCommodityById(id);
         model.addAttribute("commodity",commodity);
-        model.addAttribute("imagesAmount",commodity.getImages().size());
+        //model.addAttribute("imagesAmount",commodity.getImages().size());
         return "commodity_page";
     }
 
