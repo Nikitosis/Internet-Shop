@@ -103,17 +103,17 @@
                     <div class="sort-selector filters-section__sort-selector">
                         <p class="sort-selector__sort-title">Sort by</p>
                         <select class="sort-selector__sort-select" name="sortBy">
-                            <option value="NAME">Name</option>
-                            <option value="PRICE">Price</option>
-                            <option value="CREATION_DATE">Date</option>
+                            <option value="NAME" <#if commodityFilter.sortBy=="NAME">selected</#if> >Name</option>
+                            <option value="PRICE"<#if commodityFilter.sortBy=="PRICE">selected</#if>>Price</option>
+                            <option value="CREATION_DATE"<#if commodityFilter.sortBy=="CREATION_DATE">selected</#if>>Date</option>
                         </select>
                     </div>
 
 					<#list groupedCategories?keys as categoryKey>
 						<@filtersItem
-                            selectedTags=selectedTags
                             filterTitle=categoryKey
-							filterCategories=groupedCategories[categoryKey]
+                            allCategories=groupedCategories[categoryKey]
+                            curCommodityFilter=commodityFilter
 							onClickMethod="expandBlock(this)"
 							additionalClass="filters-section__filters-item"/>
 					</#list>

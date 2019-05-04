@@ -86,7 +86,7 @@ public class MainController {
         model.addAttribute("paginator",paginator);
 
         model.addAttribute("groupedCategories",service.getGroupedCategories(new CommodityFilter()));
-        model.addAttribute("selectedTags",tags);
+        model.addAttribute("commodityFilter",commodityFilter);
         return "commodities";
     }
 
