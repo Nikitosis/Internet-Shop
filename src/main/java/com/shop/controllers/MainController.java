@@ -124,7 +124,8 @@ public class MainController {
     public String addCommodity(
                                @RequestParam("mainImg") MultipartFile mainImage,
                                @RequestParam("imgs") List<MultipartFile> images,
-                               @RequestParam("tags") String tags,
+                               @RequestParam("tagNames") String[] tagNames,
+                               @RequestParam("tagValues") String[] tagValues,
                                @RequestParam("name") String name,
                                @RequestParam("description") String description,
                                @RequestParam("price") Double price) throws IOException{
@@ -140,20 +141,12 @@ public class MainController {
         commodity.addImage(new Image(mainImage.getBytes()));
         commodity.setMainImage(new Image(mainImage.getBytes()));
 
-        List<String> tagsList=new ArrayList<String>(Arrays.asList(tags.split(";")));
-        for(int i=0;i<tagsList.size();i++){
-           tagsList.set(i,tagsList.get(i).trim());
-        }
-        List<Category> categoryList=new ArrayList<Category>();
-        for(String tag:tagsList){
-            String nameValue[]=tag.split(" ");
-            if(nameValue.length==2){
-                Category curCategory=service.getCategory(nameValue[0],nameValue[1]);
-                if(curCategory==null){
-                    curCategory=new Category(nameValue[0],nameValue[1]);
-                }
-                commodity.addCategory(curCategory);
+        for(int i=0;i<tagNames.length;i++){
+            Category curCategory=service.getCategory(tagNames[i],tagValues[i]);
+            if(curCategory==null){
+                curCategory=new Category(tagNames[i],tagValues[i]);
             }
+            commodity.addCategory(curCategory);
         }
 
         commodity.setCreationDate(new java.sql.Date(new java.util.Date().getTime()));

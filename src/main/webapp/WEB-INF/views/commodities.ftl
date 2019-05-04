@@ -125,7 +125,7 @@
             </div><!-- filters-section -->
             <div class="products-section main__products-section">
                 <div class="products-nav products-section__products-nav">
-					<p class="products-nav__found-products font-MerriweatherRegular">102 Products Found</p>
+					<p class="products-nav__found-products font-MerriweatherRegular">${paginator.getItemsAmount()} Products Found</p>
                     <@pager paginator=paginator additionalClass="products-nav__products-pages" requestParameters=requestParameters/>
                 </div><!-- products-nav -->
                 <div class="products-list main__products-list">

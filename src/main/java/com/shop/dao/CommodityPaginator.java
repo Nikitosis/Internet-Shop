@@ -59,4 +59,8 @@ public class CommodityPaginator {
 
         this.itemsPerPage = itemsPerPage;
     }
+
+    public int getItemsAmount(){
+        return commodityList.size();
+    }
 }
