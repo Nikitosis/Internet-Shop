@@ -133,13 +133,14 @@ public class MainController {
         commodity.setName(name);
         commodity.setPrice(price);
         commodity.setDescription(description);
+
+        commodity.addImage(new Image(mainImage.getBytes()));
+        commodity.setMainImage(new Image(mainImage.getBytes()));
         for(MultipartFile image:images) {
             byte[] b = image.getBytes();
             Image imageObj = new Image(image.getBytes());
             commodity.addImage(imageObj);
         }
-        commodity.addImage(new Image(mainImage.getBytes()));
-        commodity.setMainImage(new Image(mainImage.getBytes()));
 
         for(int i=0;i<tagNames.length;i++){
             Category curCategory=service.getCategory(tagNames[i],tagValues[i]);

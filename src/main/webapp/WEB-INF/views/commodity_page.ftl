@@ -2,6 +2,7 @@
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
 <#include "components/comment.ftl"/>
+<#include "components/slider.ftl"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,10 +32,11 @@
 
             <#if commodity.getImages()?size gt 0>
                 <section class="image-section main__image-section">
-                    <img class="image-section__picture image-section__picture_big" src="/commodities/getMainImage?commodityId=${commodity.id}"/>
-                    <#list 0..commodity.getImages()?size-1 as imageIndex>
-                        <img class="image-section__picture" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}"/>
-                    </#list>
+                    <#--<img class="image-section__picture image-section__picture_big" src="/commodities/getMainImage?commodityId=${commodity.id}"/>-->
+                    <#--<#list 0..commodity.getImages()?size-1 as imageIndex>-->
+                        <#--<img class="image-section__picture" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}"/>-->
+                    <#--</#list>-->
+                    <@slider commodity=commodity/>
                 </section><!-- image-section  -->
             </#if>
 
