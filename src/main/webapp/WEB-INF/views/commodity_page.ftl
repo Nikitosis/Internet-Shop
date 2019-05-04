@@ -44,8 +44,10 @@
                 </section>
                 <section class="about__section about__section_product-detail">
                     <p class="section__title font-MerriweatherRegular">Product detail</p>
-                    <p class="section__text font-LatoRegular">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam eum, porro non recusandae atque velit, a dolor earum autem, alias possimus distinctio excepturi. Neque magnam obcaecati optio sunt sapiente, libero, beatae ipsa quisquam dolores a accusamus, doloribus laborum quod ab!</p>
-                </section>
+                    <#if commodity.description??>
+                        <p class="section__text font-LatoRegular">${commodity.description}</p>
+                    </#if>
+                    </section>
                 <form action="/addToBasket" method="post">
                     <section class="action-buttons about__action-buttons">
                         <input type="hidden" name="commodity_id" value="${commodity.id}"/>
@@ -86,6 +88,11 @@
 			</section> -->
         </main>
     </div>
+
+    <form action="/commodities/deleteCommodity?id=${commodity.id}" method="post">
+        <input type="submit" value="Delete commodity"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
 
     <@main_footer/>
 </body>

@@ -25,6 +25,9 @@ public class Commodity {
     @Column(name="creation_date")
     private Date creationDate;
 
+    @Column(name="description")
+    private String description;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="main_image")
@@ -43,7 +46,7 @@ public class Commodity {
     @LazyCollection(LazyCollectionOption.FALSE)
     private Set<Category> categories=new HashSet<Category>();
 
-    public Commodity(String name, double price, Date creationDate,Set<Comment> comments) {
+    public Commodity(String name, Double price, Date creationDate,Set<Comment> comments) {
         this.name = name;
         this.price = price;
         setCreationDate(creationDate);
@@ -71,11 +74,11 @@ public class Commodity {
         this.comments = comments;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -87,11 +90,11 @@ public class Commodity {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -106,6 +109,14 @@ public class Commodity {
         this.creationDate=creationDate;
         this.creationDate.setTime(this.creationDate.getTime()+hours12); //set time at 12 AM
                                                                         //to get rid of timezone conversions
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void addCategory(Category category){

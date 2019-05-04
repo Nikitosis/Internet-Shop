@@ -126,10 +126,12 @@ public class MainController {
                                @RequestParam("imgs") List<MultipartFile> images,
                                @RequestParam("tags") String tags,
                                @RequestParam("name") String name,
-                               @RequestParam("price") Integer price) throws IOException{
+                               @RequestParam("description") String description,
+                               @RequestParam("price") Double price) throws IOException{
         Commodity commodity=new Commodity();
         commodity.setName(name);
         commodity.setPrice(price);
+        commodity.setDescription(description);
         for(MultipartFile image:images) {
             byte[] b = image.getBytes();
             Image imageObj = new Image(image.getBytes());
