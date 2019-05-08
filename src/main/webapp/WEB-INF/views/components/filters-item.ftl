@@ -1,6 +1,6 @@
-<#macro filtersItem filterTitle="Title" allCategories=[] curCommodityFilter=null onClickMethod="" additionalClass="">
+<#macro filtersItem filterTitle="Title" allCategories=[] curCommodityFilter=null additionalClass="">
     <div class="filters-item filters-section__filters-item">
-        <p class="filters-item__title font-LatoRegular" onclick=${onClickMethod}>${filterTitle}</p>
+        <p class="filters-item__title font-LatoRegular" onclick="expandBlock(this)"> ${filterTitle} </p>
         <div class="filters-item__checkbox-box">
             <#if allCategories??>
                 <#list allCategories as category>

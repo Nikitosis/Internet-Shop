@@ -19,45 +19,7 @@
     <link rel="stylesheet" href="/resources/css/components/commodity.css"/>
     <link rel="stylesheet" href="/resources/css/components/pager.css"/>
     <link rel="stylesheet" href="/resources/css/components/filters-item.css"/>
-
-    <script>
-		// window.onload=function(){
-		//     console.log("123");
-		//     document.getElementById("selectSorting").onchange=function(){
-		//         var thisElem=
-		//         window.location.href=window.location.href+'&sortBy'+(this).value();
-		// 	}
-		// };
-    // window.onload = function() {
-    //     var filtersItems = document.getElementsByClassName("filters-item");
-    //     for (var i = 0; i < filtersItems.length; i++) {
-    //         var filterTitle = filtersItems[i].getElementsByClassName("filters-item__title")[0];
-    //         // filterTitle.onclick=expandCheckBox(filterCheckboxBox);
-    //         filterTitle.onclick=function(){
-    //         	var filtersItem=filterTitle.closest(".filters-item");
-    //         	var filterCheckboxBox=filtersItem.getElementsByClassName("filters-item__checkbox-box")[0];
-    //         	filterCheckboxBox.classList.toggle("filters-item__checkbox-box_expanded");
-    //         	console.log("filterTitle clicked");
-    //         	console.log(filterTitle);
-    //         	console.log(filterCheckboxBox);
-    //         }
-    //     }
-    //
-		// function onSortingChanged(selectSort){
-		//     var selectedIndex=selectSort.selectedIndex;
-    //         //window.location.href=window.location.href+'&sortBy='+selectSort.options[selectedIndex].value;
-		// }
-
-		function expandBlock(filterTitle){
-			var filtersItem=filterTitle.closest(".filters-item");
-			var filterCheckboxBox=filtersItem.getElementsByClassName("filters-item__checkbox-box")[0];
-			filterTitle.classList.toggle("filters-item__title_expanded");
-			filterCheckboxBox.classList.toggle("filters-item__checkbox-box_expanded");
-			console.log("filterTitle clicked");
-			// console.log(filterTitle);
-			// console.log(filterCheckboxBox);
-		}
-    </script>
+    <script src="/resources/js/filters-item.js"></script>
 	<#assign
 		requestParameters=""
 	>
@@ -114,7 +76,6 @@
                             filterTitle=categoryKey
                             allCategories=groupedCategories[categoryKey]
                             curCommodityFilter=commodityFilter
-							onClickMethod="expandBlock(this)"
 							additionalClass="filters-section__filters-item"/>
 					</#list>
 					<#--<@filtersItem onClickMethod="expandBlock(this)" additionalClass="filters-section__filters-item"/>-->
