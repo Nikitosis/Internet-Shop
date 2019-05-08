@@ -1,0 +1,108 @@
+@font-face{
+    font-family: "AwesomeFont_400";
+    src:url("/resources/fonts/fa-brands-400.ttf");
+}
+@font-face{
+    font-family: "LatoBold";
+    src:url("/resources/fonts/Lato Bold.ttf");
+}
+@font-face{
+    font-family: "LatoRegular";
+    src:url("/resources/fonts/Lato Regular.ttf");
+}
+
+@font-face{
+    font-family: "MerriweatherRegular";
+    src:url("/resources/fonts/Merriweather Regular.ttf");
+}
+@font-face{
+    font-family: "MerriweatherBold";
+    src:url("/resources/fonts/Merriweather Bold.ttf");
+}
+
+.font-LatoBold{
+    font-family: LatoBold
+}
+.font-LatoRegular{
+    font-family: LatoRegular
+}
+.font-Awesome{
+    font-family: AwesomeFont_400;
+}
+.font-MerriweatherRegular{
+    font-family: MerriweatherRegular;
+}
+.font-MerriweatherBold{
+    font-family: MerriweatherBold;
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+
+.main{
+    width:100%;
+}
+
+.priducts-section{
+
+}
+
+.main__products-section{
+    max-width:1140px;
+    width:100%;
+    margin:auto;
+    margin-bottom:40px;
+}
+
+.products-section__header{
+    text-align: center;
+    margin:30px 0;
+}
+
+.products-list{
+    width:860px;
+    margin:auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+
+.products-section__products-list{
+    padding:20px 0;
+}
+
+.products-result{
+    border-top: 1px solid #bfbfbf;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center;
+
+}
+
+.products-section__products-result{
+    height:100px;
+}
+
+.products-result__price{
+    display:inline-block;
+}
+
+.products-result__confirm-form{
+    height:60px;
+    width:60%;
+}
+
+.products-result__confirm-button{
+    display:inline-block;
+    height:100%;
+    width:100%;
+    border:none;
+    color:white;
+    background: darkgreen;
+
+    cursor: pointer;
+}
+

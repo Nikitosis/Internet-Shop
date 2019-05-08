@@ -212,7 +212,14 @@ public class MainController {
 
     @GetMapping("/basket")
     public String showUserBasket(HttpSession session,Model model){
-        model.addAttribute("commoditiesInBasket",service.getCommoditiesFromBasket(session));
+        List<Commodity> commodities=service.getCommoditiesFromBasket((session));
+        double totalPrice=0;
+        for(Commodity commodity:commodities){
+            totalPrice+=commodity.getPrice();
+        }
+        model.addAttribute("totalPrice",totalPrice);
+        model.addAttribute("commodities",commodities);
+
         return "basket";
     }
 
