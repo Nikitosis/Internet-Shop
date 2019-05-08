@@ -134,7 +134,6 @@ public class MainController {
         commodity.setPrice(price);
         commodity.setDescription(description);
 
-        commodity.addImage(new Image(mainImage.getBytes()));
         commodity.setMainImage(new Image(mainImage.getBytes()));
         for(MultipartFile image:images) {
             byte[] b = image.getBytes();

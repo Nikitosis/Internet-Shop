@@ -31,7 +31,7 @@
                     <div class="container image-box__container container_content-position_center container_background_1">
                         <h3 class="container__title">Fast gaming notebooks</h3>
                         <p class="container__info"> Now you can enjoy modern games like GTA 3 or Mafia 1. Fast and furious notebooks here!</p>
-                        <a href="" class="container__link">Shop now</a>
+                        <a href="/commodities?mainTag=type__notebook&tags=type__notebook" class="container__link">Shop now</a>
                     </div>
                 </div>
                 <div class="image-box image-box_column-container image-box_fill-vertical">
@@ -39,20 +39,20 @@
                         <div class="container image-box__container container_content-position_left container_background_2">
                             <h3 class="container__title">Brand new Iphone Collection</h3>
                             <p class="container__info"> New Iphone 2 Remake collection. Relicts for real fans.</p>
-                            <a href="" class="container__link">Shop now</a>
+                            <a href="/commodities?mainTag=type__phone&tags=type__phone" class="container__link">Shop now</a>
                         </div>
                     </div>
                     <div class="image-box image-box_row-container image-box_fill-horizontal">
                         <div class="image-box image-box_fill-vertical">
                             <div class="container image-box__container container_content-position_left container_background_3">
                                 <h3 class="container__title">New Accessory Collection</h3>
-                                <a href="" class="container__link">Shop now</a>
+                                <a href="/commodities?mainTag=type__accessory&tags=type__accessory" class="container__link">Shop now</a>
                             </div>
                         </div>
                         <div class="image-box image-box_fill-vertical">
                             <div class="container image-box__container container_content-position_left container_background_4">
                                 <h3 class="container__title">Spares</h3>
-                                <a href="" class="container__link">Shop now</a>
+                                <a href="/commodities?mainTag=type__spares&tags=type__spares" class="container__link">Shop now</a>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                     </#list>
 
                 </div>
-                <a href="" class="bestsellers__more-link font-LatoBold">View more</a>
+                <a href="/commodities?mainTag=type__notebook&tags=type__notebook" class="bestsellers__more-link font-LatoBold">View more</a>
             </div><!-- bestsellers -->
         </div> <!-- wrapper-bestsellers -->
     </#if>
@@ -90,7 +90,7 @@
                     </#list>
 
                 </div><!--product-list-->
-                <a href="" class="bestsellers__more-link font-LatoBold">View more</a>
+                <a href="/commodities?mainTag=type__phone&tags=type__phone" class="bestsellers__more-link font-LatoBold">View more</a>
             </div><!-- bestsellers -->
         </div>
     </#if>

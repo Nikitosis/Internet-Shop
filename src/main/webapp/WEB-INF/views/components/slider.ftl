@@ -99,6 +99,10 @@
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="/resources/img/spin.svg" />
         </div>
         <div data-u="slides" style="object-fit:contain;cursor:default;position:relative;top:0px;left:0px;width:980px;height:580px;overflow:hidden;">
+            <div>
+                <img data-u="image" style="object-fit: contain" src="/commodities/getMainImage?commodityId=${commodity.id}" />
+                <img data-u="thumb" style="object-fit: contain" src="/commodities/getMainImage?commodityId=${commodity.id}" />
+            </div>
             <#list 0..commodity.getImages()?size-1 as imageIndex>
                 <div>
                     <img data-u="image" style="object-fit: contain" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}" />
