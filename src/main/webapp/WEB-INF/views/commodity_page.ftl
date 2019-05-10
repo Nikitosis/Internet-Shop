@@ -60,6 +60,16 @@
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </section>
                 </form>
+                <section class="admin-panel about__admin-panel">
+                    <a class="admin-panel__button admin-panel__button_modify" href="/commodities/modifyCommodity/${commodity.id}">Modify commodity</a>
+                    <form action="/commodities/deleteCommodity" method="post">
+                        <input type="hidden" name="id" value="${commodity.id}"/>
+                        <button class="admin-panel__button admin-panel__button_delete" type="submit">Delete commodity</button>
+
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </section>
+
             </div> <!--about-->
 
 			<section class="comment-section main__comment-section">
@@ -90,11 +100,6 @@
 			</section> -->
         </main>
     </div>
-
-    <form action="/commodities/deleteCommodity?id=${commodity.id}" method="post">
-        <input type="submit" value="Delete commodity"/>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    </form>
 
     <@main_footer/>
 </body>
