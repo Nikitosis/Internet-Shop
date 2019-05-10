@@ -39,7 +39,7 @@
             </tr>
             <tr><td>price</td></tr>
             <tr>
-                <td><input type="number" name="price" value="${commodity.price}"/></td>
+                <td><input type="number" name="price" value="42"/></td>
             </tr>
             <tr><td>mainPic</td></tr>
             <tr>

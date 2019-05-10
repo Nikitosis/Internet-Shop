@@ -40,13 +40,14 @@ public class Commodity {
     @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     @OrderBy("date")
-    private Set<Comment> comments=new HashSet<Comment>();
+    private List<Comment> comments=new ArrayList<Comment>();
 
     @ManyToMany(mappedBy="commodities",cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    private Set<Category> categories=new HashSet<Category>();
+    @OrderBy("name asc")
+    private Set<Category> categories=new TreeSet<Category>();
 
-    public Commodity(String name, Double price, Date creationDate,Set<Comment> comments) {
+    public Commodity(String name, Double price, Date creationDate,List<Comment> comments) {
         this.name = name;
         this.price = price;
         setCreationDate(creationDate);
@@ -66,11 +67,11 @@ public class Commodity {
         images.add(image);
     }
 
-    public Set<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 
