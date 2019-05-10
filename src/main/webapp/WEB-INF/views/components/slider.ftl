@@ -99,16 +99,20 @@
             <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="/resources/img/spin.svg" />
         </div>
         <div data-u="slides" style="object-fit:contain;cursor:default;position:relative;top:0px;left:0px;width:980px;height:580px;overflow:hidden;">
-            <div>
-                <img data-u="image" style="object-fit: contain" src="/commodities/getMainImage?commodityId=${commodity.id}" />
-                <img data-u="thumb" style="object-fit: contain" src="/commodities/getMainImage?commodityId=${commodity.id}" />
-            </div>
-            <#list 0..commodity.getImages()?size-1 as imageIndex>
+            <#if commodity.mainImage??>
                 <div>
-                    <img data-u="image" style="object-fit: contain" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}" />
-                    <img data-u="thumb" style="object-fit: contain" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}" />
+                    <img data-u="image" style="object-fit: contain" src="/commodities/getMainImage?commodityId=${commodity.id}" />
+                    <img data-u="thumb" style="object-fit: contain" src="/commodities/getMainImage?commodityId=${commodity.id}" />
                 </div>
-            </#list>
+            </#if>
+            <#if commodity.getImages()?size gt 0>
+                <#list 0..commodity.getImages()?size-1 as imageIndex>
+                    <div>
+                        <img data-u="image" style="object-fit: contain" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}" />
+                        <img data-u="thumb" style="object-fit: contain" src="/commodities/getImage?commodityId=${commodity.id}&imageIndex=${imageIndex}" />
+                    </div>
+                </#list>
+            </#if>
         </div>
         <!-- Thumbnail Navigator -->
         <div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:0px;width:980px;height:200px;background-color:white;" data-autocenter="1" data-scale-bottom="0.75">

@@ -241,7 +241,7 @@ public class DaoImpl implements Dao {
         try{
 
             Transaction tx=session.beginTransaction();
-            session.merge(commodity);
+            session.saveOrUpdate(commodity);
             System.out.println("Commodity modified: "+commodity.getName());
             tx.commit();
         }
@@ -258,9 +258,12 @@ public class DaoImpl implements Dao {
         try{
             Transaction tx=session.beginTransaction();
 
-            Commodity commodity=session.get(Commodity.class,id);
-            session.delete(commodity);
-            System.out.println("Delete commodity: "+commodity.getName());
+            //Commodity commodity=session.get(Commodity.class,id);
+            //session.delete(commodity);
+            session.createQuery("DELETE FROM Commodity WHERE id=:id")
+                    .setParameter("id",id)
+                    .executeUpdate();
+            //System.out.println("Delete commodity: "+commodity.getName());
 
             tx.commit();
         }

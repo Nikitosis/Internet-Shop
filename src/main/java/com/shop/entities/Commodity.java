@@ -28,12 +28,12 @@ public class Commodity {
     @Column(name="description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="main_image")
     private Image mainImage;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Image> images=new ArrayList<Image>();
 
@@ -44,8 +44,8 @@ public class Commodity {
 
     @ManyToMany(mappedBy="commodities",cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OrderBy("name asc")
-    private Set<Category> categories=new TreeSet<Category>();
+    @OrderBy("id asc")
+    private Set<Category> categories=new HashSet<Category>();
 
     public Commodity(String name, Double price, Date creationDate,List<Comment> comments) {
         this.name = name;
@@ -148,4 +148,6 @@ public class Commodity {
     public void setMainImage(Image mainImage) {
         this.mainImage = mainImage;
     }
+
+
 }

@@ -6,10 +6,7 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name="category")
@@ -91,11 +88,22 @@ public class Category implements Comparable{
 
 
     @Override
+    public int hashCode() {
+        return Objects.hash(name,value);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Category category=(Category)obj;
+        return category.hashCode()==hashCode();
+    }
+
+    @Override
     public int compareTo(Object o) {
         Category category=(Category)o;
-        if(category.getId()<id)
+        if(category.hashCode()<hashCode())
             return -1;
-        if(category.getId()>id)
+        if(category.hashCode()>hashCode())
             return 1;
         return 0;
     }

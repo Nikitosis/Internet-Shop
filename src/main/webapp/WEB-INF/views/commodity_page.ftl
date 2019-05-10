@@ -30,7 +30,7 @@
             	<p class="product-header__product-category font-LatoRegular">Some category</p>
             </div>
 
-            <#if commodity.getImages()?size gt 0>
+            <#if commodity.getImages()?size gt 0 || commodity.mainImage??>
                 <section class="image-section main__image-section">
                     <#--<img class="image-section__picture image-section__picture_big" src="/commodities/getMainImage?commodityId=${commodity.id}"/>-->
                     <#--<#list 0..commodity.getImages()?size-1 as imageIndex>-->

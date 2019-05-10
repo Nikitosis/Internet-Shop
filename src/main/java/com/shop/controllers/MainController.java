@@ -129,28 +129,8 @@ public class MainController {
                                @RequestParam("name") String name,
                                @RequestParam("description") String description,
                                @RequestParam("price") Double price) throws IOException{
-        Commodity commodity=new Commodity();
-        commodity.setName(name);
-        commodity.setPrice(price);
-        commodity.setDescription(description);
 
-        commodity.setMainImage(new Image(mainImage.getBytes()));
-        for(MultipartFile image:images) {
-            byte[] b = image.getBytes();
-            Image imageObj = new Image(image.getBytes());
-            commodity.addImage(imageObj);
-        }
-
-        for(int i=0;i<tagNames.length;i++){
-            Category curCategory=service.getCategory(tagNames[i],tagValues[i]);
-            if(curCategory==null){
-                curCategory=new Category(tagNames[i],tagValues[i]);
-            }
-            commodity.addCategory(curCategory);
-        }
-
-        commodity.setCreationDate(new java.sql.Date(new java.util.Date().getTime()));
-        service.addCommodityToDb(commodity);
+        service.addCommodityToDb(service.createCommodity(mainImage,images,tagNames,tagValues,name,description,price,null));
 
         return "redirect:/commodities";
     }
@@ -163,9 +143,19 @@ public class MainController {
     }
 
     @PostMapping("/commodities/modifyCommodity")
-    public String modifyCommodity(@ModelAttribute("commodity") Commodity commodity){
+    public String modifyCommodity(@RequestParam("mainImg") MultipartFile mainImage,
+                                  @RequestParam("imgs") List<MultipartFile> images,
+                                  @RequestParam("tagNames") String[] tagNames,
+                                  @RequestParam("tagValues") String[] tagValues,
+                                  @RequestParam("name") String name,
+                                  @RequestParam("description") String description,
+                                  @RequestParam("price") Double price,
+                                  @RequestParam("id") Integer id
+                                ) throws IOException{
+        Commodity commodity=service.getCommodityById(id);
+        service.setupCommodityFields(mainImage,images,tagNames,tagValues,name,description,price,id,null,commodity);
         service.modifyCommodity(commodity);
-        return "redirect:/commodities";
+        return "redirect:/commodities/"+id;
     }
 
     @PostMapping("/commodities/deleteCommodity")

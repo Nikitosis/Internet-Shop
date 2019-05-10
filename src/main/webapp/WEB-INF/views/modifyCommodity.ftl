@@ -31,7 +31,7 @@
 </head>
 <body>
     <h1>Modify commodity</h1>
-    <form action="/commodities/addCommodity?${_csrf.parameterName}=${_csrf.token}" method="post" name="commodity" enctype="multipart/form-data">
+    <form action="/commodities/modifyCommodity?${_csrf.parameterName}=${_csrf.token}" method="post" name="commodity" enctype="multipart/form-data">
         <table id="table">
             <tr><td>name</td></tr>
             <tr>
@@ -39,7 +39,7 @@
             </tr>
             <tr><td>price</td></tr>
             <tr>
-                <td><input type="number" name="price" value="42"/></td>
+                <td><input type="number" name="price" value="${commodity.price?string["0"]}" step="any"/></td>
             </tr>
             <tr><td>mainPic</td></tr>
             <tr>
@@ -61,12 +61,13 @@
             </tr>
             <tr><td>description</td></tr>
             <tr>
-                <td><textarea name="description" value="${commodity.description}" style="width:200px;height:200px;"></textarea></td>
+                <td><textarea name="description" style="width:200px;height:200px;">${commodity.description}</textarea></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Modify commodity"/></td>
             </tr>
         </table>
+        <input type="hidden" name="id" value="${commodity.id}"/>
 
     <#--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
     </form>

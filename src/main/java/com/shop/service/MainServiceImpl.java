@@ -9,9 +9,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import sun.applet.Main;
 
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.*;
 
@@ -134,6 +136,75 @@ public class MainServiceImpl implements MainService {
         dao.addNewUser(encodedUser);
     }
 
+    public Commodity createCommodity(MultipartFile mainImage,
+                                 List<MultipartFile> images,
+                                 String[] tagNames,
+                                 String[] tagValues,
+                                 String name,
+                                 String description,
+                                 Double price,
+                                     Integer id) throws IOException {
+        Commodity commodity=new Commodity();
+
+        setupCommodityFields(mainImage,images,tagNames,tagValues,name,description,price,id,new java.util.Date(),commodity);
+
+        return commodity;
+    }
+
+    @Override
+    public Commodity setupCommodityFields(MultipartFile mainImage, List<MultipartFile> images, String[] tagNames, String[] tagValues, String name, String description, Double price, Integer id, java.util.Date creationDate, Commodity commodity) throws IOException {
+        if(id!=null){
+            commodity.setId(id);
+        }
+
+        if(name!=null) {
+            commodity.setName(name);
+        }
+
+        if(price!=null) {
+            commodity.setPrice(price);
+        }
+
+        if(description!=null) {
+            commodity.setDescription(description);
+        }
+
+        if(mainImage!=null && mainImage.getSize()>0) {
+            commodity.setMainImage(new Image(mainImage.getBytes()));
+        }
+
+        if(images!=null) {
+            List<Image> newImages=new ArrayList<Image>();
+            for (MultipartFile image : images) {
+                if(image.getSize()==0)
+                    continue;
+                byte[] b = image.getBytes();
+                Image imageObj = new Image(image.getBytes());
+                newImages.add(imageObj);
+            }
+            if(!newImages.isEmpty())
+                commodity.setImages(newImages);
+        }
+
+        if(tagNames!=null) {
+            for (int i = 0; i < tagNames.length; i++) {
+                if("".equals(tagNames[i]) || "".equals(tagValues[i]))
+                    continue;
+                Category curCategory = getCategory(tagNames[i], tagValues[i]);
+                if (curCategory == null) {
+                    curCategory = new Category(tagNames[i], tagValues[i]);
+                }
+                if(!commodity.getCategories().contains(curCategory))
+                    commodity.addCategory(curCategory);
+            }
+        }
+
+        if(creationDate!=null) {
+            commodity.setCreationDate(new java.sql.Date(creationDate.getTime()));
+        }
+        return commodity;
+    }
+
     public void addCommodityToDb(Commodity commodity) {
         dao.addCommodity(commodity);
     }
@@ -147,9 +218,9 @@ public class MainServiceImpl implements MainService {
         dao.deleteCommodityById(id);
     }
 
-    public void addComment(Comment comment) {
+    /*public void addComment(Comment comment) {
         dao.addComment(comment);
-    }
+    }*/
 
     public void addComment(String content, Commodity commodity,UserDetails userDetails) {
         User user=getUser(userDetails.getUsername());
@@ -158,7 +229,7 @@ public class MainServiceImpl implements MainService {
                 user,
                 commodity);
 
-        dao.addComment(comment);
+        //dao.addComment(comment);
 
         commodity.addComment(comment);
         user.addComment(comment);
