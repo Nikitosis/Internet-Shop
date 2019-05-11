@@ -154,6 +154,19 @@ html,body{
 	max-width: 30%;
 }
 
+.product-list__product_new{
+	opacity:.8;
+	border:3px solid rgba(0,0,0,.1);
+	background: url("/resources/img/new-product-background.png") center no-repeat;
+	background-size:contain;
+}
+
+.product-list__product_new:hover{
+	border:3px solid #ffab00;
+	background: url("/resources/img/new-product-background_hover.png") center no-repeat;
+	background-size:contain;
+}
+
 .pages-controller{
 	display:flex;
 	align-items: center;

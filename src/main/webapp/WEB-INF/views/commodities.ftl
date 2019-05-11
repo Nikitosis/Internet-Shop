@@ -5,6 +5,7 @@
 <#include "components/pager.ftl"/>
 <#include "components/filters-item.ftl"/>
 
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,6 +97,12 @@
 							<@commodity additionalClass="products-list__product" commodity=curCommodity/>
 						</#list>
 					</#if>
+
+                    <@security.authorize access="hasRole('ROLE_ADMIN')">
+                        <#if paginator.pageIndex==paginator.getTotalPages()>
+                            <a href="/commodities/addCommodity" class="products-list__product product-list__product_new"></a>
+                        </#if>
+                    </@security.authorize>
 
                 </div><!-- products-list -->
                 <div class="pages-controller products-section__pages-controller">

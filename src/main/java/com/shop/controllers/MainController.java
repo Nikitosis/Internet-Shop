@@ -135,8 +135,8 @@ public class MainController {
         return "redirect:/commodities";
     }
 
-    @GetMapping("/commodities/modifyCommodity/{id}")
-    public String showModifyCommodity(@PathVariable("id") int commodity_id, Model model){
+    @GetMapping("/commodities/modifyCommodity")
+    public String showModifyCommodity(@RequestParam("id") int commodity_id, Model model){
         Commodity commodity=service.getCommodityById(commodity_id);
         model.addAttribute("commodity",commodity);
         return "modifyCommodity";
@@ -172,6 +172,8 @@ public class MainController {
         service.addComment(comment);
         commodity.addComment(comment);
         user.addComment(comment);*/
+        System.out.println("Showing commodity");
+
         Commodity commodity=service.getCommodityById(id);
         model.addAttribute("commodity",commodity);
         //model.addAttribute("imagesAmount",commodity.getImages().size());
