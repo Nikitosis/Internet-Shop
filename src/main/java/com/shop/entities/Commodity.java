@@ -37,13 +37,18 @@ public class Commodity {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Image> images=new ArrayList<Image>();
 
-    @OneToMany(mappedBy = "commodity",orphanRemoval = true,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "commodity",cascade = CascadeType.ALL,orphanRemoval = true)
     @LazyCollection(LazyCollectionOption.FALSE)
     @OrderBy("date")
     private List<Comment> comments=new ArrayList<Comment>();
 
-    @ManyToMany(mappedBy="commodities",cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinTable(
+            name="commodity_category",
+            joinColumns = {@JoinColumn(name="category_id")},
+            inverseJoinColumns ={@JoinColumn(name="commodity_id")}
+    )
     @OrderBy("id asc")
     private Set<Category> categories=new HashSet<Category>();
 
@@ -53,6 +58,8 @@ public class Commodity {
         setCreationDate(creationDate);
         this.comments=comments;
     }
+
+
 
     public Commodity(){
 
@@ -130,6 +137,9 @@ public class Commodity {
     }
 
     public void setCategories(Set<Category> categories) {
+//        for(Category category:this.categories){
+//            category.getCommodities().remove(this);
+//        }
         this.categories = categories;
     }
 
@@ -148,6 +158,7 @@ public class Commodity {
     public void setMainImage(Image mainImage) {
         this.mainImage = mainImage;
     }
+
 
 
 }

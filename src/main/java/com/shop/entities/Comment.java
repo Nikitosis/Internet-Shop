@@ -20,13 +20,11 @@ public class Comment {
     @Column(name="date")
     private Date date;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToOne
     @JoinColumn(name="user")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToOne
     @JoinColumn(name="commodity")
     private Commodity commodity;
 

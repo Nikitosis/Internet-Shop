@@ -187,16 +187,18 @@ public class MainServiceImpl implements MainService {
         }
 
         if(tagNames!=null) {
+            Set<Category> newCategories=new HashSet<Category>();
             for (int i = 0; i < tagNames.length; i++) {
+
                 if("".equals(tagNames[i]) || "".equals(tagValues[i]))
                     continue;
                 Category curCategory = getCategory(tagNames[i], tagValues[i]);
                 if (curCategory == null) {
                     curCategory = new Category(tagNames[i], tagValues[i]);
                 }
-                if(!commodity.getCategories().contains(curCategory))
-                    commodity.addCategory(curCategory);
+                newCategories.add(curCategory);
             }
+            commodity.setCategories(newCategories);
         }
 
         if(creationDate!=null) {
@@ -229,9 +231,18 @@ public class MainServiceImpl implements MainService {
                 user,
                 commodity);
 
-        //dao.addComment(comment);
+        dao.addComment(comment);
 
-        commodity.addComment(comment);
-        user.addComment(comment);
+
+//        commodity.addComment(comment);
+//        user.addComment(comment);
+//
+//        dao.addCommodity(commodity);
+//        dao.addNewUser(user);
+
+        //commodity.addComment(comment);
+        //user.addComment(comment);
+
+        //modifyCommodity(commodity);
     }
 }

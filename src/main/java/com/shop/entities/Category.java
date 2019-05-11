@@ -23,13 +23,8 @@ public class Category implements Comparable{
     @Column(name="value",nullable = false)
     private String value;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "categories")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinTable(
-            name="commodity_category",
-            joinColumns = {@JoinColumn(name="category_id")},
-            inverseJoinColumns ={@JoinColumn(name="commodity_id")}
-    )
     private Set<Commodity> commodities=new HashSet<Commodity>();
 
     public Category(String categoryName,String categoryValue){

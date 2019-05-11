@@ -208,7 +208,7 @@ public class DaoImpl implements Dao {
         Session session=sessionFactory.openSession();
         try{
             Transaction tx=session.beginTransaction();
-            session.save(user);
+            session.saveOrUpdate(user);
             System.out.println("User "+user.getUsername()+" registered!");
             tx.commit();
         }
@@ -258,11 +258,15 @@ public class DaoImpl implements Dao {
         try{
             Transaction tx=session.beginTransaction();
 
-            //Commodity commodity=session.get(Commodity.class,id);
-            //session.delete(commodity);
-            session.createQuery("DELETE FROM Commodity WHERE id=:id")
+            Commodity commodity=session.get(Commodity.class,id);
+            //as comments will be removed too, we have to remove them from another association(with user)
+            for(Comment comment:commodity.getComments()){
+                comment.getUser().getComments().remove(comment);
+            }
+            session.delete(commodity);
+            /*session.createQuery("DELETE FROM Commodity WHERE id=:id")
                     .setParameter("id",id)
-                    .executeUpdate();
+                    .executeUpdate();*/
             //System.out.println("Delete commodity: "+commodity.getName());
 
             tx.commit();
