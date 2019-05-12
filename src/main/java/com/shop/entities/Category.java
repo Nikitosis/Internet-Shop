@@ -24,7 +24,7 @@ public class Category implements Comparable{
     private String value;
 
     @ManyToMany(mappedBy = "categories")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     private Set<Commodity> commodities=new HashSet<Commodity>();
 
     public Category(String categoryName,String categoryValue){

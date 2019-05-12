@@ -27,11 +27,11 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true,cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     private Set<UserRole> userRoles=new HashSet<UserRole>();
 
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     private List<Comment> comments=new ArrayList<Comment>();
 
     public User(String username, String password, Set<UserRole> userRoles,List<Comment> comments) {

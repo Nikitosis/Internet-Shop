@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.print.attribute.standard.Media;
+import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.*;
 
@@ -29,21 +30,21 @@ public class Commodity {
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     @JoinColumn(name="main_image")
     private Image mainImage;
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     private List<Image> images=new ArrayList<Image>();
 
     @OneToMany(mappedBy = "commodity",cascade = CascadeType.ALL,orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     @OrderBy("date")
     private List<Comment> comments=new ArrayList<Comment>();
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     @JoinTable(
             name="commodity_category",
             joinColumns = {@JoinColumn(name="category_id")},

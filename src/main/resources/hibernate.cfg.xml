@@ -14,6 +14,10 @@
     <!-- DB schema will be updated if needed -->
     <property name="hbm2ddl.auto">update</property>
 
+    <!--To deal with lazy initialization outside of the session. Bad approach.
+        Todo: come up with something better than this in future-->
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
+
     <mapping class="com.shop.entities.User"/>
     <mapping class="com.shop.entities.Commodity"/>
     <mapping class="com.shop.entities.OrderLog"/>
