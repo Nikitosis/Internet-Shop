@@ -90,7 +90,9 @@
 					</#list>
 					<#--<@filtersItem onClickMethod="expandBlock(this)" additionalClass="filters-section__filters-item"/>-->
 					<#--<@filtersItem onClickMethod="expandBlock(this)" additionalClass="filters-section__filters-item"/>-->
-
+                    <#if RequestParameters.mainTag??>
+                         <input type="hidden" name='mainTag' value="${RequestParameters.mainTag}"/>
+                    </#if>
 					<button class="filters-section__search-button" type="submit">Filter</button>
                 </form>
             </div><!-- filters-section -->

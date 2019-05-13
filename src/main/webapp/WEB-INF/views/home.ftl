@@ -61,16 +61,16 @@
         </section><!-- main-banner -->
     </div><!-- wrapper-main-banner -->
     <#assign
-    commoditiesAmount=(commodities?size>4)?then(4,commodities?size)
+    bestPhonesAmount=(bestPhones?size>4)?then(4,bestPhones?size)
     >
-    <#if commoditiesAmount gt 0>
+    <#if bestPhonesAmount gt 0>
         <div class="wrapper-bestsellers">
             <div class="bestsellers wrapper-bestsellers__bestsellers">
                 <h3 class="bestsellers__title font-MerriweatherRegular">Best selling notebooks</h3>
                 <p class="bestsellers__subtitle font-LatoRegular">Best notebooks for your grandparents.</p>
                 <div class="bestsellers__product-list product-list">
-                    <#list 0..commoditiesAmount-1 as i>
-                        <@commodity additionalClass="product-list__product" commodity=commodities[i]/>
+                    <#list 0..bestPhonesAmount-1 as i>
+                        <@commodity additionalClass="product-list__product" commodity=bestNotebooks[i]/>
                     </#list>
 
                 </div>
@@ -78,15 +78,18 @@
             </div><!-- bestsellers -->
         </div> <!-- wrapper-bestsellers -->
     </#if>
-    <#if commoditiesAmount gt 0>
+    <#assign
+    bestNotebooksAmount=(bestNotebooks?size>4)?then(4,bestNotebooks?size)
+    >
+    <#if bestNotebooksAmount gt 0>
         <div class="wrapper-bestsellers">
             <div class="bestsellers wrapper-bestsellers__bestsellers">
                 <h3 class="bestsellers__title font-MerriweatherRegular">Best selling phones</h3>
                 <p class="bestsellers__subtitle font-LatoRegular">A phone for your child.</p>
                 <div class="bestsellers__product-list product-list">
 
-                    <#list 0..commoditiesAmount-1 as i>
-                            <@commodity additionalClass="product-list__product" commodity=commodities[i]/>
+                    <#list 0..bestNotebooksAmount-1 as i>
+                            <@commodity additionalClass="product-list__product" commodity=bestPhones[i]/>
                     </#list>
 
                 </div><!--product-list-->

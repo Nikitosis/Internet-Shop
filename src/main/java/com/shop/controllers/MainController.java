@@ -25,7 +25,8 @@ public class MainController {
 
     @GetMapping("/")
     public String getHome(Model model){
-        model.addAttribute("commodities",service.getCommodities(new CommodityFilter().setSortBy(CommodityFilter.SortingColumn.PRICE)));
+        model.addAttribute("bestPhones",service.getCommodities(new CommodityFilter().addCategory(new Category("type","phone"))));
+        model.addAttribute("bestNotebooks",service.getCommodities(new CommodityFilter().addCategory(new Category("type","notebook"))));
         return "home";
     }
 
