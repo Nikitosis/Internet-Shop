@@ -189,7 +189,8 @@ public class MainServiceImpl implements MainService {
         if(tagNames!=null) {
             Set<Category> newCategories=new HashSet<Category>();
             for (int i = 0; i < tagNames.length; i++) {
-
+                tagNames[i]=tagNames[i].trim();
+                tagValues[i]=tagValues[i].trim();
                 if("".equals(tagNames[i]) || "".equals(tagValues[i]))
                     continue;
                 Category curCategory = getCategory(tagNames[i], tagValues[i]);

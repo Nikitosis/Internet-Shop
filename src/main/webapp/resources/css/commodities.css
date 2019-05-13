@@ -155,6 +155,7 @@ html,body{
 }
 
 .product-list__product_new{
+	height:400px;
 	opacity:.8;
 	border:3px solid rgba(0,0,0,.1);
 	background: url("/resources/img/new-product-background.png") center no-repeat;

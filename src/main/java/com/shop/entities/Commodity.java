@@ -26,7 +26,7 @@ public class Commodity {
     @Column(name="creation_date")
     private Date creationDate;
 
-    @Column(name="description")
+    @Column(name="description",columnDefinition = "LONGTEXT")
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
