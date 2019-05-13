@@ -102,4 +102,9 @@ public class Category implements Comparable{
             return 1;
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return this.name+"__"+this.value;
+    }
 }

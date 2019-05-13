@@ -24,10 +24,17 @@
 	<#assign
 		requestParameters=""
 	>
-	<#if RequestParameters.tags??>
-		<#assign
-			requestParameters=requestParameters+'&'+'tags='+RequestParameters.tags
-		>
+    <#if RequestParameters.mainTag??>
+        <#assign
+        requestParameters=requestParameters+'&'+'mainTag='+RequestParameters.mainTag
+        >
+    </#if>
+	<#if tags??>
+        <#list tags as tag>
+            <#assign
+            requestParameters=requestParameters+'&'+'tags='+tag.toString()
+            >
+        </#list>
 	</#if>
     <#if RequestParameters.minPrice??>
 		<#assign
@@ -52,6 +59,8 @@
 </head>
 
 <body>
+
+
     <@main_header/>
 
     <@main_nav/>
@@ -107,11 +116,11 @@
                 </div><!-- products-list -->
                 <div class="pages-controller products-section__pages-controller">
                     <#if paginator.getPageIndex() gt 1>
-                	    <a href="/commodities?page=${paginator.getPageIndex()-1}" class="pages-controller__previous-page font-LatoRegular">Previous</a>
+                	    <a href="/commodities?page=${paginator.getPageIndex()-1}${requestParameters}" class="pages-controller__previous-page font-LatoRegular">Previous</a>
                     </#if>
                     <@pager paginator=paginator additionalClass="pages-controller__products-pages" requestParameters=requestParameters/>
                 	<#if paginator.getPageIndex() lt paginator.getTotalPages()>
-                        <a href="/commodities?page=${paginator.getPageIndex()+1}" class="pages-controller__next-page font-LatoRegular">Next</a>
+                        <a href="/commodities?page=${paginator.getPageIndex()+1}${requestParameters}" class="pages-controller__next-page font-LatoRegular">Next</a>
                     </#if>
                 </div>
             </div><!-- products-section -->
