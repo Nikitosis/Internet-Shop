@@ -8,13 +8,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <@head_tags/>
+
     <link rel="stylesheet" href="/resources/css/basket.css">
     <link rel="stylesheet" href="/resources/css/components/main_header.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
     <link rel="stylesheet" href="/resources/css/components/commodity_basket.css"/>
-
-    <@head_tags/>
 </head>
 <body>
 <div class="main">

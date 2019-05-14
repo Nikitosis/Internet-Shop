@@ -7,8 +7,6 @@
 <#setting locale="en_US">
 <#setting time_zone="UTC">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
     <@head_tags/>
 
     <script>

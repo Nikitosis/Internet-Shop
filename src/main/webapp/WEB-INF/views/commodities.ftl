@@ -12,8 +12,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+    <@head_tags/>
+
     <link rel="stylesheet" href="/resources/css/commodities.css">
     <link rel="stylesheet" href="/resources/css/components/main_header.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="/resources/css/components/pager.css"/>
     <link rel="stylesheet" href="/resources/css/components/filters-item.css"/>
 
-    <@head_tags/>
 
     <script src="/resources/js/filters-item.js"></script>
 	<#assign
