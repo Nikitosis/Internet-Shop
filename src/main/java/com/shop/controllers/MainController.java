@@ -88,11 +88,20 @@ public class MainController {
 
         model.addAttribute("paginator",paginator);
 
-        CommodityFilter mainTagFilter=new CommodityFilter();
-        if(mainTag!=null)
-            mainTagFilter.addCategory(mainTag);
 
-        model.addAttribute("groupedCategories",service.getGroupedCategories(mainTagFilter));
+
+        CommodityFilter mainTagFilter=new CommodityFilter();
+        if(mainTag!=null) {
+            mainTagFilter.addCategory(mainTag);
+        }
+
+        Map<String,List<Category>> groupedCategories=service.getGroupedCategories(mainTagFilter);
+
+        if(mainTag!=null){  //remove mainTag to not let user change it in filter
+            groupedCategories.remove(mainTag.getName());
+        }
+
+        model.addAttribute("groupedCategories",groupedCategories);
         model.addAttribute("commodityFilter",commodityFilter);
         model.addAttribute("tags",tags);
         return "commodities";
