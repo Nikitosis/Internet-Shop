@@ -208,7 +208,7 @@ public class DaoImpl implements Dao {
         Session session=sessionFactory.openSession();
         try{
             Transaction tx=session.beginTransaction();
-            session.saveOrUpdate(user);
+            session.save(user);
             System.out.println("User "+user.getUsername()+" registered!");
             tx.commit();
         }
