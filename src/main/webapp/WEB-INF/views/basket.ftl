@@ -2,6 +2,7 @@
 <#include "components/main_nav.ftl"/>
 <#include "components/main_footer.ftl"/>
 <#include "components/commodity_basket.ftl"/>
+<#include "components/head_tags.ftl"/>
 
 
 <!doctype html>
@@ -12,6 +13,8 @@
     <link rel="stylesheet" href="/resources/css/components/main_nav.css"/>
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
     <link rel="stylesheet" href="/resources/css/components/commodity_basket.css"/>
+
+    <@head_tags/>
 </head>
 <body>
 <div class="main">

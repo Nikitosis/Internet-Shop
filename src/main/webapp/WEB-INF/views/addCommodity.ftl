@@ -1,8 +1,12 @@
+<#include "components/head_tags.ftl"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <@head_tags/>
 </head>
 
 <script>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <head>

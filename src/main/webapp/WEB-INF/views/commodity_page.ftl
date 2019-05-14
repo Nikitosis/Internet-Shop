@@ -3,6 +3,7 @@
 <#include "components/main_footer.ftl"/>
 <#include "components/comment.ftl"/>
 <#include "components/slider.ftl"/>
+<#include "components/head_tags.ftl"/>
 
 <#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 
@@ -18,6 +19,8 @@
     <link rel="stylesheet" href="/resources/css/components/main_footer.css"/>
     <link rel="stylesheet" href="/resources/css/components/commodity.css"/>
     <link rel="stylesheet" href="/resources/css/components/comment.css"/>
+
+    <@head_tags/>
 </head>
 
 <body>

@@ -4,6 +4,7 @@
 <#include "components/commodity.ftl"/>
 <#include "components/pager.ftl"/>
 <#include "components/filters-item.ftl"/>
+<#include "components/head_tags.ftl"/>
 
 <#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 
@@ -20,6 +21,9 @@
     <link rel="stylesheet" href="/resources/css/components/commodity.css"/>
     <link rel="stylesheet" href="/resources/css/components/pager.css"/>
     <link rel="stylesheet" href="/resources/css/components/filters-item.css"/>
+
+    <@head_tags/>
+
     <script src="/resources/js/filters-item.js"></script>
 	<#assign
 		requestParameters=""
